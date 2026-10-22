@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+:root {
+  --chalk: #f6f3ee;
+  --paper: #fbfaf7;
+  --bone: #ece7df;
+  --line: #ddd6cb;
+  --ink: #1c1d20;
+  --graphite: #2b2d32;
+  --stone: #5f5e5b;
+  --bordeaux: #6e1e2b;
+  --bordeaux-deep: #541621;
+  --bordeaux-soft: #f2e8e8;
+  --sand: #c8b79f;
+  --chalk-muted: rgba(246, 243, 238, 0.68);
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-h: 84px;
+  --mobile-bar-h: 72px;
+}
+
+@theme inline {
+  --color-chalk: var(--chalk);
+  --color-paper: var(--paper);
+  --color-bone: var(--bone);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-graphite: var(--graphite);
+  --color-stone: var(--stone);
+  --color-bordeaux: var(--bordeaux);
+  --color-bordeaux-deep: var(--bordeaux-deep);
+  --color-bordeaux-soft: var(--bordeaux-soft);
+  --color-sand: var(--sand);
+  --color-chalk-muted: var(--chalk-muted);
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-premium: var(--ease-premium);
+  --radius-xs: 2px;
+  --shadow-hair: 0 1px 2px rgba(28, 29, 32, 0.04);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--chalk);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    font-variant-numeric: lining-nums;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 17px;
+    }
+  }
+
+  /* Mobilná dolná lišta nesmie prekryť obsah */
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: calc(var(--mobile-bar-h) + env(safe-area-inset-bottom));
+    }
+  }
+
+  ::selection {
+    background: var(--bordeaux);
+    color: var(--chalk);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--bordeaux);
+    outline-offset: 3px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--sand);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  [id] {
+    scroll-margin-top: calc(var(--header-h) + 24px);
+  }
+}
+
+@layer components {
+  .h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.75rem, 5.6vw, 5.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+  }
+
+  .h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.1rem, 3.6vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+
+  .h3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 1.9vw, 1.75rem);
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  .body-text {
+    color: color-mix(in srgb, var(--ink) 85%, transparent);
+    max-width: 64ch;
+  }
+
+  .lead {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--stone);
+  }
+
+  @media (min-width: 768px) {
+    .lead {
+      font-size: 21px;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--bordeaux);
+  }
+
+  .on-dark .eyebrow {
+    color: var(--sand);
+  }
+
+  .step-number {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(56px, 5vw, 72px);
+    line-height: 1;
+    color: color-mix(in srgb, var(--bordeaux) 90%, transparent);
+    font-variant-numeric: lining-nums;
+  }
+
+  .label-caps {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  /* Jednotná „editorial“ úprava všetkých fotiek */
+  .editorial {
+    position: relative;
+    overflow: hidden;
+    background: var(--bone);
+  }
+
+  .editorial img {
+    filter: grayscale(0.85) contrast(1.05) brightness(0.92);
+  }
+
+  .editorial::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    mix-blend-mode: multiply;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* Textový odkaz s podčiarknutím, ktoré narastie zľava */
+  .text-link {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4em;
+    font-weight: 600;
+    color: var(--ink);
+    padding-bottom: 3px;
+    background-image: linear-gradient(var(--bordeaux), var(--bordeaux)),
+      linear-gradient(color-mix(in srgb, var(--bordeaux) 28%, transparent), color-mix(in srgb, var(--bordeaux) 28%, transparent));
+    background-size: 0% 1px, 100% 1px;
+    background-position: 0 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease-premium), color 0.3s;
+  }
+
+  .text-link:hover,
+  .group:hover .text-link,
+  .text-link:focus-visible {
+    background-size: 100% 1px, 100% 1px;
+  }
+
+  .text-link .arrow {
+    display: inline-block;
+    transition: transform 0.45s var(--ease-premium);
+    color: var(--bordeaux);
+  }
+
+  .text-link:hover .arrow,
+  .group:hover .text-link .arrow {
+    transform: translateX(6px);
+  }
+
+  .inline-link {
+    color: var(--bordeaux);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.3s;
+  }
+
+  .inline-link:hover {
+    color: var(--bordeaux-deep);
+  }
+
+  .on-dark .inline-link {
+    color: var(--sand);
+  }
+}
+
+/* Úvodné animácie hero v čistom CSS: spustia sa pri prvom vykreslení, bez čakania na JS (LCP) */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes word-up {
+  from {
+    transform: translateY(110%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.anim-reveal {
+  animation: reveal-up 0.7s var(--ease-premium) both;
+}
+
+.anim-word {
+  animation: word-up 0.9s var(--ease-premium) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-reveal,
+  .anim-word {
+    animation-name: fade-in;
+    animation-duration: 0.01ms;
+    animation-delay: 0s !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
