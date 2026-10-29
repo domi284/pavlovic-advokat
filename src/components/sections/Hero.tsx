@@ -1,4 +1,4 @@
-import { Clock3, MessageSquare, ShieldCheck } from "lucide-react";
+import { Clock3, MapPin, ShieldCheck } from "lucide-react";
 import { ImageReveal } from "@/components/motion/ImageReveal";
 import { Parallax } from "@/components/motion/Parallax";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
@@ -6,16 +6,18 @@ import { RevealText } from "@/components/motion/RevealText";
 import { CtaGroup } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { SiteImage } from "@/components/ui/SiteImage";
+import { Portrait } from "@/components/ui/SiteImage";
+import { Rich } from "@/components/ui/Rich";
 import type { home } from "@/content/home";
 import { typo } from "@/lib/typo";
 
-const icons = [Clock3, MessageSquare, ShieldCheck];
+const icons = [Clock3, ShieldCheck, MapPin];
 
 export function Hero({ content }: { content: typeof home.hero }) {
   return (
     <>
-      <section aria-labelledby="hero-title" className="relative pt-[84px]">
+      {/* Dokument 3.1 · Hero */}
+      <section aria-labelledby="hero-title" data-doc="3.1" className="relative pt-[84px]">
         <Container className="grid items-center gap-12 py-12 md:py-16 lg:min-h-[calc(92vh-84px)] lg:grid-cols-12 lg:gap-16 lg:py-20">
           <div className="lg:col-span-7">
             <Reveal immediate>
@@ -40,14 +42,15 @@ export function Hero({ content }: { content: typeof home.hero }) {
             <span aria-hidden="true" className="absolute top-[8%] bottom-[8%] left-0 hidden w-px bg-bordeaux lg:block" />
             <ImageReveal immediate delay={0.2} className="aspect-[4/5] w-full">
               <Parallax>
-                <SiteImage slot={content.image} priority sizes="(min-width: 1024px) 40vw, 100vw" />
+                <Portrait sizes="(min-width: 1024px) 40vw, 100vw" />
               </Parallax>
             </ImageReveal>
           </div>
         </Container>
       </section>
 
-      <div className="border-y border-line">
+      {/* Dokument 3.1 · Riadok dôvery */}
+      <div data-doc="3.1" className="border-y border-line">
         <Container>
           <Stagger as="ul" className="grid md:grid-cols-3 md:divide-x md:divide-line">
             {content.points.map((point, i) => {
@@ -59,7 +62,7 @@ export function Hero({ content }: { content: typeof home.hero }) {
                   className="flex items-center gap-4 border-b border-line py-6 last:border-b-0 md:justify-center md:border-b-0 md:px-6 md:py-8"
                 >
                   <Icon aria-hidden="true" strokeWidth={1.25} className="size-6 shrink-0 text-bordeaux" />
-                  <span className="text-[15px] font-medium text-ink">{typo(point)}</span>
+                  <span className="text-[15px] font-medium text-ink"><Rich text={point} /></span>
                 </StaggerItem>
               );
             })}

@@ -6,6 +6,21 @@ export const images = {
     alt: "Detail pracovného stola s perom a dokumentmi",
     label: "hero-uvod.jpg: stôl, pero, dokumenty",
   },
+  sluzbyUvod: {
+    file: "sluzby-uvod.jpg",
+    alt: "Regál s knihami a dokumentmi v teplom svetle",
+    label: "sluzby-uvod.jpg: regál s knihami",
+  },
+  precoMy: {
+    file: "preco-my.jpg",
+    alt: "Schodisko s prirodzeným svetlom a architektonickým detailom",
+    label: "preco-my.jpg: schodisko a svetlo",
+  },
+  timKancelaria: {
+    file: "tim-kancelaria.jpg",
+    alt: "Prázdna kancelária s pracovným stolom a prírodným svetlom",
+    label: "tim-kancelaria.jpg: prázdna kancelária",
+  },
   nehody: {
     file: "oblast-nehody.jpg",
     alt: "Mestská cesta za súmraku so svetelnými stopami áut",

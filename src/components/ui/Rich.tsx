@@ -13,7 +13,7 @@ import { ReviewMark } from "./ReviewMark";
  * - [text](/odkaz) → interný odkaz.
  * `plain` = bez odkazov (napr. vnútri tlačidla, ktoré už odkazom je).
  */
-const TOKEN = /\{\{(\w+)\|([^}]+)\}\}|\[([^\]]+)\]\(([^)]+)\)|\s*\(OVERIŤ\)([.,;:]?)/g;
+const TOKEN = /\{\{(?<field>\w+)\|(?<fallback>[^}]+)\}\}|\[(?<placeholder>DOPLNIŤ(?::\s*[^\]]+)?)\]|\[(?<linkText>[^\]]+)\]\((?<href>[^)]+)\)|\s*\(OVERIŤ\)(?<punctuation>[.,;:]?)/g;
 
 export function Rich({ text, plain = false }: { text: string; plain?: boolean }) {
   const parts: ReactNode[] = [];
@@ -24,9 +24,11 @@ export function Rich({ text, plain = false }: { text: string; plain?: boolean })
     const index = match.index ?? 0;
     if (index > last) parts.push(typo(text.slice(last, index)));
 
-    const [, field, fallback, linkText, href, punctuation] = match;
+    const { field, fallback, placeholder, linkText, href, punctuation } = match.groups ?? {};
     if (field) {
       parts.push(<FieldValue key={key++} field={field as SiteField} fallback={fallback} plain={plain} />);
+    } else if (placeholder) {
+      parts.push(<Placeholder key={key++}>{placeholder}</Placeholder>);
     } else if (linkText) {
       parts.push(
         plain ? (
@@ -70,6 +72,7 @@ export function plainText(text: string) {
       const value = site.fields[field];
       return typeof value === "string" ? value : "";
     })
+    .replace(/\[DOPLNIŤ(?::\s*[^\]]+)?\]/g, "")
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
     .replace(/\s*\(OVERIŤ\)/g, "")
     .trim();

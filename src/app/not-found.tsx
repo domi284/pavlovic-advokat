@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section aria-labelledby="page-title" className="relative flex min-h-[80vh] items-center pt-[84px]">
+    <section aria-labelledby="page-title" data-doc="9.2" className="relative flex min-h-[80vh] items-center pt-[84px]">
       <Container className="relative w-full py-24">
         <div className="relative">
           <span

@@ -1,9 +1,5 @@
-import { AreaPageView } from "@/components/sections/AreaPageView";
-import { nehody } from "@/content/nehody";
-import { pageMetadata } from "@/lib/seo";
-
-export const metadata = pageMetadata(nehody.meta);
+import { redirect } from "next/navigation";
 
 export default function DopravnePage() {
-  return <AreaPageView page={nehody} />;
+  redirect("/sluzby/dopravne-nehody");
 }

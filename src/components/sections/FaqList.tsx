@@ -15,6 +15,7 @@ export function FaqList({
   items,
   link,
   className,
+  dataDoc,
 }: {
   id: string;
   number?: string;
@@ -23,9 +24,10 @@ export function FaqList({
   items: Faq[];
   link?: TextLinkType;
   className?: string;
+  dataDoc?: string;
 }) {
   return (
-    <section aria-labelledby={id} className={cn("py-24 md:py-32 lg:py-40", className)}>
+    <section aria-labelledby={id} data-doc={dataDoc} className={cn("py-24 md:py-32 lg:py-40", className)}>
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-32">

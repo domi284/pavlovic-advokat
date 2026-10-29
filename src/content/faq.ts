@@ -1,29 +1,34 @@
-import { nehody } from "./nehody";
-import { obchodne } from "./obchodne";
-import { trestne } from "./trestne";
-import type { AreaPage, Faq, Meta } from "./types";
+import { serviceDetails } from "./04-sluzby";
+import { pageSeo } from "./10-seo";
 
-function areaFaq(page: AreaPage): Faq[] {
-  const section = page.sections.find((s) => s.type === "faq");
-  return section && section.type === "faq" ? section.items : [];
-}
+const serviceLabels: Record<string, string> = {
+  "dopravne-nehody": "Dopravné nehody",
+  "obchodne-pravo": "Obchodné právo",
+  "obcianske-pravo": "Občianske právo",
+  "rodinne-pravo": "Rodinné právo",
+  "spravne-pravo": "Správne právo",
+  "dusevne-vlastnictvo": "Duševné vlastníctvo",
+  "patentove-pravo": "Patentové právo",
+  "kyberneticke-pravo": "Kybernetické právo",
+  "trestne-pravo": "Trestné právo",
+};
 
 export const faqPage = {
-  meta: {
-    title: "Časté otázky o advokátovi a konzultácii | JUDr. Pavlovič",
-    description:
-      "Odpovede na časté otázky o dopravných nehodách, trestnom a obchodnom práve a o tom, ako prebieha konzultácia s advokátom v Bratislave.",
-    path: "/caste-otazky",
-  } satisfies Meta,
+  meta: pageSeo.faq,
   h1: "Časté otázky",
   groups: [
     {
       id: "konzultacia-a-spolupraca",
       label: "Konzultácia a spolupráca",
+      href: undefined,
       items: [
         {
           q: "Ako si dohodnem konzultáciu?",
-          a: "Zavolajte, alebo vyplňte formulár na stránke [Kontakt](/kontakt#konzultacia). Ozvem sa vám na kontakt, ktorý uvediete.",
+          a: "Zavolajte nám alebo vyplňte formulár na stránke [Kontakt](/kontakt#konzultacia). Ozveme sa vám na kontakt, ktorý uvediete, a dohodneme termín.",
+        },
+        {
+          q: "Je konzultácia spoplatnená?",
+          a: "Áno, konzultácia s advokátom je spoplatnená. Jej podmienky vám oznámime vopred, pri dohadovaní termínu. (OVERIŤ)",
         },
         {
           q: "Čo mám priniesť na konzultáciu?",
@@ -35,12 +40,15 @@ export const faqPage = {
         },
         {
           q: "Venujete sa aj iným oblastiam práva?",
-          a: "Sústreďujem sa na dopravné nehody, trestné a obchodné právo. Ak vaša vec patrí inam, poviem vám to na začiatku. (OVERIŤ)",
+          a: "Venujeme sa deviatim oblastiam práva, ktoré nájdete v sekcii [Služby](/sluzby). Ak vaša vec patrí inam, povieme vám to hneď na začiatku. (OVERIŤ)",
         },
-      ] satisfies Faq[],
+      ],
     },
-    { id: "dopravne-nehody", label: "Dopravné nehody", items: areaFaq(nehody) },
-    { id: "trestne-pravo", label: "Trestné právo", items: areaFaq(trestne) },
-    { id: "obchodne-pravo", label: "Obchodné právo", items: areaFaq(obchodne) },
+    ...serviceDetails.map((service) => ({
+      id: service.slug,
+      label: serviceLabels[service.slug],
+      href: `/sluzby/${service.slug}`,
+      items: service.faq,
+    })),
   ],
 };

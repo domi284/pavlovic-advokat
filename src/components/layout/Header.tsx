@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { footer, header, nav, ui } from "@/content/common";
+import { footer, header, nav, serviceNav, ui } from "@/content/common";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/lib/motion";
 import { site, telHref } from "@/lib/site";
@@ -28,7 +28,10 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const servicesRef = useRef<HTMLLIElement | null>(null);
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 40);
@@ -40,7 +43,22 @@ export function Header() {
   });
 
   // zavrieť menu pri zmene stránky
-  useEffect(() => setMenuOpen(false), [pathname]);
+  useEffect(() => {
+    setMenuOpen(false);
+    setServicesOpen(false);
+    setMobileServicesOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onPointerDown = (event: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setServicesOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", onPointerDown);
+    return () => window.removeEventListener("mousedown", onPointerDown);
+  }, [servicesOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -67,6 +85,7 @@ export function Header() {
   return (
     <>
       <header
+        data-doc="2"
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color,height] duration-[350ms] ease-premium",
           solid ? "border-b border-line bg-chalk/[0.86] backdrop-blur-md" : "border-b border-transparent",
@@ -88,6 +107,67 @@ export function Header() {
             <ul className="flex items-center gap-7 xl:gap-9">
               {nav.map((item) => {
                 const active = isActive(pathname, item.href);
+                const isServices = item.href === "/sluzby";
+
+                if (isServices) {
+                  return (
+                    <li key={item.href} ref={servicesRef} className="relative">
+                      <button
+                        type="button"
+                        onClick={() => setServicesOpen((value) => !value)}
+                        aria-expanded={servicesOpen}
+                        aria-label="Služby"
+                        className="group relative flex items-center gap-2 py-2 text-[14.5px] font-medium text-ink/85 transition-colors hover:text-ink"
+                      >
+                        {item.label}
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            "absolute inset-x-0 -bottom-0.5 h-px origin-left bg-bordeaux transition-transform duration-500 ease-premium",
+                            active || servicesOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
+                          )}
+                        />
+                      </button>
+
+                      <AnimatePresence>
+                        {servicesOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -8 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            className="absolute left-1/2 top-full z-50 mt-4 w-[720px] -translate-x-1/2 rounded-xs border border-line bg-paper p-5 shadow-[0_20px_40px_rgba(28,29,32,.08)]"
+                          >
+                            <div className="grid gap-4 md:grid-cols-3">
+                              {serviceNav.map((service, index) => (
+                                <Link
+                                  key={service.href}
+                                  href={service.href}
+                                  onClick={() => setServicesOpen(false)}
+                                  className="group flex items-center gap-3 rounded-[2px] border border-transparent px-2 py-2 text-sm font-medium text-ink transition-colors hover:border-line hover:bg-chalk"
+                                >
+                                  <span className="font-serif text-[22px] leading-none text-bordeaux">
+                                    {String(index + 1).padStart(2, "0")}
+                                  </span>
+                                  <span className="flex flex-col">
+                                    <span>{service.label}</span>
+                                    {service.badge && <span className="mt-1 text-[10px] font-medium tracking-wide text-bordeaux">{service.badge}</span>}
+                                  </span>
+                                </Link>
+                              ))}
+                            </div>
+                            <div className="mt-5 border-t border-line pt-4">
+                              <Link href="/sluzby" className="inline-flex items-center gap-2 text-[14px] font-semibold text-ink hover:text-bordeaux">
+                                Všetky služby →
+                              </Link>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </li>
+                  );
+                }
+
                 return (
                   <li key={item.href}>
                     <Link
@@ -162,6 +242,67 @@ export function Header() {
               >
                 {nav.map((item) => {
                   const active = isActive(pathname, item.href);
+                  if (item.href === "/sluzby") {
+                    return (
+                      <motion.li
+                        key={item.href}
+                        className="border-b border-line"
+                        variants={{
+                          hidden: { opacity: 0, y: reduced ? 0 : 24 },
+                          show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+                        }}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setMobileServicesOpen((value) => !value)}
+                          className={cn(
+                            "flex w-full items-center justify-between py-3.5 text-left font-serif text-[36px] leading-tight font-medium",
+                            active || mobileServicesOpen ? "text-bordeaux" : "text-ink",
+                          )}
+                        >
+                          {item.label}
+                          <span aria-hidden="true" className="text-[22px] text-bordeaux">{mobileServicesOpen ? "−" : "+"}</span>
+                        </button>
+                        <AnimatePresence initial={false}>
+                          {mobileServicesOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.25, ease: "easeOut" }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pb-4 pt-2">
+                                <ul className="space-y-2">
+                                  {serviceNav.map((service, index) => (
+                                    <li key={service.href} className="border-t border-line pt-2 first:border-t-0 first:pt-0">
+                                      <Link
+                                        href={service.href}
+                                        onClick={() => setMenuOpen(false)}
+                                        className="flex items-center gap-3 text-[15px] font-medium text-ink"
+                                      >
+                                        <span className="font-serif text-[18px] text-bordeaux">{String(index + 1).padStart(2, "0")}</span>
+                                        <span className="flex flex-col">
+                                          <span>{service.label}</span>
+                                          {service.badge && <span className="mt-0.5 text-[10px] font-medium tracking-wide text-bordeaux">{service.badge}</span>}
+                                        </span>
+                                      </Link>
+                                    </li>
+                                  ))}
+                                  <li className="pt-3">
+                                    <Link href="/sluzby" onClick={() => setMenuOpen(false)} className="font-medium text-bordeaux">
+                                      Všetky služby →
+                                    </Link>
+                                  </li>
+                                </ul>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.li>
+                    );
+                  }
+
                   return (
                     <motion.li
                       key={item.href}

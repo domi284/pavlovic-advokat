@@ -1,4 +1,14 @@
-export type Area = "nehody" | "trestne" | "obchodne" | "ine";
+export type Area =
+  | "dopravne-nehody"
+  | "obchodne-pravo"
+  | "obcianske-pravo"
+  | "rodinne-pravo"
+  | "spravne-pravo"
+  | "dusevne-vlastnictvo"
+  | "patentove-pravo"
+  | "kyberneticke-pravo"
+  | "trestne-pravo"
+  | "ine";
 
 export type Inquiry = {
   name: string;

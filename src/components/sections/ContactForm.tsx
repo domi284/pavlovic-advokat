@@ -17,7 +17,18 @@ import { typo } from "@/lib/typo";
 
 const f = kontakt.form;
 const m = f.messages;
-const AREAS = ["nehody", "trestne", "obchodne", "ine"] as const;
+const AREAS = [
+  "dopravne-nehody",
+  "obchodne-pravo",
+  "obcianske-pravo",
+  "rodinne-pravo",
+  "spravne-pravo",
+  "dusevne-vlastnictvo",
+  "patentove-pravo",
+  "kyberneticke-pravo",
+  "trestne-pravo",
+  "ine",
+] as const;
 
 const schema = z.object({
   name: z.string().trim().min(1, m.required),
@@ -122,7 +133,7 @@ export function ContactForm() {
               </svg>
             </motion.span>
             <p className="mt-8 max-w-[34ch] font-serif text-[24px] leading-snug font-medium text-ink">
-              {typo(m.success)}
+              <Rich text={m.success} />
             </p>
           </motion.div>
         ) : (
@@ -211,6 +222,11 @@ export function ContactForm() {
                 })}
               </div>
             </fieldset>
+            {selectedArea === "trestne-pravo" && (
+              <p role="note" className="rounded-xs border border-bordeaux/30 bg-bordeaux-soft px-4 py-3 text-[14px] leading-relaxed text-bordeaux">
+                {f.criminalNotice}
+              </p>
+            )}
 
             <div>
               <label htmlFor={id("message")} className="mb-2 block text-[14px] font-semibold text-ink">

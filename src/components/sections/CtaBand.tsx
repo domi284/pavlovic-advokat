@@ -2,16 +2,16 @@ import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 import { CtaGroup } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Rich } from "@/components/ui/Rich";
 import { Monogram } from "@/components/ui/Logo";
 import { SiteImage } from "@/components/ui/SiteImage";
 import type { CtaBand as CtaBandContent } from "@/content/types";
 import { images } from "@/content/images";
-import { typo } from "@/lib/typo";
 
 /** Záverný tmavý CTA pás s textúrou kameňa a veľkým monogramom v pozadí. */
-export function CtaBand({ content }: { content: CtaBandContent }) {
+export function CtaBand({ content, dataDoc }: { content: CtaBandContent; dataDoc?: string }) {
   return (
-    <section aria-labelledby="cta-title" className="on-dark relative isolate overflow-hidden bg-ink text-chalk">
+    <section aria-labelledby="cta-title" data-doc={dataDoc} className="on-dark relative isolate overflow-hidden bg-ink text-chalk">
       <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-[0.08]">
         <SiteImage slot={images.kamen} sizes="100vw" className="[&_img]:grayscale" />
       </div>
@@ -23,7 +23,7 @@ export function CtaBand({ content }: { content: CtaBandContent }) {
           {content.text && (
             <Reveal delay={0.1}>
               <p className="mt-7 max-w-[52ch] text-[18px] leading-relaxed text-chalk-muted md:text-[19px]">
-                {typo(content.text)}
+                <Rich text={content.text} />
               </p>
             </Reveal>
           )}

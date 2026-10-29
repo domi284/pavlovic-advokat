@@ -14,6 +14,7 @@ export function ChecklistSteps({
   title,
   items,
   link,
+  dataDoc,
 }: {
   id: string;
   number?: string;
@@ -21,9 +22,10 @@ export function ChecklistSteps({
   title: string;
   items: Item[];
   link: TextLinkType;
+  dataDoc?: string;
 }) {
   return (
-    <section aria-labelledby={id} className="py-24 md:py-32 lg:py-40">
+    <section aria-labelledby={id} data-doc={dataDoc} className="py-24 md:py-32 lg:py-40">
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-32">

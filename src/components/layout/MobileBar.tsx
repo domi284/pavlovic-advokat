@@ -44,6 +44,7 @@ export function MobileBar() {
 
   return (
     <div
+      data-doc="2"
       className={cn(
         "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper px-4 pt-2.5 pb-[calc(10px+env(safe-area-inset-bottom))] transition-transform duration-500 ease-premium md:hidden",
         show ? "translate-y-0" : "translate-y-full",

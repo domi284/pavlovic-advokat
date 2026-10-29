@@ -34,6 +34,8 @@ export const site = {
     phone: null as string | null,
     /** napr. "kancelaria@domena.sk" */
     email: null as string | null,
+    /** e-mail pre uchádzačov o prácu */
+    careersEmail: null as string | null,
     /** úradné hodiny ako text, napr. "Po – Pi: 8.00 – 16.00" */
     hours: null as string | null,
     /** hodiny pre schema.org, napr. ["Mo-Fr 08:00-16:00"] */
@@ -47,7 +49,10 @@ export const site = {
     sakNumber: null as string | null,
     /** škola, rok ukončenia, titul JUDr. */
     education: null as string | null,
+    yearsOfPractice: null as string | null,
+    casesHandled: null as string | null,
     languages: null as string | null,
+    focus: null as string | null,
     /** cesta k portrétu v /public, napr. "/images/portret.jpg" */
     portrait: null as string | null,
   },

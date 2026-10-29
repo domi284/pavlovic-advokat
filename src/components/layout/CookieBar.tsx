@@ -18,6 +18,7 @@ export function CookieBar() {
 
   const choose = (value: ConsentValue) => {
     writeConsent(value);
+    window.dispatchEvent(new Event("cookie-consent-changed"));
     setOpen(false);
   };
 
@@ -26,6 +27,7 @@ export function CookieBar() {
       {open && (
         <motion.section
           aria-label="Cookies"
+          data-doc="9.2"
           className="fixed right-4 bottom-[calc(var(--mobile-bar-h)+env(safe-area-inset-bottom)+12px)] left-4 z-[45] max-w-[420px] rounded-xs border border-line bg-paper p-6 shadow-[0_1px_2px_rgba(28,29,32,.04),0_12px_32px_-12px_rgba(28,29,32,.12)] md:right-auto md:bottom-6 md:left-6"
           initial={{ opacity: 0, y: reduced ? 0 : 24 }}
           animate={{ opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE, delay: reduced ? 0 : 1.2 } }}

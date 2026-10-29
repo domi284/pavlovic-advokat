@@ -20,6 +20,8 @@ export function PageHero({
   ctas,
   image,
   aside,
+  breadcrumbTrail,
+  dataDoc,
   compact = false,
 }: {
   title: string;
@@ -28,11 +30,13 @@ export function PageHero({
   ctas?: Cta[];
   image?: ImageSlot;
   aside?: ReactNode;
+  breadcrumbTrail?: { label: string; href?: string }[];
+  dataDoc?: string;
   compact?: boolean;
 }) {
   const hasAside = !!(image || aside);
   return (
-    <section aria-labelledby="page-title" className="relative pt-[84px]">
+    <section aria-labelledby="page-title" data-doc={dataDoc} className="relative pt-[84px]">
       <Container
         className={cn(
           "grid items-center gap-12 py-12 md:py-16 lg:gap-16",
@@ -41,21 +45,20 @@ export function PageHero({
         )}
       >
         <div className={cn(hasAside ? "lg:col-span-7" : "max-w-4xl")}>
-          {crumb && (
+          {(breadcrumbTrail || crumb) && (
             <Reveal immediate>
               <nav aria-label={ui.breadcrumb} className="text-[13px] text-stone">
                 <ol className="flex items-center gap-2">
-                  <li>
-                    <Link href="/" className="transition-colors hover:text-bordeaux">
-                      {ui.home}
-                    </Link>
-                  </li>
-                  <li aria-hidden="true" className="text-line">
-                    /
-                  </li>
-                  <li aria-current="page" className="text-ink">
-                    {crumb}
-                  </li>
+                  {(breadcrumbTrail ?? [{ label: ui.home, href: "/" }, ...(crumb ? [{ label: crumb }] : [])]).map((item, index, list) => (
+                    <li key={`${item.label}-${index}`} className="flex items-center gap-2">
+                      {index > 0 && <span aria-hidden="true" className="text-line">/</span>}
+                      {item.href ? (
+                        <Link href={item.href} className="transition-colors hover:text-bordeaux">{item.label}</Link>
+                      ) : (
+                        <span aria-current={index === list.length - 1 ? "page" : undefined} className="text-ink">{item.label}</span>
+                      )}
+                    </li>
+                  ))}
                 </ol>
               </nav>
             </Reveal>

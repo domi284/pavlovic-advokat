@@ -1,16 +1,16 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
-import { CtaBand } from "@/components/sections/CtaBand";
 import { FaqGroupNav } from "@/components/sections/FaqGroupNav";
 import { PageHero } from "@/components/sections/PageHero";
 import { Accordion } from "@/components/ui/Accordion";
 import { Container } from "@/components/ui/Container";
+import { TextLink } from "@/components/ui/TextLink";
 import { plainText } from "@/components/ui/Rich";
 import { faqPage } from "@/content/faq";
-import { home } from "@/content/home";
+import { pageSeo } from "@/content/10-seo";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata(faqPage.meta);
+export const metadata = pageMetadata(pageSeo.faq);
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -28,7 +28,7 @@ export default function FaqPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <PageHero title={faqPage.h1} compact />
+      <PageHero title={faqPage.h1} compact dataDoc="8.4" />
       <FaqGroupNav groups={faqPage.groups.map(({ id, label }) => ({ id, label }))} />
 
       <Container className="pt-8 pb-24 md:pb-32 lg:pb-40">
@@ -37,6 +37,7 @@ export default function FaqPage() {
             key={group.id}
             id={group.id}
             aria-labelledby={`${group.id}-title`}
+            data-doc="8.4"
             className="grid gap-8 border-b border-line py-16 last:border-b-0 md:py-20 lg:grid-cols-12 lg:gap-16"
           >
             <div className="lg:col-span-4">
@@ -47,12 +48,12 @@ export default function FaqPage() {
             </div>
             <Reveal className="lg:col-span-8">
               <Accordion items={group.items} />
+              {group.href && <div className="mt-8"><TextLink href={group.href} label={`Viac o službe →`} /></div>}
             </Reveal>
           </section>
         ))}
       </Container>
 
-      <CtaBand content={home.cta} />
     </>
   );
 }

@@ -9,17 +9,18 @@ import { MapEmbed } from "@/components/ui/MapEmbed";
 import { Rich } from "@/components/ui/Rich";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { kontakt } from "@/content/kontakt";
+import { pageSeo } from "@/content/10-seo";
 import { mapsEmbedUrl, pageMetadata } from "@/lib/seo";
 import { typo } from "@/lib/typo";
 
-export const metadata = pageMetadata(kontakt.meta);
+export const metadata = pageMetadata(pageSeo.contact);
 
 export default function ContactPage() {
   return (
     <>
-      <PageHero title={kontakt.h1} subtitle={kontakt.subtitle} compact />
+      <PageHero title={kontakt.h1} subtitle={kontakt.subtitle} compact dataDoc="8.1" />
 
-      <section aria-label="Kontaktné údaje a formulár" className="border-t border-line pt-16 pb-24 md:pt-20 md:pb-32 lg:pb-40">
+      <section aria-label="Kontaktné údaje a formulár" data-doc="8.2 8.3" className="border-t border-line pt-16 pb-24 md:pt-20 md:pb-32 lg:pb-40">
         <Container className="grid gap-16 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Stagger as="ul" className="space-y-7">
@@ -51,6 +52,9 @@ export default function ContactPage() {
               <Reveal>
                 <p className="mt-5 mb-10 text-[17px] text-stone">{typo(kontakt.form.intro)}</p>
               </Reveal>
+              <p className="mb-8 rounded-xs border border-bordeaux/30 bg-bordeaux-soft px-4 py-3 text-[14px] leading-relaxed text-bordeaux">
+                <Rich text={kontakt.form.feeNotice} />
+              </p>
               <Suspense fallback={null}>
                 <ContactForm />
               </Suspense>

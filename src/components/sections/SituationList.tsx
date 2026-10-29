@@ -14,6 +14,7 @@ export function SituationList({
   title,
   items,
   cta,
+  dataDoc,
 }: {
   id: string;
   number?: string;
@@ -21,9 +22,10 @@ export function SituationList({
   title: string;
   items: string[];
   cta: Cta;
+  dataDoc?: string;
 }) {
   return (
-    <section aria-labelledby={id} className="bg-bone py-24 md:py-32 lg:py-40">
+    <section aria-labelledby={id} data-doc={dataDoc} className="bg-bone py-24 md:py-32 lg:py-40">
       <Container>
         <SectionHeading id={id} number={number} eyebrow={eyebrow} title={title} className="max-w-3xl" />
         <Stagger as="ul" className="mt-14 grid gap-4 md:mt-20 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">

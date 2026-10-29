@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { AssistantWidget } from "@/components/layout/AssistantWidget";
 import { CookieBar } from "@/components/layout/CookieBar";
 import { Footer } from "@/components/layout/Footer";
 import { Grain } from "@/components/layout/Grain";
@@ -7,7 +8,7 @@ import { Header } from "@/components/layout/Header";
 import { MobileBar } from "@/components/layout/MobileBar";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ui } from "@/content/common";
-import { home } from "@/content/home";
+import { pageSeo } from "@/content/10-seo";
 import { legalServiceJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -28,8 +29,8 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: home.meta.title,
-  description: home.meta.description,
+  title: pageSeo.home.title,
+  description: pageSeo.home.description,
   applicationName: site.company,
   authors: [{ name: site.name }],
   formatDetection: { telephone: false },
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <MobileBar />
           <CookieBar />
+          <AssistantWidget />
         </SmoothScroll>
         <Grain />
       </body>

@@ -2,6 +2,7 @@ import { DrawLine } from "@/components/motion/DrawLine";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { CtaButton } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Rich } from "@/components/ui/Rich";
 import type { Cta, Item } from "@/content/types";
 import { typo } from "@/lib/typo";
 import { SectionHeading } from "./SectionHeading";
@@ -14,6 +15,7 @@ export function Steps({
   title,
   steps,
   cta,
+  dataDoc,
 }: {
   id: string;
   number?: string;
@@ -21,9 +23,10 @@ export function Steps({
   title: string;
   steps: Item[];
   cta?: Cta;
+  dataDoc?: string;
 }) {
   return (
-    <section aria-labelledby={id} className="bg-bone py-24 md:py-32 lg:py-40">
+    <section aria-labelledby={id} data-doc={dataDoc} className="bg-bone py-24 md:py-32 lg:py-40">
       <Container>
         <SectionHeading id={id} number={number} eyebrow={eyebrow} title={title} className="max-w-3xl" />
 
@@ -41,7 +44,7 @@ export function Steps({
                 </span>
                 <div className="pt-2 md:pt-8">
                   <h3 className="h3">{typo(step.title)}</h3>
-                  <p className="body-text mt-4 text-[16px]">{typo(step.text)}</p>
+                  <p className="body-text mt-4 text-[16px]"><Rich text={step.text} /></p>
                 </div>
               </StaggerItem>
             ))}

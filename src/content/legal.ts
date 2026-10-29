@@ -1,33 +1,14 @@
-/**
- * Texty právnych stránok zatiaľ nemáme. Stránky obsahujú iba štruktúru nadpisov
- * a placeholdery, text dodá advokátska kancelária.
- */
-const pending = "DOPLNIŤ: text zásad pripraví advokátska kancelária";
+import { pageSeo } from "./10-seo";
+import { s9_2_footer } from "./09-asistentka-paticka";
 
 export const privacy = {
-  meta: {
-    title: "Ochrana osobných údajov | JUDr. Ladislav Pavlovič",
-    path: "/ochrana-osobnych-udajov",
-  },
-  h1: "Ochrana osobných údajov",
-  pending,
-  sections: [
-    "Prevádzkovateľ",
-    "Účel a právny základ spracúvania",
-    "Doba uchovávania",
-    "Vaše práva",
-    "Kontakt",
-  ],
-  sectionPlaceholder: "DOPLNIŤ",
+  meta: pageSeo.privacy,
+  ...s9_2_footer.privacy,
+  sectionPlaceholder: "DOPLNIŤ: text zásad pripraví advokátska kancelária",
 };
 
 export const cookiesPolicy = {
-  meta: {
-    title: "Zásady používania cookies | JUDr. Ladislav Pavlovič",
-    path: "/cookies",
-  },
-  h1: "Zásady používania cookies",
-  pending,
-  sections: ["Čo sú cookies", "Aké cookies používame", "Ako zmeniť súhlas"],
-  sectionPlaceholder: "DOPLNIŤ",
+  meta: pageSeo.cookies,
+  ...s9_2_footer.cookies,
+  sectionPlaceholder: "DOPLNIŤ: text zásad pripraví advokátska kancelária",
 };

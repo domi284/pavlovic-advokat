@@ -13,6 +13,7 @@ export function ServiceList({
   title,
   items,
   reviewMark,
+  dataDoc,
 }: {
   id: string;
   number?: string;
@@ -20,9 +21,10 @@ export function ServiceList({
   title: string;
   items: Item[];
   reviewMark?: boolean;
+  dataDoc?: string;
 }) {
   return (
-    <section aria-labelledby={id} className="py-24 md:py-32 lg:py-40">
+    <section aria-labelledby={id} data-doc={dataDoc} className="py-24 md:py-32 lg:py-40">
       <Container>
         <SectionHeading
           id={id}

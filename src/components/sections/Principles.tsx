@@ -3,13 +3,14 @@ import { Parallax } from "@/components/motion/Parallax";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { SiteImage } from "@/components/ui/SiteImage";
+import { Rich } from "@/components/ui/Rich";
 import type { home } from "@/content/home";
 import { typo } from "@/lib/typo";
 import { SectionHeading } from "./SectionHeading";
 
-export function Principles({ content, number }: { content: typeof home.principles; number: string }) {
+export function Principles({ content, number, dataDoc }: { content: typeof home.principles; number: string; dataDoc?: string }) {
   return (
-    <section aria-labelledby="principy-title" className="pb-24 md:pb-32 lg:pb-40">
+    <section aria-labelledby="principy-title" data-doc={dataDoc} className="pb-24 md:pb-32 lg:pb-40">
       <Container className="grid gap-16 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-8">
           <SectionHeading id="principy-title" number={number} eyebrow={content.eyebrow} title={content.title} />
@@ -17,7 +18,7 @@ export function Principles({ content, number }: { content: typeof home.principle
             {content.items.map((item) => (
               <StaggerItem as="li" key={item.title} className="border-t border-line pt-7">
                 <h3 className="font-serif text-[24px] leading-tight font-semibold">{typo(item.title)}</h3>
-                <p className="body-text mt-3 text-[16px]">{typo(item.text)}</p>
+                <p className="body-text mt-3 text-[16px]"><Rich text={item.text} /></p>
               </StaggerItem>
             ))}
           </Stagger>

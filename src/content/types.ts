@@ -6,7 +6,7 @@
  *   [text](/odkaz)           interný odkaz
  */
 
-export type Meta = { title: string; description: string; path: string };
+export type Meta = { title: string; description?: string; path: string };
 
 export type Cta =
   | { kind: "link"; label: string; href: string; variant: "primary" | "secondary" }
@@ -21,6 +21,25 @@ export type Faq = { q: string; a: string };
 export type ImageSlot = { file: string; alt: string; label: string };
 
 export type CtaBand = { title: string; text?: string; ctas: Cta[] };
+
+export type ServiceDetail = {
+  block: string;
+  slug: string;
+  name: string;
+  image: ImageSlot;
+  cardDescription: string;
+  hero: { title: string; subtitle: string; ctaLabel?: string; notice?: string };
+  intro: { title: string; text: string };
+  checklist?: { title: string; items: Item[]; linkLead?: string };
+  services: { title: string; items: Item[] };
+  discretion?: { title: string; text: string };
+  steps: Item[];
+  situations: { title: string; items: string[] };
+  faq: Faq[];
+  related: string[];
+  cta: CtaBand;
+  meta: Meta;
+};
 
 export type AreaKey = "nehody" | "trestne" | "obchodne";
 

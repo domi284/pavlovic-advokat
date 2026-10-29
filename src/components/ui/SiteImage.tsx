@@ -6,7 +6,6 @@ import { cn } from "@/lib/cn";
 import { site } from "@/lib/site";
 import { grainBackground } from "@/components/layout/Grain";
 import { Monogram } from "./Logo";
-import { Placeholder } from "./Placeholder";
 
 function exists(file: string) {
   return fs.existsSync(path.join(process.cwd(), "public", file.replace(/^\//, "")));
@@ -75,7 +74,7 @@ export function Portrait({ sizes, className }: { sizes: string; className?: stri
           <div aria-hidden="true" className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: grainBackground }} />
           <div className="absolute inset-4 flex flex-col items-center justify-center gap-6 border border-line px-4 text-center">
             <Monogram className="size-20 text-ink opacity-30" />
-            <Placeholder>DOPLNIŤ: portrét JUDr. Pavloviča</Placeholder>
+            <p className="text-[12px] tracking-[0.06em] text-stone">Fotografia bude doplnená</p>
           </div>
         </>
       )}

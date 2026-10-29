@@ -5,9 +5,9 @@ import { Container } from "@/components/ui/Container";
 import { typo } from "@/lib/typo";
 
 /** Tmavá sekcia „Diskrétnosť“ (výnimka na Trestnom práve). */
-export function Discretion({ id, title, text }: { id: string; title: string; text: string }) {
+export function Discretion({ id, title, text, dataDoc }: { id: string; title: string; text: string; dataDoc?: string }) {
   return (
-    <section aria-labelledby={id} className="on-dark bg-ink py-24 text-chalk md:py-32 lg:py-40">
+    <section aria-labelledby={id} data-doc={dataDoc} className="on-dark bg-ink py-24 text-chalk md:py-32 lg:py-40">
       <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <Reveal>
