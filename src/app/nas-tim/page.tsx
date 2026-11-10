@@ -63,9 +63,14 @@ export default function TeamPage() {
               <Rich text={team.joinText} />
             </p>
             {site.fields.careersEmail ? (
-              <a href={`${mailHref(site.fields.careersEmail)}?subject=Záujem%20o%20prácu`} className="mt-6 inline-flex rounded-full border border-bordeaux bg-bordeaux px-5 py-3 text-[14px] font-semibold text-chalk">
-                {team.joinCta}
-              </a>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+                <a href={`${mailHref(site.fields.careersEmail)}?subject=Záujem%20o%20prácu`} className="inline-flex rounded-full border border-bordeaux bg-bordeaux px-5 py-3 text-[14px] font-semibold text-chalk">
+                  {team.joinCta}
+                </a>
+                <a href={mailHref(site.fields.careersEmail) ?? undefined} className="inline-link text-[16px]">
+                  {site.fields.careersEmail}
+                </a>
+              </div>
             ) : (
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <button type="button" disabled className="inline-flex cursor-not-allowed rounded-full border border-line px-5 py-3 text-[14px] font-semibold text-stone">

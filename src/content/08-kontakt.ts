@@ -1,3 +1,4 @@
+import { serviceDetails } from "./04-sluzby";
 import { images } from "./images";
 import type { Meta } from "./types";
 
@@ -5,11 +6,11 @@ export const s8_kontakt = {
   meta: {
     title: "Kontakt | Advokát Bratislava Ružinov | JUDr. Pavlovič",
     description:
-      "Kontakt na advokátsku kanceláriu JUDr. Ladislava Pavloviča, Ivanská cesta 32B, Bratislava Ružinov. Dohodnite si konzultáciu.",
+      "Kontakt na advokátsku kanceláriu JUDr. Ladislava Pavloviča, LL.M., Ivanská cesta 32B, Bratislava Ružinov. Dohodnite si konzultáciu.",
     path: "/kontakt",
   } satisfies Meta,
   h1: "Kontakt",
-  subtitle: "Zavolajte alebo napíšte. Ozveme sa vám na kontakt, ktorý uvediete, a podrobnosti rozoberieme osobne.",
+  subtitle: "Zavolajte alebo napíšte. Ozveme sa Vám na kontakt, ktorý uvediete, a podrobnosti rozoberieme osobne.",
   details: [
     { label: "Advokátska kancelária", value: "JUDr. Ladislav Pavlovič s. r. o." },
     { label: "Adresa", value: "Ivanská cesta 32B, 821 04 Bratislava – mestská časť Ružinov" },
@@ -26,8 +27,7 @@ export const s8_kontakt = {
   form: {
     title: "Dohodnite si konzultáciu",
     intro: "Stačí vyplniť meno a telefón. Podrobnosti rozoberieme osobne.",
-    feeNotice: "Konzultácia je spoplatnená. Jej podmienky vám oznámime vopred, pri dohadovaní termínu. (OVERIŤ)",
-    criminalNotice: "Trestné právo poskytujeme iba stálym klientom a po predchádzajúcej dohode.",
+    feeNotice: "Konzultácia je spoplatnená. Jej podmienky Vám oznámime vopred, pri dohadovaní termínu.",
     fields: {
       name: "Meno a priezvisko",
       phone: "Telefón",
@@ -38,22 +38,18 @@ export const s8_kontakt = {
       consent:
         "Súhlasím so spracovaním osobných údajov na účel vybavenia môjho dopytu. ([Zásady ochrany osobných údajov](/ochrana-osobnych-udajov))",
     },
+    /** Oblasti v poradí `servicesOrder` + „Iné“. */
     areas: [
-      { value: "dopravne-nehody", label: "Dopravné nehody" },
-      { value: "obchodne-pravo", label: "Obchodné právo" },
-      { value: "obcianske-pravo", label: "Občianske právo" },
-      { value: "rodinne-pravo", label: "Rodinné právo" },
-      { value: "spravne-pravo", label: "Správne právo" },
-      { value: "dusevne-vlastnictvo", label: "Právo duševného vlastníctva" },
-      { value: "patentove-pravo", label: "Patentové právo" },
-      { value: "kyberneticke-pravo", label: "Kybernetické právo" },
-      { value: "trestne-pravo", label: "Trestné právo (iba pre stálych klientov)" },
+      ...serviceDetails.map((service) => ({
+        value: service.slug,
+        label: service.slug === "trestne-pravo" ? `${service.name} (iba pre stálych klientov)` : service.name,
+      })),
       { value: "ine", label: "Iné" },
-    ] as const,
+    ],
     submit: "Odoslať dopyt",
     below: "Preferujete telefonát? Zavolajte na {{phone|DOPLNIŤ: telefón}}.",
     messages: {
-      success: "Ďakujeme, správu sme prijali. Ozveme sa vám na uvedený kontakt.",
+      success: "Ďakujeme, správu sme prijali. Ozveme sa Vám na uvedený kontakt.",
       error:
         "Správu sa nepodarilo odoslať. Skúste to prosím znova alebo zavolajte na {{phone|DOPLNIŤ: telefón}}.",
       required: "Toto pole je povinné.",

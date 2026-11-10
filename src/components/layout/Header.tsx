@@ -103,8 +103,8 @@ export function Header() {
             <Logo />
           </Link>
 
-          <nav aria-label="Hlavné menu" className="hidden lg:block">
-            <ul className="flex items-center gap-7 xl:gap-9">
+          <nav aria-label="Hlavné menu" className="hidden xl:block">
+            <ul className="flex items-center gap-6 2xl:gap-8">
               {nav.map((item) => {
                 const active = isActive(pathname, item.href);
                 const isServices = item.href === "/sluzby";
@@ -136,9 +136,9 @@ export function Header() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -8 }}
                             transition={{ duration: 0.3, ease: "easeOut" }}
-                            className="absolute left-1/2 top-full z-50 mt-4 w-[720px] -translate-x-1/2 rounded-xs border border-line bg-paper p-5 shadow-[0_20px_40px_rgba(28,29,32,.08)]"
+                            className="absolute left-1/2 top-full z-50 mt-4 w-[620px] -translate-x-1/2 rounded-xs border border-line bg-paper p-5 shadow-[0_20px_40px_rgba(28,29,32,.08)]"
                           >
-                            <div className="grid gap-4 md:grid-cols-3">
+                            <div className="grid grid-flow-col grid-cols-2 grid-rows-5 gap-x-4 gap-y-1">
                               {serviceNav.map((service, index) => (
                                 <Link
                                   key={service.href}
@@ -191,7 +191,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden lg:block">
+            <div className="hidden xl:block">
               <Button
                 href={phoneHref ?? "#"}
                 disabled={!phoneHref}
@@ -208,7 +208,7 @@ export function Header() {
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
-              className="-mr-2 inline-flex h-11 min-w-11 shrink-0 items-center justify-center gap-2 px-2 text-[13px] font-semibold tracking-[0.14em] text-ink uppercase lg:hidden"
+              className="-mr-2 inline-flex h-11 min-w-11 shrink-0 items-center justify-center gap-2 px-2 text-[13px] font-semibold tracking-[0.14em] text-ink uppercase xl:hidden"
             >
               <span className="max-sm:sr-only">{menuOpen ? ui.close : ui.menu}</span>
               {menuOpen ? (
@@ -228,7 +228,7 @@ export function Header() {
             role="dialog"
             aria-modal="true"
             aria-label={ui.menu}
-            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-chalk px-5 pt-[104px] pb-[calc(32px+env(safe-area-inset-bottom))] md:px-10 lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-chalk px-5 pt-[104px] pb-[calc(32px+env(safe-area-inset-bottom))] md:px-10 xl:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

@@ -13,7 +13,7 @@ function exists(file: string) {
 
 /**
  * Fotka zo slotu v /public/images. Ak súbor ešte neexistuje, vykreslí sa
- * náhradný blok s popisom slotu; po pridaní súboru sa automaticky použije fotka.
+ * neutrálny náhradný blok (bez názvu súboru); po pridaní súboru sa automaticky použije fotka.
  * Vypĺňa rodiča (rodič určuje pomer strán).
  */
 export function SiteImage({
@@ -41,7 +41,6 @@ export function SiteImage({
       >
         <div aria-hidden="true" className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: grainBackground }} />
         <Monogram className="relative size-16 text-ink opacity-15" />
-        <p className="relative px-6 text-center text-[12px] tracking-[0.06em] text-stone">{slot.label}</p>
       </div>
     );
   }

@@ -9,6 +9,7 @@ import { useEffect, useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Rich } from "@/components/ui/Rich";
+import { servicesOrder } from "@/content/02-mapa-webu";
 import { kontakt } from "@/content/kontakt";
 import { cn } from "@/lib/cn";
 import { submitInquiry, type Area } from "@/lib/inquiry";
@@ -17,18 +18,7 @@ import { typo } from "@/lib/typo";
 
 const f = kontakt.form;
 const m = f.messages;
-const AREAS = [
-  "dopravne-nehody",
-  "obchodne-pravo",
-  "obcianske-pravo",
-  "rodinne-pravo",
-  "spravne-pravo",
-  "dusevne-vlastnictvo",
-  "patentove-pravo",
-  "kyberneticke-pravo",
-  "trestne-pravo",
-  "ine",
-] as const;
+const AREAS = [...servicesOrder, "ine"] as const;
 
 const schema = z.object({
   name: z.string().trim().min(1, m.required),
@@ -222,11 +212,6 @@ export function ContactForm() {
                 })}
               </div>
             </fieldset>
-            {selectedArea === "trestne-pravo" && (
-              <p role="note" className="rounded-xs border border-bordeaux/30 bg-bordeaux-soft px-4 py-3 text-[14px] leading-relaxed text-bordeaux">
-                {f.criminalNotice}
-              </p>
-            )}
 
             <div>
               <label htmlFor={id("message")} className="mb-2 block text-[14px] font-semibold text-ink">

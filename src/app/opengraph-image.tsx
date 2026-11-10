@@ -3,7 +3,7 @@ import { logo } from "@/content/common";
 import { home } from "@/content/home";
 import { loadGoogleFont } from "@/lib/og-fonts";
 
-export const alt = "JUDr. Ladislav Pavlovič, advokát · Bratislava";
+export const alt = "JUDr. Ladislav Pavlovič, LL.M., advokát · Bratislava";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,7 +13,7 @@ const SAND = "#C8B79F";
 const BORDEAUX = "#6E1E2B";
 
 export default async function OpengraphImage() {
-  const tagline = home.hero.eyebrow; // „Advokát · Bratislava“
+  const tagline = home.hero.eyebrow; // „Advokát · Bratislava a okolie“
   const [serif, sans] = await Promise.all([
     loadGoogleFont("Cormorant Garamond", 600, `LP${logo.name}`),
     loadGoogleFont("Manrope", 600, `${logo.role.toUpperCase()}${tagline.toUpperCase()}`),
@@ -57,7 +57,7 @@ export default async function OpengraphImage() {
           </div>
           <div style={{ width: 3, height: 96, background: SAND, margin: "0 42px" }} />
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontFamily: "Cormorant", fontSize: 64, lineHeight: 1.1 }}>{logo.name}</div>
+            <div style={{ fontFamily: "Cormorant", fontSize: 52, lineHeight: 1.1 }}>{logo.name}</div>
             <div
               style={{
                 fontFamily: "Manrope",

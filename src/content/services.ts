@@ -9,10 +9,13 @@ export type ServiceItem = {
   href: string;
 };
 
+export const CRIMINAL_BADGE = "Iba pre stálych klientov";
+
+/** Služby v poradí `servicesOrder`. */
 export const services: ServiceItem[] = serviceDetails.map((service) => ({
   slug: service.slug,
   name: service.name,
-  ...(service.slug === "trestne-pravo" && { badge: "Iba pre stálych klientov" }),
+  ...(service.slug === "trestne-pravo" && { badge: CRIMINAL_BADGE }),
   summary: service.cardDescription,
   description: service.cardDescription,
   href: `/sluzby/${service.slug}`,
@@ -21,5 +24,11 @@ export const services: ServiceItem[] = serviceDetails.map((service) => ({
 export const serviceBySlug = Object.fromEntries(
   services.map((service) => [service.slug, service]),
 ) as Record<string, ServiceItem>;
+
+export const serviceNav = services.map((service) => ({
+  label: service.name,
+  href: service.href,
+  ...(service.badge && { badge: service.badge }),
+}));
 
 export { serviceDetails, serviceDetailBySlug };

@@ -1,14 +1,6 @@
-export type Area =
-  | "dopravne-nehody"
-  | "obchodne-pravo"
-  | "obcianske-pravo"
-  | "rodinne-pravo"
-  | "spravne-pravo"
-  | "dusevne-vlastnictvo"
-  | "patentove-pravo"
-  | "kyberneticke-pravo"
-  | "trestne-pravo"
-  | "ine";
+import type { ServiceSlug } from "@/content/02-mapa-webu";
+
+export type Area = ServiceSlug | "ine";
 
 export type Inquiry = {
   name: string;

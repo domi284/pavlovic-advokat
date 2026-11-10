@@ -1,15 +1,26 @@
-import { services } from "./services";
-
 export const logo = {
-  name: "JUDr. Ladislav Pavlovič",
+  name: "JUDr. Ladislav Pavlovič, LL.M.",
   role: "advokát",
 };
 
-export const serviceNav = services.map((service) => ({
-  label: service.name,
-  href: service.href,
-  ...(service.badge && { badge: service.badge }),
-}));
+/**
+ * Poradie služieb na celom webe (menu, karty, formulár, FAQ, pätička, sitemap, JSON-LD).
+ * Meniť iba tu.
+ */
+export const servicesOrder = [
+  "obchodne-pravo",
+  "obcianske-pravo",
+  "dopravne-nehody",
+  "rodinne-pravo",
+  "trestne-pravo",
+  "spravne-pravo",
+  "dusevne-vlastnictvo",
+  "patentove-pravo",
+  "kyberneticke-pravo",
+  "pracovne-pravo",
+] as const;
+
+export type ServiceSlug = (typeof servicesOrder)[number];
 
 export const nav = [
   { label: "Úvod", href: "/" },
@@ -17,6 +28,7 @@ export const nav = [
   { label: "O mne", href: "/o-mne" },
   { label: "Náš tím", href: "/nas-tim" },
   { label: "Prečo my", href: "/preco-my" },
+  { label: "Referencie", href: "/referencie" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
@@ -25,6 +37,7 @@ export const footerNav = [
   { label: "O mne", href: "/o-mne" },
   { label: "Náš tím", href: "/nas-tim" },
   { label: "Prečo my", href: "/preco-my" },
+  { label: "Referencie", href: "/referencie" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
-import { mailHref, site, telHref, type SiteField } from "@/lib/site";
+import { mailHref, rokyPraxe, site, telHref, type SiteField } from "@/lib/site";
 import { typo } from "@/lib/typo";
 import { Placeholder } from "./Placeholder";
 import { ReviewMark } from "./ReviewMark";
@@ -9,13 +9,20 @@ import { ReviewMark } from "./ReviewMark";
  * Vykreslí text z content súborov:
  * - typografia (nedeliteľné medzery),
  * - {{pole|DOPLNIŤ: …}} → hodnota zo site.ts alebo <Placeholder>,
+ * - {rokyPraxe} → počet rokov praxe (počíta sa automaticky v site.ts),
  * - (OVERIŤ) → <ReviewMark>,
  * - [text](/odkaz) → interný odkaz.
  * `plain` = bez odkazov (napr. vnútri tlačidla, ktoré už odkazom je).
  */
 const TOKEN = /\{\{(?<field>\w+)\|(?<fallback>[^}]+)\}\}|\[(?<placeholder>DOPLNIŤ(?::\s*[^\]]+)?)\]|\[(?<linkText>[^\]]+)\]\((?<href>[^)]+)\)|\s*\(OVERIŤ\)(?<punctuation>[.,;:]?)/g;
 
-export function Rich({ text, plain = false }: { text: string; plain?: boolean }) {
+/** Nahradí premenné v texte (napr. `{rokyPraxe}`) ich hodnotou. */
+export function fillVars(text: string) {
+  return text.replace(/\{rokyPraxe\}/g, String(rokyPraxe));
+}
+
+export function Rich({ text: raw, plain = false }: { text: string; plain?: boolean }) {
+  const text = fillVars(raw);
   const parts: ReactNode[] = [];
   let last = 0;
   let key = 0;
@@ -67,7 +74,7 @@ function FieldValue({ field, fallback, plain }: { field: SiteField; fallback: st
 
 /** Čistý text bez značiek (pre meta tagy a JSON-LD). */
 export function plainText(text: string) {
-  return text
+  return fillVars(text)
     .replace(/\{\{(\w+)\|([^}]+)\}\}/g, (_, field: SiteField) => {
       const value = site.fields[field];
       return typeof value === "string" ? value : "";

@@ -23,6 +23,7 @@ export function PageHero({
   breadcrumbTrail,
   dataDoc,
   compact = false,
+  children,
 }: {
   title: string;
   subtitle?: string;
@@ -33,6 +34,8 @@ export function PageHero({
   breadcrumbTrail?: { label: string; href?: string }[];
   dataDoc?: string;
   compact?: boolean;
+  /** ďalší obsah pod podnadpisom (napr. druhý odsek) */
+  children?: ReactNode;
 }) {
   const hasAside = !!(image || aside);
   return (
@@ -67,6 +70,11 @@ export function PageHero({
           {subtitle && (
             <Reveal immediate delay={0.5}>
               <p className="lead mt-8 max-w-[44ch]">{typo(subtitle)}</p>
+            </Reveal>
+          )}
+          {children && (
+            <Reveal immediate delay={0.58}>
+              {children}
             </Reveal>
           )}
           {ctas && (

@@ -13,6 +13,7 @@ export function Steps({
   number,
   eyebrow,
   title,
+  intro,
   steps,
   cta,
   dataDoc,
@@ -21,6 +22,7 @@ export function Steps({
   number?: string;
   eyebrow?: string;
   title: string;
+  intro?: string;
   steps: Item[];
   cta?: Cta;
   dataDoc?: string;
@@ -29,6 +31,11 @@ export function Steps({
     <section aria-labelledby={id} data-doc={dataDoc} className="bg-bone py-24 md:py-32 lg:py-40">
       <Container>
         <SectionHeading id={id} number={number} eyebrow={eyebrow} title={title} className="max-w-3xl" />
+        {intro && (
+          <Reveal>
+            <p className="lead mt-6 max-w-[52ch]"><Rich text={intro} /></p>
+          </Reveal>
+        )}
 
         <div className="relative mt-16 md:mt-24">
           <DrawLine className="absolute top-9 right-0 left-0 hidden h-px text-bordeaux/45 md:block" />

@@ -10,6 +10,7 @@ import { ServiceList } from "@/components/sections/ServiceList";
 import { SituationList } from "@/components/sections/SituationList";
 import { Steps } from "@/components/sections/Steps";
 import { Container } from "@/components/ui/Container";
+import { plainText } from "@/components/ui/Rich";
 import { serviceDetails, serviceDetailBySlug } from "@/content/04-sluzby";
 import { serviceSeoBySlug } from "@/content/10-seo";
 import { pageMetadata } from "@/lib/seo";
@@ -39,7 +40,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     mainEntity: service.faq.map(({ q, a }) => ({
       "@type": "Question",
       name: q,
-      acceptedAnswer: { "@type": "Answer", text: a.replace(/\s*\(OVERIŤ\)\s*/g, "") },
+      acceptedAnswer: { "@type": "Answer", text: plainText(a) },
     })),
   };
   const breadcrumbJsonLd = {
@@ -56,7 +57,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      {/* Dokument 4.3–4.11 · Blok 1: Hero */}
+      {/* Dokument 4.3–4.12 · Blok 1: Hero */}
       <PageHero
         dataDoc={`${service.block}-1`}
         breadcrumbTrail={[
@@ -81,7 +82,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Container>
         </section>
       )}
-      {/* Dokument 4.3–4.11 · Blok 2: Úvod */}
+      {/* Dokument 4.3–4.12 · Blok 2: Úvod */}
       <IntroText
         id={`${slug}-intro`}
         dataDoc={`${service.block}-2`}
@@ -106,7 +107,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           />
         </>
       )}
-      {/* Dokument 4.3–4.11 · Blok 3: S čím pomáhame */}
+      {/* Dokument 4.3–4.12 · Blok 3: S čím pomáhame */}
       <ServiceList
         id={`${slug}-services`}
         dataDoc={`${service.block}-3`}
@@ -124,14 +125,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           />
         </>
       )}
-      {/* Dokument 4.3–4.11 · Blok 4: Ako postupujeme */}
+      {/* Dokument 4.3–4.12 · Blok 4: Ako postupujeme */}
       <Steps
         id={`${slug}-steps`}
         dataDoc={`${service.block}-4`}
         title="Ako postupujeme"
         steps={service.steps}
       />
-      {/* Dokument 4.3–4.11 · Blok 5: Kedy sa ozvať */}
+      {/* Dokument 4.3–4.12 · Blok 5: Kedy sa ozvať */}
       <SituationList
         id={`${slug}-situations`}
         dataDoc={`${service.block}-5`}
@@ -139,14 +140,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         items={service.situations.items}
         cta={{ kind: "link", label: ctaLabel, href: formHref, variant: "primary" }}
       />
-      {/* Dokument 4.3–4.11 · Blok 6: Časté otázky */}
+      {/* Dokument 4.3–4.12 · Blok 6: Časté otázky */}
       <FaqList
         id={`${slug}-faq`}
         dataDoc={`${service.block}-6`}
         title="Často kladené otázky"
         items={service.faq}
       />
-      {/* Dokument 4.3–4.11 · Blok 7: Súvisiace služby */}
+      {/* Dokument 4.3–4.12 · Blok 7: Súvisiace služby */}
       <section data-doc={`${service.block}-7`} aria-labelledby={`${slug}-related`} className="border-t border-line py-16 md:py-20">
         <Container>
           <h2 id={`${slug}-related`} className="h2 mb-8">Súvisiace služby</h2>
@@ -164,7 +165,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
         </Container>
       </section>
-      {/* Dokument 4.3–4.11 · Blok 8: Záverná výzva */}
+      {/* Dokument 4.3–4.12 · Blok 8: Záverná výzva */}
       <CtaBand
         dataDoc={`${service.block}-8`}
         content={{

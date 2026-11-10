@@ -5,21 +5,21 @@ export const s6_nasTim = {
   meta: {
     title: "Náš tím | Advokátska kancelária JUDr. Pavlovič",
     description:
-      "Spoznajte ľudí v advokátskej kancelárii JUDr. Ladislava Pavloviča v Bratislave. Každú vec u nás vedie konkrétny advokát.",
+      "Spoznajte ľudí v advokátskej kancelárii JUDr. Ladislava Pavloviča, LL.M. v Bratislave. Každú vec u nás vedie konkrétny advokát.",
     path: "/nas-tim",
   } satisfies Meta,
   h1: "Náš tím",
-  intro: "Každú vec u nás vedie konkrétny advokát. Od prvej konzultácie viete, kto sa vašej veci venuje a s kým komunikujete.",
+  intro: "Každú vec u nás vedie konkrétny advokát. Od prvej konzultácie viete, kto sa Vašej veci venuje a s kým komunikujete.",
   members: [
     {
-      name: "JUDr. Ladislav Pavlovič",
+      name: "JUDr. Ladislav Pavlovič, LL.M.",
       role: "Advokát",
       description: "Vedie kanceláriu a osobne zodpovedá za veci klientov. Dbá na to, aby každý klient vedel, kde stojí a čo je ďalší krok.",
       stats: [
         ["Funkcia", "Advokát"],
-        ["Vzdelanie", "{{education|DOPLNIŤ: škola, rok, titul}}"],
-        ["Zameranie", "{{focus|DOPLNIŤ: 2 až 3 hlavné oblasti}}"],
-        ["Zápis v SAK", "č. {{sakNumber|DOPLNIŤ}}"],
+        ["Vzdelanie", "Právnická fakulta Univerzity Komenského v Bratislave (1990), JUDr., LL.M."],
+        ["Zameranie", "[DOPLNIŤ: 2 až 3 hlavné oblasti]"],
+        ["Zápis v SAK", "č. 448"],
       ],
       featured: true,
     },
@@ -38,12 +38,12 @@ export const s6_nasTim = {
   ] as { name: string; role: string; description: string; stats: [string, string][]; featured: boolean; key?: string }[],
   joinTitle: "Pridajte sa k nám",
   joinText:
-    "Hľadáme advokátov a advokátskych koncipientov, ktorí chcú pracovať na rôznorodých veciach a komunikovať priamo s klientmi. (OVERIŤ) Ak máte záujem, pošlite nám životopis a niekoľko viet o tom, čomu sa chcete venovať. Ozveme sa vám.",
+    "Hľadáme advokátov a advokátskych koncipientov, ktorí chcú pracovať na rôznorodých veciach a komunikovať priamo s klientmi. Ak máte záujem, pošlite nám životopis a niekoľko viet o tom, čomu sa chcete venovať. Ozveme sa Vám.",
   joinCta: "Poslať životopis",
   careersPlaceholder: "DOPLNIŤ: e-mail pre uchádzačov",
   closing: {
     title: "Potrebujete poradiť?",
-    text: "Opíšte nám situáciu. Povieme vám, kto z nás sa vašej veci bude venovať.",
+    text: "Opíšte nám situáciu. Povieme Vám, kto z nás sa Vašej veci bude venovať.",
     ctas: [
       { kind: "link", label: "Dohodnúť konzultáciu", href: CONSULT_HREF, variant: "primary" },
       callCta,

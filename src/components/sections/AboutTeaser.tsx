@@ -27,9 +27,21 @@ export function AboutTeaser({ content, number, dataDoc }: { content: typeof home
             >
               „
             </span>
-            <p className="relative pt-6 font-serif text-[22px] leading-[1.45] font-medium text-ink md:text-[26px]">
+            <p className="relative pt-12 font-serif text-[22px] leading-[1.45] font-medium text-ink md:text-[26px]">
               <Rich text={content.text} />
             </p>
+          </Reveal>
+          <Reveal className="mt-10">
+            <dl className="divide-y divide-line border-y border-line">
+              {content.facts.map((fact) => (
+                <div key={fact.label} className="grid gap-1 py-4 sm:grid-cols-[200px_1fr] sm:gap-6">
+                  <dt className="text-[12px] font-semibold tracking-[0.12em] text-stone uppercase">{fact.label}</dt>
+                  <dd className="text-[16px] leading-relaxed text-ink">
+                    <Rich text={fact.value} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </Reveal>
           <Reveal className="mt-10">
             <TextLink href={content.link.href} label={content.link.label} />

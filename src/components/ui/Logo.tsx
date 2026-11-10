@@ -36,10 +36,10 @@ export function Logo({ variant = "light", className }: { variant?: "light" | "da
       <Monogram />
       <span
         aria-hidden="true"
-        className={cn("mx-3.5 h-8 w-px shrink-0", dark ? "bg-sand" : "bg-bordeaux")}
+        className={cn("mx-2.5 h-8 w-px shrink-0 sm:mx-3.5", dark ? "bg-sand" : "bg-bordeaux")}
       />
       <span className="flex flex-col justify-center leading-none">
-        <span className="whitespace-nowrap font-serif text-[20px] font-semibold leading-[1.1]">
+        <span className="whitespace-nowrap font-serif text-[15px] font-semibold leading-[1.1] min-[400px]:text-[17px] sm:text-[18px]">
           {logo.name}
         </span>
         <span

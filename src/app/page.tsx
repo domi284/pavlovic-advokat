@@ -25,6 +25,7 @@ export default function HomePage() {
         number="02"
         eyebrow={home.process.eyebrow}
         title={home.process.title}
+        intro={home.process.intro}
         steps={home.process.steps}
         cta={home.process.cta}
         dataDoc="3.3"

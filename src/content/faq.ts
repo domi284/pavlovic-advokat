@@ -1,16 +1,9 @@
 import { serviceDetails } from "./04-sluzby";
 import { pageSeo } from "./10-seo";
 
-const serviceLabels: Record<string, string> = {
-  "dopravne-nehody": "Dopravné nehody",
-  "obchodne-pravo": "Obchodné právo",
-  "obcianske-pravo": "Občianske právo",
-  "rodinne-pravo": "Rodinné právo",
-  "spravne-pravo": "Správne právo",
+/** Názvy skupín na stránke Časté otázky (ak sa líšia od názvu služby). */
+const groupLabels: Record<string, string> = {
   "dusevne-vlastnictvo": "Duševné vlastníctvo",
-  "patentove-pravo": "Patentové právo",
-  "kyberneticke-pravo": "Kybernetické právo",
-  "trestne-pravo": "Trestné právo",
 };
 
 export const faqPage = {
@@ -24,11 +17,11 @@ export const faqPage = {
       items: [
         {
           q: "Ako si dohodnem konzultáciu?",
-          a: "Zavolajte nám alebo vyplňte formulár na stránke [Kontakt](/kontakt#konzultacia). Ozveme sa vám na kontakt, ktorý uvediete, a dohodneme termín.",
+          a: "Zavolajte nám alebo vyplňte formulár na stránke [Kontakt](/kontakt#konzultacia). Ozveme sa Vám na kontakt, ktorý uvediete, a dohodneme termín.",
         },
         {
           q: "Je konzultácia spoplatnená?",
-          a: "Áno, konzultácia s advokátom je spoplatnená. Jej podmienky vám oznámime vopred, pri dohadovaní termínu. (OVERIŤ)",
+          a: "Áno, konzultácia s advokátom je spoplatnená. Jej podmienky Vám oznámime vopred, pri dohadovaní termínu.",
         },
         {
           q: "Čo mám priniesť na konzultáciu?",
@@ -40,13 +33,14 @@ export const faqPage = {
         },
         {
           q: "Venujete sa aj iným oblastiam práva?",
-          a: "Venujeme sa deviatim oblastiam práva, ktoré nájdete v sekcii [Služby](/sluzby). Ak vaša vec patrí inam, povieme vám to hneď na začiatku. (OVERIŤ)",
+          a: "Venujeme sa 10 oblastiam práva, ktoré nájdete v sekcii [Služby](/sluzby). Ak Vaša vec patrí inam, povieme Vám to hneď na začiatku.",
         },
       ],
     },
+    // skupiny služieb v poradí `servicesOrder`
     ...serviceDetails.map((service) => ({
       id: service.slug,
-      label: serviceLabels[service.slug],
+      label: groupLabels[service.slug] ?? service.name,
       href: `/sluzby/${service.slug}`,
       items: service.faq,
     })),

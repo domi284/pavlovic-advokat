@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { fullAddress, site } from "./site";
+import { serviceDetails } from "@/content/04-sluzby";
+import { fullAddress, site, telHref } from "./site";
 
-const ogImage = { url: "/opengraph-image", width: 1200, height: 630, alt: "JUDr. Ladislav Pavlovič, advokát · Bratislava" };
+const ogImage = { url: "/opengraph-image", width: 1200, height: 630, alt: "JUDr. Ladislav Pavlovič, LL.M., advokát · Bratislava" };
 
 /** Metadata stránky: title a description presne z časti K, canonical a Open Graph. */
 export function pageMetadata(meta: { title: string; description?: string; path: string }): Metadata {
@@ -28,7 +29,10 @@ export function pageMetadata(meta: { title: string; description?: string; path: 
 }
 
 export function legalServiceJsonLd() {
-  const { phone, email, hoursSchema } = site.fields;
+  const { email, hoursSchema, ico } = site.fields;
+  const phone = telHref(site.fields.phone)?.replace(/^tel:/, "") ?? null;
+  const identifier = ico ? { "@type": "PropertyValue", propertyID: "IČO", value: ico } : undefined;
+  const knowsAbout = serviceDetails.map((service) => service.name);
   const address = {
     "@type": "PostalAddress",
     streetAddress: site.address.street,
@@ -49,8 +53,9 @@ export function legalServiceJsonLd() {
         url: site.url,
         image: `${site.url}/opengraph-image`,
         address,
-        areaServed: "Bratislava",
-        knowsAbout: ["Dopravné nehody", "Trestné právo", "Obchodné právo"],
+        areaServed: site.areaServed,
+        knowsAbout,
+        ...(identifier && { identifier }),
         founder: { "@id": attorneyId },
         ...(phone && { telephone: phone }),
         ...(email && { email }),
@@ -62,6 +67,8 @@ export function legalServiceJsonLd() {
         name: site.name,
         url: `${site.url}/o-mne`,
         address,
+        areaServed: site.areaServed,
+        knowsAbout,
         parentOrganization: { "@id": `${site.url}/#kancelaria` },
         ...(phone && { telephone: phone }),
         ...(email && { email }),

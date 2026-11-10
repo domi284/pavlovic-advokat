@@ -5,6 +5,7 @@ import { Rich } from "@/components/ui/Rich";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { TextLink } from "@/components/ui/TextLink";
 import type { home } from "@/content/home";
+import { cn } from "@/lib/cn";
 import { typo } from "@/lib/typo";
 import { SectionHeading } from "./SectionHeading";
 
@@ -25,16 +26,17 @@ export function AreaCards({ content, number, dataDoc }: { content: typeof home.a
           </Reveal>
         </div>
 
-        <Stagger as="ul" className="mt-16 grid gap-12 md:mt-20 md:grid-cols-3 md:gap-6 lg:gap-10">
+        {/* 10 kariet: desktop 2 stĺpce horizontálne (obrázok vľavo 4:3), tablet 2 stĺpce vertikálne, mobil 1 stĺpec */}
+        <Stagger as="ul" className="mt-16 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-x-6 md:gap-y-12 lg:gap-x-10 lg:gap-y-10">
           {content.cards.map((card, i) => (
             <StaggerItem as="li" key={card.title}>
-              <Link href={card.link.href} className="group flex h-full flex-col">
-                <div className="relative aspect-[3/2] overflow-hidden">
+              <Link href={card.link.href} className="group flex h-full flex-col lg:flex-row lg:gap-8">
+                <div className="relative aspect-[3/2] overflow-hidden lg:aspect-[4/3] lg:w-[40%] lg:shrink-0 lg:self-start">
                   <div className="absolute inset-0 transition-transform duration-[800ms] ease-premium group-hover:scale-105">
-                    <SiteImage slot={card.image} sizes="(min-width: 768px) 33vw, 100vw" />
+                    <SiteImage slot={card.image} sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 100vw" />
                   </div>
                 </div>
-                <div className="relative flex flex-1 flex-col border-b border-line pt-8 pb-9">
+                <div className="relative flex flex-1 flex-col border-b border-line pt-8 pb-9 lg:pt-1">
                   <span className="step-number text-stone/35 transition-colors duration-500 group-hover:text-bordeaux">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -58,8 +60,16 @@ export function AreaCards({ content, number, dataDoc }: { content: typeof home.a
         {content.numbers && (
           <div className="mt-12 grid grid-cols-2 border-y border-line md:mt-16 md:grid-cols-4">
             {content.numbers.map((item, index) => (
-              <div key={item.label} className={`px-4 py-6 md:px-6 md:py-8 ${index > 0 ? "border-l border-line" : ""}`}>
-                <p className="font-serif text-[34px] leading-none text-ink md:text-[48px]"><Rich text={item.value} /></p>
+              <div key={item.label} className={cn("border-line px-4 py-6 md:px-6 md:py-8", index % 2 === 1 && "border-l", index > 0 && "md:border-l", index >= 2 && "border-t md:border-t-0")}>
+                <p
+                  className={
+                    item.value.length > 12
+                      ? "font-serif text-[22px] leading-tight text-ink md:text-[26px]"
+                      : "font-serif text-[34px] leading-none text-ink md:text-[48px]"
+                  }
+                >
+                  <Rich text={item.value} />
+                </p>
                 <p className="mt-3 text-[11px] font-semibold tracking-[0.12em] text-stone uppercase">{item.label}</p>
               </div>
             ))}
@@ -67,7 +77,7 @@ export function AreaCards({ content, number, dataDoc }: { content: typeof home.a
         )}
         {content.jurisdiction && (
           <div className="mt-8 flex flex-wrap items-baseline justify-between gap-5">
-            <p className="max-w-[70ch] text-[16px] leading-relaxed text-stone">{content.jurisdiction}</p>
+            <p className="max-w-[70ch] text-[16px] leading-relaxed text-stone">{typo(content.jurisdiction)}</p>
             {content.allServices && <TextLink href={content.allServices.href} label={content.allServices.label} />}
           </div>
         )}

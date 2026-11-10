@@ -4,7 +4,7 @@ import { motion, type Variants } from "motion/react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
-import { EASE, VIEWPORT } from "@/lib/motion";
+import { EASE, LIST_VIEWPORT, VIEWPORT } from "@/lib/motion";
 
 const tags = {
   div: motion.div,
@@ -91,7 +91,7 @@ export function Stagger({
       className={className}
       initial="hidden"
       whileInView="show"
-      viewport={VIEWPORT}
+      viewport={LIST_VIEWPORT}
       variants={{
         hidden: {},
         show: { transition: { staggerChildren: reduced ? 0 : stagger, delayChildren: reduced ? 0 : delay } },

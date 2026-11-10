@@ -3,8 +3,8 @@ export const s9_1_asistentka = {
   title: "Virtuálna asistentka",
   subtitle: "Všeobecné informácie, nenahrádza právnu radu",
   welcome:
-    "Dobrý deň, som virtuálna asistentka kancelárie a pomôžem vám so všeobecnými otázkami, právnu radu advokáta však nenahrádzam.",
-  prompt: "S čím vám môžem pomôcť?",
+    "Dobrý deň, som virtuálna asistentka kancelárie a pomôžem Vám so všeobecnými otázkami, právnu radu advokáta však nenahrádzam.",
+  prompt: "S čím Vám môžem pomôcť?",
   footer:
     "Odpovede majú informatívny charakter a nezakladajú vzťah advokát – klient. Neuvádzajte citlivé údaje. Viac v [Zásadách ochrany osobných údajov](/ochrana-osobnych-udajov).",
   back: "Späť na možnosti",
@@ -35,7 +35,7 @@ export const s9_1_asistentka = {
       id: "rozvod",
       label: "Rozvod alebo deti",
       answer:
-        "Rozvod a úprava starostlivosti o deti sú citlivé veci. Súd vždy prihliada najmä na záujem dieťaťa a dohoda rodičov konanie výrazne zjednoduší. Konkrétny postup vám vysvetlí advokát pri dôvernej konzultácii.",
+        "Rozvod a úprava starostlivosti o deti sú citlivé veci. Súd vždy prihliada najmä na záujem dieťaťa a dohoda rodičov konanie výrazne zjednoduší. Konkrétny postup Vám vysvetlí advokát pri dôvernej konzultácii.",
       links: [
         { label: "Dohodnúť konzultáciu", href: "/kontakt?oblast=rodinne-pravo#konzultacia" },
         { label: "Rodinné právo", href: "/sluzby/rodinne-pravo" },
@@ -55,7 +55,7 @@ export const s9_1_asistentka = {
       id: "firma",
       label: "Firma, značka alebo dáta",
       answer:
-        "Pomáhame firmám so zakladaním a zmenami spoločností, s ochrannými známkami, s ochranou vynálezov aj s ochranou osobných údajov a kybernetickou bezpečnosťou. Vyberte si oblasť, ktorá vás zaujíma.",
+        "Pomáhame firmám so zakladaním a zmenami spoločností, s ochrannými známkami, s ochranou vynálezov aj s ochranou osobných údajov a kybernetickou bezpečnosťou. Vyberte si oblasť, ktorá Vás zaujíma.",
       links: [
         { label: "Obchodné právo", href: "/sluzby/obchodne-pravo" },
         { label: "Právo duševného vlastníctva", href: "/sluzby/dusevne-vlastnictvo" },
@@ -64,10 +64,20 @@ export const s9_1_asistentka = {
       ],
     },
     {
+      id: "praca",
+      label: "Práca a zamestnanie",
+      answer:
+        "Pri výpovedi, nevyplatenej mzde alebo novej pracovnej zmluve často rozhodujú krátke lehoty. Uschovajte si všetky písomnosti a dátum ich doručenia. Na čo máte nárok, Vám posúdi advokát pri konzultácii.",
+      links: [
+        { label: "Dohodnúť konzultáciu", href: "/kontakt?oblast=pracovne-pravo#konzultacia" },
+        { label: "Pracovné právo", href: "/sluzby/pracovne-pravo" },
+      ],
+    },
+    {
       id: "konzultacia",
       label: "Ako prebieha a koľko stojí konzultácia?",
       answer:
-        "Ozvete sa nám telefonicky alebo cez formulár a dohodneme termín. Na konzultácii prejdeme vašu situáciu, vysvetlíme vám možnosti a navrhneme ďalší postup. Konzultácia je spoplatnená, jej cenu a podmienky vám oznámime vopred. (OVERIŤ)",
+        "Ozvete sa nám telefonicky alebo cez formulár a dohodneme termín. Na konzultácii prejdeme Vašu situáciu, vysvetlíme Vám možnosti a navrhneme ďalší postup. Konzultácia je spoplatnená, jej cenu a podmienky Vám oznámime vopred.",
       links: [
         { label: "Dohodnúť konzultáciu", href: "/kontakt#konzultacia" },
         { label: "Zavolať", href: "tel:" },

@@ -5,32 +5,32 @@ export const s4_6_rodinnePravo = {
   block: "4.6",
   slug: "rodinne-pravo",
   name: "Rodinné právo",
-  image: images.kniznica,
+  image: images.rodinnePravo,
   cardDescription:
-    "Rozvod, starostlivosť o deti či výživné patria k najcitlivejším životným situáciám. Pomôžeme vám ich riešiť pokojne, diskrétne a s ohľadom na deti.",
+    "Rozvod, starostlivosť o deti či výživné, následná deľba spoločne nadobudnutého majetku patria k najcitlivejším životným situáciám. Pomôžeme Vám ich riešiť pokojne, diskrétne a s ohľadom na deti.",
   hero: {
     title: "Advokát pre rodinné právo v Bratislave a okolí",
-    subtitle: "Rozvod, deti, výživné a majetok. Pomôžeme vám prejsť náročným obdobím pokojne, s jasným plánom a s ohľadom na to, čo je dobré pre vaše deti.",
+    subtitle: "Rozvod, deti, výživné a majetok. Pomôžeme Vám prejsť náročným obdobím života pokojne, s jasným plánom a s ohľadom na to, čo je dobré pre Vaše deti.",
   },
   intro: {
     title: "Keď sa mení rodina",
     text: "Rozpad vzťahu zasiahne celú rodinu. Okrem emócií treba vyriešiť aj praktické otázky: kde budú žiť deti, aké bude výživné a ako sa rozdelí spoločný majetok. Postupujeme pokojne a vecne. Ak je to možné, hľadáme dohodu, pretože býva rýchlejšia a pre deti šetrnejšia ako dlhý spor pred súdom. Všetko, čo nám poviete, zostáva chránené povinnou mlčanlivosťou advokáta.",
   },
   services: {
-    title: "S čím vám pomôžeme",
+    title: "S čím Vám pomôžeme",
     items: [
       { title: "Rozvod manželstva.", text: "Príprava návrhu, zastupovanie v konaní a pomoc pri dohode o podmienkach." },
       { title: "Starostlivosť o deti a styk.", text: "Úprava toho, komu súd deti zverí, a ako bude upravený kontakt s druhým rodičom." },
       { title: "Výživné.", text: "Určenie, zvýšenie alebo zníženie výživného pre dieťa, prípadne aj medzi manželmi." },
       { title: "Vyporiadanie spoločného majetku.", text: "Rozdelenie bezpodielového spoluvlastníctva manželov dohodou alebo na súde." },
-      { title: "Určenie a zapretie otcovstva.", text: "Zastupovanie v konaní o určení alebo zapretí otcovstva. (OVERIŤ)" },
-      { title: "Osvojenie.", text: "Pomoc a sprevádzanie počas konania o osvojení. (OVERIŤ)" },
+      { title: "Určenie a zapretie otcovstva.", text: "Zastupovanie v konaní o určení alebo zapretí otcovstva." },
+      { title: "Osvojenie.", text: "Pomoc a sprevádzanie počas konania o osvojení." },
     ],
   },
   steps: [
-    { title: "Pokojný rozhovor.", text: "Na konzultácii si vypočujeme vašu situáciu bez súdenia. Zistíme, čo je pre vás a pre deti najdôležitejšie." },
-    { title: "Jasný plán.", text: "Vysvetlíme vám, ako konanie prebieha, čo bude súd posudzovať a aké máte možnosti. Spolu zvážime, či je reálna dohoda s druhou stranou." },
-    { title: "Dohoda alebo zastupovanie.", text: "Pripravíme návrhy a dohody, komunikujeme s druhou stranou a zastupujeme vás pred súdom. Vždy s ohľadom na záujem detí." },
+    { title: "Pokojný rozhovor.", text: "Na konzultácii si vypočujeme Vašu situáciu bez súdenia. Zistíme, čo je pre Vás a pre deti najdôležitejšie." },
+    { title: "Jasný plán.", text: "Vysvetlíme Vám, ako konanie prebieha, čo bude súd posudzovať a aké máte možnosti. Spolu zvážime, či je reálna dohoda s druhou stranou." },
+    { title: "Dohoda alebo zastupovanie.", text: "Pripravíme návrhy a dohody, komunikujeme s druhou stranou a zastupujeme Vás pred súdom. Vždy s ohľadom na záujem detí." },
   ],
   situations: {
     title: "Kedy sa nám ozvať",
@@ -43,9 +43,9 @@ export const s4_6_rodinnePravo = {
     ],
   },
   faq: [
-    { q: "Ako dlho trvá rozvod?", a: "Závisí najmä od toho, či sa manželia dohodnú a či majú maloleté deti. Ak súd rozhoduje aj o deťoch alebo je vec sporná, konanie trvá dlhšie. Presnejší odhad vám dáme po posúdení vašej situácie." },
+    { q: "Ako dlho trvá rozvod?", a: "Závisí najmä od toho, či sa manželia dohodnú a či majú maloleté deti. Ak súd rozhoduje aj o deťoch alebo je vec sporná, konanie trvá dlhšie. Presnejší odhad Vám dáme po posúdení Vašej situácie." },
     { q: "Ako sa určuje výživné?", a: "Súd prihliada na odôvodnené potreby dieťaťa a na schopnosti, možnosti a majetkové pomery rodičov. Výživné sa dá neskôr zmeniť, ak sa podstatne zmenia pomery." },
-    { q: "Kedy je možná striedavá starostlivosť?", a: "Súd môže zveriť dieťa do striedavej starostlivosti, ak sú obaja rodičia spôsobilí sa oň starať a ak je to v záujme dieťaťa. Rozhodujúci je vždy záujem dieťaťa, nie želanie rodičov." },
+    { q: "Kedy je možná striedavá starostlivosť?", a: "Súd môže zveriť dieťa do striedavej starostlivosti, ak sú obaja rodičia spôsobilí sa oň starať a ak je to v záujme dieťaťa. Rozhodujúci je vždy najlepší záujem dieťaťa, nie želanie rodičov." },
     { q: "Musíme ísť na súd, aj keď sa dohodneme?", a: "O rozvode a o úprave pomerov k maloletým deťom vždy rozhoduje súd. Dohoda rodičov však konanie výrazne zjednoduší a urýchli." },
   ],
   related: ["obcianske-pravo", "spravne-pravo"],
