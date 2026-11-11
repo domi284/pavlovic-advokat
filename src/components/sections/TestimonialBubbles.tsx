@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { TextLink } from "@/components/ui/TextLink";
 import type { Referencia } from "@/content/referencie";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/lib/motion";
@@ -11,7 +12,7 @@ import { useReducedMotion } from "@/lib/use-reduced-motion";
 const INTERVAL = 8000;
 const SWIPE_THRESHOLD = 40;
 
-/** Dve bubliny vedľa seba (mobil pod sebou), v každej sa striedajú tri referencie. */
+/** /referencie: dve bubliny vedľa seba (mobil pod sebou), v každej sa striedajú tri referencie. */
 export function TestimonialBubbles({ items }: { items: Referencia[] }) {
   const groups = [items.slice(0, 3), items.slice(3, 6)];
   return (
@@ -23,7 +24,22 @@ export function TestimonialBubbles({ items }: { items: Referencia[] }) {
   );
 }
 
-function Bubble({ items, label }: { items: Referencia[]; label: string }) {
+/**
+ * Jedna bublina so striedajúcimi sa referenciami.
+ * `size="lg"` na /referencie, `size="sm"` na úvode (menšia, s odkazom vedľa bodiek).
+ */
+export function Bubble({
+  items,
+  label,
+  size = "lg",
+  link,
+}: {
+  items: Referencia[];
+  label: string;
+  size?: "lg" | "sm";
+  link?: { href: string; label: string };
+}) {
+  const small = size === "sm";
   const reduced = useReducedMotion();
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState(false);
@@ -72,7 +88,10 @@ function Bubble({ items, label }: { items: Referencia[]; label: string }) {
           if (Math.abs(delta) < SWIPE_THRESHOLD) return;
           show(delta < 0 ? active + 1 : active - 1);
         }}
-        className="relative min-h-[280px] rounded-[24px] border border-line bg-paper p-7 shadow-[0_18px_40px_rgba(28,29,32,.06)] md:p-10"
+        className={cn(
+          "relative rounded-[24px] border border-line bg-paper shadow-[0_18px_40px_rgba(28,29,32,.06)]",
+          small ? "p-6 md:p-8" : "min-h-[280px] p-7 md:p-10",
+        )}
       >
         {/* chvostík bubliny */}
         <span
@@ -81,7 +100,10 @@ function Bubble({ items, label }: { items: Referencia[]; label: string }) {
         />
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute top-2 left-6 font-serif text-[96px] leading-none text-bordeaux opacity-25 select-none md:left-9"
+          className={cn(
+            "pointer-events-none absolute font-serif leading-none text-bordeaux opacity-25 select-none",
+            small ? "-top-2 left-5 text-[72px] md:-top-1 md:left-7" : "-top-11 left-6 text-[96px] md:-top-8 md:left-9",
+          )}
         >
           „
         </span>
@@ -99,10 +121,10 @@ function Bubble({ items, label }: { items: Referencia[]; label: string }) {
               transition={{ duration: reduced ? 0 : 0.7, ease: EASE }}
             >
               {item.text && (
-                <blockquote className="font-serif text-[22px] leading-[1.45] text-ink">{typo(item.text)}</blockquote>
+                <blockquote className={cn("font-serif leading-[1.45] text-ink", small ? "text-[20px]" : "text-[22px]")}>{typo(item.text)}</blockquote>
               )}
               {hasMeta && (
-                <figcaption className="mt-6 border-t border-line pt-4">
+                <figcaption className={cn("border-t border-line pt-4", small ? "mt-5" : "mt-6")}>
                   {item.autor && <span className="font-sans text-[14px] font-semibold text-ink">{item.autor}</span>}
                   {item.autor && item.oblast && <span className="text-stone"> · </span>}
                   {item.oblast && <span className="font-sans text-[13px] text-stone">{item.oblast}</span>}
@@ -113,7 +135,8 @@ function Bubble({ items, label }: { items: Referencia[]; label: string }) {
         </div>
       </section>
 
-      <div className="mt-8 flex items-center gap-2.5 pl-1">
+      <div className={cn("flex items-center justify-between gap-6", small ? "mt-6" : "mt-8")}>
+      <div className="flex items-center gap-2.5 pl-1">
         {items.map((_, index) => {
           const current = index === active;
           return (
@@ -134,6 +157,8 @@ function Bubble({ items, label }: { items: Referencia[]; label: string }) {
             </button>
           );
         })}
+      </div>
+      {link && <TextLink href={link.href} label={link.label} className="shrink-0" />}
       </div>
     </div>
   );

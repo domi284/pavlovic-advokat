@@ -10,6 +10,7 @@ Značky „overiť“ už neexistujú (`showReviewMarks: false`).
 | 1 · Základné pravidlá | Celý web | `01-pravidla.ts`, `src/lib/site.ts` | Hotové; overené údaje z registrov (telefón, e-mail, IČO, OR, SAK č. 448) |
 | 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 7 položiek vrátane Referencií, mobilné menu pod 1280 px, menu Služby 2 × 5 |
 | 3.1 · Hero a pás čísel | `/` | `03-uvod.ts`, `components/sections/NumbersStrip.tsx`, `src/lib/site.ts` | Hotové; pod hero je pás čísel (roky praxe, vybavené veci, oblasti, pôsobnosť) namiesto pásu dôvery s ikonami; portrét zatiaľ „Fotografia bude doplnená“ |
+| 3.1-referencie · Bublina s referenciami | `/` | `referencie.ts`, `components/sections/HomeTestimonial.tsx`, `TestimonialBubbles.tsx` (variant `sm`) | Hotové; pod pásom čísel, striedajú sa iba vyplnené referencie z `referencie.ts` s odkazom „Všetky referencie →“; kým nie je vyplnená žiadna, sekcia sa nezobrazuje |
 | 3.2 · Čomu sa venujeme | `/` | `03-uvod.ts`, `04-sluzby/*.ts` | Hotové; 10 kariet v poradí `servicesOrder`, na desktope 2 stĺpce horizontálne; pás čísel sa na úvode presunul do 3.1 (na `/sluzby` ostáva pod kartami) |
 | 3.3 · Ako to prebieha | `/` | `03-uvod.ts` | Hotové; doplnená úvodná veta |
 | 3.4 · O pánovi doktorovi | `/` | `03-uvod.ts` | Hotové; doplnená tabuľka 3 faktov |
@@ -36,7 +37,7 @@ Značky „overiť“ už neexistujú (`showReviewMarks: false`).
 | 6.3 · Pridajte sa k nám a záverná výzva | `/nas-tim` | `06-nas-tim.ts`, `src/lib/site.ts` | Hotové; e-mail pavlovic@lpavlovic.eu |
 | 7.1 · Prečo my | `/preco-my` | `07-preco-my.ts` | Hotové |
 | **R.1 · Úvod (nové)** | `/referencie` | `referencie.ts` | Hotové |
-| **R.2 · Bubliny s referenciami (nové)** | `/referencie` | `referencie.ts`, `components/sections/TestimonialBubbles.tsx` | Komponent hotový; 6 referencií je zatiaľ prázdnych (doplniť `text`, `autor`, `oblast`) |
+| **R.2 · Bubliny s referenciami (nové)** | `/referencie` | `referencie.ts`, `components/sections/TestimonialBubbles.tsx` | Komponent hotový; 6 referencií je zatiaľ prázdnych (doplniť `text`, `autor`, `oblast`); po vyplnení sa zobrazia aj v bubline na úvode |
 | **R.3 · Záverná výzva (nové)** | `/referencie` | `referencie.ts` | Hotové |
 | 8.1 · Úvod stránky | `/kontakt` | `08-kontakt.ts` | Hotové |
 | 8.2 · Formulár | `/kontakt#konzultacia` | `08-kontakt.ts` | Hotové; 10 oblastí v poradí `servicesOrder` + „Iné“ |
@@ -53,7 +54,7 @@ Značky „overiť“ už neexistujú (`showReviewMarks: false`).
 - Náš tím: zameranie JUDr. Pavloviča, členovia 2 a 3 (meno, funkcia, vzdelanie, zameranie, text)
 - Fotografie: portrét a fotky tímu („Fotografia bude doplnená“)
 - Texty Ochrany osobných údajov a Zásad cookies
-- Referencie (6 položiek v `referencie.ts`)
+- Referencie (6 položiek v `referencie.ts`; vyplnené sa automaticky zobrazia aj na úvode)
 
 ## SEO dĺžky
 
