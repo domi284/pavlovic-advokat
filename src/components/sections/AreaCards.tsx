@@ -5,11 +5,22 @@ import { Rich } from "@/components/ui/Rich";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { TextLink } from "@/components/ui/TextLink";
 import type { home } from "@/content/home";
-import { cn } from "@/lib/cn";
 import { typo } from "@/lib/typo";
+import { NumbersStrip } from "./NumbersStrip";
 import { SectionHeading } from "./SectionHeading";
 
-export function AreaCards({ content, number, dataDoc }: { content: typeof home.areas; number: string; dataDoc?: string }) {
+export function AreaCards({
+  content,
+  number,
+  dataDoc,
+  showNumbers = true,
+}: {
+  content: typeof home.areas;
+  number: string;
+  dataDoc?: string;
+  /** na úvode je pás čísel hneď pod hero, preto sa tu nezobrazuje */
+  showNumbers?: boolean;
+}) {
   return (
     <section aria-labelledby="oblasti-title" data-doc={dataDoc} className="py-24 md:py-32 lg:py-40">
       <Container>
@@ -57,23 +68,8 @@ export function AreaCards({ content, number, dataDoc }: { content: typeof home.a
             </StaggerItem>
           ))}
         </Stagger>
-        {content.numbers && (
-          <div className="mt-12 grid grid-cols-2 border-y border-line md:mt-16 md:grid-cols-4">
-            {content.numbers.map((item, index) => (
-              <div key={item.label} className={cn("border-line px-4 py-6 md:px-6 md:py-8", index % 2 === 1 && "border-l", index > 0 && "md:border-l", index >= 2 && "border-t md:border-t-0")}>
-                <p
-                  className={
-                    item.value.length > 12
-                      ? "font-serif text-[22px] leading-tight text-ink md:text-[26px]"
-                      : "font-serif text-[34px] leading-none text-ink md:text-[48px]"
-                  }
-                >
-                  <Rich text={item.value} />
-                </p>
-                <p className="mt-3 text-[11px] font-semibold tracking-[0.12em] text-stone uppercase">{item.label}</p>
-              </div>
-            ))}
-          </div>
+        {showNumbers && content.numbers && (
+          <NumbersStrip items={content.numbers} className="mt-12 border-y border-line md:mt-16" />
         )}
         {content.jurisdiction && (
           <div className="mt-8 flex flex-wrap items-baseline justify-between gap-5">

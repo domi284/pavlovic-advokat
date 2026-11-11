@@ -19,7 +19,7 @@ export default function HomePage() {
   return (
     <>
       <Hero content={home.hero} />
-      <AreaCards content={home.areas} number="01" dataDoc="3.2" />
+      <AreaCards content={home.areas} number="01" dataDoc="3.2" showNumbers={false} />
       <Steps
         id="spolupraca-title"
         number="02"

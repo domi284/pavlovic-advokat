@@ -1,3 +1,4 @@
+import { site } from "@/lib/site";
 import { CONSULT_HREF, callCta } from "./01-pravidla";
 import { images } from "./images";
 import { serviceDetails } from "./04-sluzby";
@@ -8,6 +9,14 @@ export const about = {
   title: "JUDr. Ladislav Pavlovič, LL.M.",
   subtitle: "Advokát · Bratislava",
 };
+
+/** Pás čísel: na úvode hneď pod hero (3.1), na /sluzby pod kartami. Hodnoty zo site.ts. */
+const numbers = [
+  { value: "{rokyPraxe}", label: "rokov praxe" },
+  { value: site.fields.casesHandled ?? "", label: "vybavených vecí" },
+  { value: site.fields.areasCount ?? "", label: "oblastí práva" },
+  { value: site.areaServed, label: "pôsobnosť" },
+];
 
 export const home = {
   meta: {
@@ -28,11 +37,7 @@ export const home = {
     ] satisfies Cta[],
     office: "Advokátska kancelária JUDr. Ladislav Pavlovič s. r. o. · Ružinov, Bratislava",
     image: images.heroUvod,
-    points: [
-      "{rokyPraxe} rokov praxe",
-      "Člen Slovenskej advokátskej komory",
-      "Pôsobnosť: Bratislava a západné Slovensko",
-    ],
+    numbers: numbers,
   },
 
   areas: {
@@ -47,12 +52,7 @@ export const home = {
       image: service.image,
       badge: service.slug === "trestne-pravo" ? CRIMINAL_BADGE : undefined,
     })),
-    numbers: [
-      { value: "{rokyPraxe}", label: "rokov praxe" },
-      { value: "3 500+", label: "vybavených vecí" },
-      { value: "10", label: "oblastí práva" },
-      { value: "Bratislava a západné Slovensko", label: "pôsobnosť" },
-    ],
+    numbers: numbers,
     jurisdiction:
       "Zastupujeme klientov v Bratislave a na celom západnom Slovensku, avšak podľa vecnej a miestnej príslušnosti súdov, klientov zastupujeme na celom Slovensku.",
     allServices: { label: "Všetky služby →", href: "/sluzby" },
