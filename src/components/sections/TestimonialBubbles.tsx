@@ -90,7 +90,8 @@ export function Bubble({
         }}
         className={cn(
           "relative rounded-[24px] border border-line bg-paper shadow-[0_18px_40px_rgba(28,29,32,.06)]",
-          small ? "p-6 md:p-8" : "min-h-[280px] p-7 md:p-10",
+          // pevná min. výška = bublina s krátkym textom, aby stránka pri striedaní neskákala
+          small ? "min-h-[220px] p-6 md:min-h-[205px] md:p-8" : "min-h-[280px] p-7 md:p-10",
         )}
       >
         {/* chvostík bubliny */}
