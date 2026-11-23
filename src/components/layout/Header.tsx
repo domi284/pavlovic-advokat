@@ -60,6 +60,11 @@ export function Header() {
     return () => window.removeEventListener("mousedown", onPointerDown);
   }, [servicesOpen]);
 
+  // asistentka sa pri otvorenom mobilnom menu skryje
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("mobile-menu-change", { detail: menuOpen }));
+  }, [menuOpen]);
+
   useEffect(() => {
     if (!menuOpen) return;
     const root = document.documentElement;

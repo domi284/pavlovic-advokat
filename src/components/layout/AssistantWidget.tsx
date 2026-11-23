@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { MessageCircle, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -29,6 +30,77 @@ export function AssistantWidget() {
     window.addEventListener("cookie-consent-changed", updateCookieVisibility);
     return () => window.removeEventListener("cookie-consent-changed", updateCookieVisibility);
   }, []);
+
+  // Mobil (pod 768 px): skryť pri otvorenom menu a keď je na obrazovke formulár #konzultacia alebo pätička
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [blocked, setBlocked] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const onMenu = (event: Event) => setMenuOpen(Boolean((event as CustomEvent<boolean>).detail));
+    window.addEventListener("mobile-menu-change", onMenu);
+    const mq = window.matchMedia("(max-width: 767px)");
+    const onMq = () => setIsMobile(mq.matches);
+    onMq();
+    mq.addEventListener("change", onMq);
+    return () => {
+      window.removeEventListener("mobile-menu-change", onMenu);
+      mq.removeEventListener("change", onMq);
+    };
+  }, []);
+
+  useEffect(() => {
+    const targets = [document.getElementById("konzultacia"), document.getElementById("site-footer")].filter(
+      (el): el is HTMLElement => !!el,
+    );
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      }
+      setBlocked(visible.size > 0);
+    });
+    targets.forEach((el) => observer.observe(el));
+    return () => {
+      observer.disconnect();
+      setBlocked(false);
+    };
+  }, [pathname]);
+
+  // Mobil: kým je zobrazená cookies lišta, asistentka je 16 px nad ňou (podľa jej skutočnej výšky)
+  const [cookieBarHeight, setCookieBarHeight] = useState(0);
+  useEffect(() => {
+    if (!cookieBannerVisible) {
+      setCookieBarHeight(0);
+      return;
+    }
+    let observer: ResizeObserver | null = null;
+    const attach = () => {
+      const bar = document.getElementById("cookie-bar");
+      if (!bar) return false;
+      observer = new ResizeObserver(() => setCookieBarHeight(bar.offsetHeight));
+      observer.observe(bar);
+      return true;
+    };
+    const timer = attach() ? undefined : window.setInterval(() => attach() && window.clearInterval(timer), 250);
+    return () => {
+      if (timer) window.clearInterval(timer);
+      observer?.disconnect();
+    };
+  }, [cookieBannerVisible]);
+
+  const mobileOffset =
+    isMobile && cookieBannerVisible && cookieBarHeight > 0
+      ? { bottom: `calc(var(--mobile-bar-h) + env(safe-area-inset-bottom) + 12px + ${cookieBarHeight}px + 16px)` }
+      : undefined;
+
+  const triggerHidden = menuOpen || (isMobile && blocked);
+
+  useEffect(() => {
+    if (triggerHidden) setOpen(false);
+  }, [triggerHidden]);
 
   useEffect(() => {
     if (!open) return;
@@ -64,20 +136,21 @@ export function AssistantWidget() {
           ref={triggerRef}
           type="button"
           aria-label={assistantContent.trigger}
+          aria-hidden={triggerHidden || undefined}
+          tabIndex={triggerHidden ? -1 : undefined}
           onClick={() => setOpen((value) => !value)}
+          style={mobileOffset}
           className={cn(
-            "fixed right-5 z-[60] inline-flex items-center gap-3 rounded-full bg-ink px-4 py-3 text-sm font-semibold text-chalk shadow-[0_20px_50px_rgba(28,29,32,.18)] transition-transform duration-300 hover:-translate-y-0.5 md:right-6 md:bottom-6 md:px-5",
+            "fixed right-4 z-[60] inline-flex size-[52px] items-center justify-center rounded-full bg-ink text-sm font-semibold text-chalk shadow-[0_20px_50px_rgba(28,29,32,.18)] transition-[opacity,transform] duration-300 hover:-translate-y-0.5 md:right-6 md:bottom-6 md:size-auto md:gap-3 md:px-5 md:py-3",
             cookieBannerVisible
               ? "bottom-[calc(var(--mobile-bar-h)+220px+env(safe-area-inset-bottom))]"
               : "bottom-[calc(var(--mobile-bar-h)+1rem+env(safe-area-inset-bottom))]",
+            triggerHidden && "pointer-events-none opacity-0",
             open && "hidden",
           )}
         >
-          <MessageCircle aria-hidden="true" className="hidden size-4 md:block" strokeWidth={1.8} />
-          <span>{assistantContent.trigger}</span>
-          <span className="inline-flex size-10 items-center justify-center rounded-full bg-chalk/10 md:hidden">
-            <MessageCircle aria-hidden="true" className="size-5" strokeWidth={1.8} />
-          </span>
+          <MessageCircle aria-hidden="true" className="size-[22px] md:size-4" strokeWidth={1.8} />
+          <span className="max-md:sr-only">{assistantContent.trigger}</span>
         </button>
       )}
 
@@ -88,6 +161,7 @@ export function AssistantWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
+            style={mobileOffset}
             className={cn(
               "fixed right-4 z-[70] w-[min(92vw,380px)] overflow-hidden rounded-[20px] border border-line bg-paper shadow-[0_32px_80px_rgba(28,29,32,.16)] md:right-6 md:bottom-6",
               cookieBannerVisible

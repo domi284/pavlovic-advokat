@@ -38,27 +38,35 @@ export function AreaCards({
         </div>
 
         {/* 10 kariet: desktop 2 stĺpce horizontálne (obrázok vľavo 4:3), tablet 2 stĺpce vertikálne, mobil 1 stĺpec */}
-        <Stagger as="ul" className="mt-16 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-x-6 md:gap-y-12 lg:gap-x-10 lg:gap-y-10">
+        <Stagger as="ul" className="mt-12 grid border-t border-line md:mt-20 md:grid-cols-2 md:gap-12 md:border-t-0 md:gap-x-6 md:gap-y-12 lg:gap-x-10 lg:gap-y-10">
           {content.cards.map((card, i) => (
             <StaggerItem as="li" key={card.title}>
               <Link href={card.link.href} className="group flex h-full flex-col lg:flex-row lg:gap-8">
-                <div className="relative aspect-[3/2] overflow-hidden lg:aspect-[4/3] lg:w-[40%] lg:shrink-0 lg:self-start">
+                <div className="relative aspect-[3/2] overflow-hidden max-md:hidden lg:aspect-[4/3] lg:w-[40%] lg:shrink-0 lg:self-start">
                   <div className="absolute inset-0 transition-transform duration-[800ms] ease-premium group-hover:scale-105">
                     <SiteImage slot={card.image} sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 100vw" />
                   </div>
                 </div>
-                <div className="relative flex flex-1 flex-col border-b border-line pt-8 pb-9 lg:pt-1">
-                  <span className="step-number text-stone/35 transition-colors duration-500 group-hover:text-bordeaux">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                <div className="relative flex flex-1 flex-col border-b border-line pt-6 pb-7 md:pt-8 md:pb-9 lg:pt-1">
+                  {/* mobil: malé číslo v riadku s názvom; tablet a desktop: veľké číslo nad názvom */}
+                  <div className="flex items-baseline gap-3 md:flex-col md:items-stretch md:gap-0">
+                    <span className="step-number shrink-0 text-stone/35 transition-colors duration-500 group-hover:text-bordeaux max-md:text-[28px]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {card.badge && (
+                      <span className="mt-4 self-start border max-md:hidden border-bordeaux px-2 py-1 text-[11px] font-semibold tracking-[0.14em] text-bordeaux uppercase">
+                        {card.badge}
+                      </span>
+                    )}
+                    <h3 className="h3 md:mt-5">{typo(card.title)}</h3>
+                  </div>
                   {card.badge && (
-                    <span className="mt-4 self-start border border-bordeaux px-2 py-1 text-[11px] font-semibold tracking-[0.14em] text-bordeaux uppercase">
+                    <span className="mt-3 self-start border border-bordeaux px-2 py-1 text-[11px] font-semibold tracking-[0.14em] text-bordeaux uppercase md:hidden">
                       {card.badge}
                     </span>
                   )}
-                  <h3 className="h3 mt-5">{typo(card.title)}</h3>
-                  <p className="body-text mt-4 flex-1 text-[16px]">{typo(card.text)}</p>
-                  <TextLink as="span" href={card.link.href} label={card.link.label} className="mt-7 self-start" />
+                  <p className="body-text mt-3 flex-1 text-[16px] md:mt-4">{typo(card.text)}</p>
+                  <TextLink as="span" href={card.link.href} label={card.link.label} className="mt-5 self-start md:mt-7" />
                   <span
                     aria-hidden="true"
                     className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-bordeaux transition-transform duration-700 ease-premium group-hover:scale-x-100"

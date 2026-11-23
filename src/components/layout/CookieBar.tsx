@@ -26,6 +26,7 @@ export function CookieBar() {
     <AnimatePresence>
       {open && (
         <motion.section
+          id="cookie-bar"
           aria-label="Cookies"
           data-doc="9.2"
           className="fixed right-4 bottom-[calc(var(--mobile-bar-h)+env(safe-area-inset-bottom)+12px)] left-4 z-[45] max-w-[420px] rounded-xs border border-line bg-paper p-6 shadow-[0_1px_2px_rgba(28,29,32,.04),0_12px_32px_-12px_rgba(28,29,32,.12)] md:right-auto md:bottom-6 md:left-6"
