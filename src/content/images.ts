@@ -21,7 +21,7 @@ export const images = {
     file: "foto/03-ako-pracujem.jpg",
     alt: "JUDr. Ladislav Pavlovič, LL.M. pri štúdiu spisu v kancelárii",
     label: "štúdium spisu pri regáli",
-    position: "55% 20%",
+    position: "55% 12%",
     natural: true,
   },
   fotoSluzbyHero: {

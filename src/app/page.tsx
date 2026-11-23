@@ -61,6 +61,11 @@ export default function HomePage() {
                 ))}
               </ul>
               <div className="mt-10"><TextLink href={home.whyUs.link.href} label={home.whyUs.link.label} /></div>
+              <ImageReveal className="mt-14 aspect-[4/5] max-h-[520px] w-full lg:hidden">
+                <Parallax>
+                  <SiteImage slot={home.whyUs.image} sizes="(min-width: 1408px) 1280px, 100vw" />
+                </Parallax>
+              </ImageReveal>
             </div>
             <div className="hidden lg:col-span-3 lg:col-start-10 lg:mt-16 lg:block">
               <ImageReveal className="aspect-[9/16] w-full">

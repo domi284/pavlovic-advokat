@@ -4,21 +4,22 @@ Stav po verzii 3 (texty schválené klientom). Texty v `src/content` sú doslovn
 Poradie služieb určuje jediné pole `servicesOrder` v `src/content/02-mapa-webu.ts`. Údaje kancelárie sú v `src/lib/site.ts`,
 počet rokov praxe sa počíta automaticky (`{rokyPraxe}` = aktuálny rok − 1990, prepočíta sa pri každom builde).
 Značky „overiť“ už neexistujú (`showReviewMarks: false`).
+Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `src/content/images.ts` (`foto*`, `natural: true` = bez šedého „editorial“ filtra, iba `saturate(0.92) contrast(1.03)`).
 
 | Blok | Stránka | Zdroj v `src/content` | Stav |
 |---|---|---|---|
 | 1 · Základné pravidlá | Celý web | `01-pravidla.ts`, `src/lib/site.ts` | Hotové; overené údaje z registrov (telefón, e-mail, IČO, OR, SAK č. 448) |
 | 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 7 položiek vrátane Referencií, mobilné menu pod 1280 px, menu Služby 2 × 5 |
-| 3.1 · Hero a pás čísel | `/` | `03-uvod.ts`, `components/sections/NumbersStrip.tsx`, `src/lib/site.ts` | Hotové; pod hero je pás čísel (roky praxe, vybavené veci, oblasti, pôsobnosť) namiesto pásu dôvery s ikonami; portrét zatiaľ „Fotografia bude doplnená“ |
+| 3.1 · Hero a pás čísel | `/` | `03-uvod.ts`, `components/sections/NumbersStrip.tsx`, `src/lib/site.ts` | Hotové; pod hero je pás čísel (roky praxe, vybavené veci, oblasti, pôsobnosť) namiesto pásu dôvery s ikonami; fotka 01 (4:5) |
 | 3.1-referencie · Bublina s referenciami | `/` | `referencie.ts`, `components/sections/HomeTestimonial.tsx`, `TestimonialBubbles.tsx` (variant `sm`) | Hotové; pod pásom čísel, zobrazuje sa vždy; striedajú sa vyplnené referencie z `referencie.ts` s odkazom „Všetky referencie →“; kým nie je vyplnená žiadna, je to prázdna bublina (úvodzovka, 6 bodiek, odkaz, striedanie každých 8 s) s pevnou min. výškou |
 | 3.2 · Čomu sa venujeme | `/` | `03-uvod.ts`, `04-sluzby/*.ts` | Hotové; 10 kariet v poradí `servicesOrder`, na desktope 2 stĺpce horizontálne; pás čísel sa na úvode presunul do 3.1 (na `/sluzby` ostáva pod kartami) |
 | 3.3 · Ako to prebieha | `/` | `03-uvod.ts` | Hotové; doplnená úvodná veta |
-| 3.4 · O pánovi doktorovi | `/` | `03-uvod.ts` | Hotové; doplnená tabuľka 3 faktov |
-| 3.5 · Na čom si zakladáme | `/` | `03-uvod.ts` | Hotové |
-| 3.6 · Prečo my | `/` | `03-uvod.ts` | Hotové |
+| 3.4 · O pánovi doktorovi | `/` | `03-uvod.ts` | Hotové; doplnená tabuľka 3 faktov; portrét 02 (4:5) |
+| 3.5 · Na čom si zakladáme | `/` | `03-uvod.ts` | Hotové; fotka 03 (desktop úzky stĺpec 9:16, pod 1024 px pod textom 4:5, max. 520 px) |
+| 3.6 · Prečo my | `/` | `03-uvod.ts` | Hotové; fotka 08 (desktop úzky stĺpec 9:16, pod 1024 px pod textom 4:5, max. 520 px) |
 | 3.7 · Časté otázky | `/` | `03-uvod.ts` | Hotové |
 | 3.8 · Záverná výzva | `/` | `03-uvod.ts` | Hotové |
-| 4.1 · Prehľad služieb | `/sluzby` | `04-sluzby/4-1-prehlad.ts` | Hotové |
+| 4.1 · Prehľad služieb | `/sluzby` | `04-sluzby/4-1-prehlad.ts` | Hotové; hero fotka 04 (4:5, nepoužíva sa v kategóriách) |
 | 4.3 · Dopravné nehody | `/sluzby/dopravne-nehody` | `04-sluzby/4-3-dopravne-nehody.ts` | Hotové |
 | 4.4 · Obchodné právo | `/sluzby/obchodne-pravo` | `04-sluzby/4-4-obchodne-pravo.ts` | Hotové; súvisiace: Duševné vlastníctvo, Pracovné právo |
 | 4.5 · Občianske právo | `/sluzby/obcianske-pravo` | `04-sluzby/4-5-obcianske-pravo.ts` | Hotové |
@@ -29,19 +30,19 @@ Značky „overiť“ už neexistujú (`showReviewMarks: false`).
 | 4.10 · Kybernetické právo | `/sluzby/kyberneticke-pravo` | `04-sluzby/4-10-kyberneticke-pravo.ts` | Hotové |
 | 4.11 · Trestné právo | `/sluzby/trestne-pravo` | `04-sluzby/4-11-trestne-pravo.ts` | Hotové; iba pre stálych klientov, ŠTS Pezinok + pracovisko Banská Bystrica |
 | **4.12 · Pracovné právo (nové)** | `/sluzby/pracovne-pravo` | `04-sluzby/4-12-pracovne-pravo.ts` | Hotové; bloky 1 – 8, karta, menu, formulár (`?oblast=pracovne-pravo`), FAQ, pätička, asistentka |
-| 5.1 · Hero a príbeh | `/o-mne` | `05-o-mne.ts` | Hotové; portrét zatiaľ placeholder |
+| 5.1 · Hero a príbeh | `/o-mne` | `05-o-mne.ts` | Hotové; hero fotka 05 (4:5); pod textom fotky 06 a 07 pod sebou (3:2, stĺpec max. 760 px) |
 | 5.2 · Karta faktov | `/o-mne` | `05-o-mne.ts` | Hotové |
 | 5.3 · Profesijná dráha a záverná výzva | `/o-mne` | `05-o-mne.ts` | Hotové (1990, 1995, 1995) |
 | 6.1 · Úvod tímu | `/nas-tim` | `06-nas-tim.ts` | Hotové |
 | 6.2 · Karty tímu | `/nas-tim` | `06-nas-tim.ts` | Člen 1 hotový okrem „Zameranie“; členovia 2 a 3 sú `[DOPLNIŤ]` |
 | 6.3 · Pridajte sa k nám a záverná výzva | `/nas-tim` | `06-nas-tim.ts`, `src/lib/site.ts` | Hotové; e-mail pavlovic@lpavlovic.eu |
-| 7.1 · Prečo my | `/preco-my` | `07-preco-my.ts` | Hotové |
+| 7.1 · Prečo my | `/preco-my` | `07-preco-my.ts` | Hotové; hero fotka 08 (4:5) |
 | **R.1 · Úvod (nové)** | `/referencie` | `referencie.ts` | Hotové |
 | **R.2 · Bubliny s referenciami (nové)** | `/referencie` | `referencie.ts`, `components/sections/TestimonialBubbles.tsx` | Komponent hotový; 6 referencií je zatiaľ prázdnych (doplniť `text`, `autor`, `oblast`); po vyplnení sa zobrazia aj v bubline na úvode |
 | **R.3 · Záverná výzva (nové)** | `/referencie` | `referencie.ts` | Hotové |
 | 8.1 · Úvod stránky | `/kontakt` | `08-kontakt.ts` | Hotové |
 | 8.2 · Formulár | `/kontakt#konzultacia` | `08-kontakt.ts` | Hotové; 10 oblastí v poradí `servicesOrder` + „Iné“ |
-| 8.3 · Údaje kancelárie a mapa | `/kontakt` | `08-kontakt.ts`, `src/lib/site.ts` | Hotové okrem úradných hodín a popisu príchodu (`[DOPLNIŤ]`) |
+| 8.3 · Údaje kancelárie a mapa | `/kontakt` | `08-kontakt.ts`, `src/lib/site.ts` | Hotové okrem úradných hodín a popisu príchodu (`[DOPLNIŤ]`); fotka budovy 09 so šípkou ku vchodu (4:3) |
 | 8.4 · Časté otázky | `/caste-otazky` | `faq.ts`, `04-sluzby/*.ts` | Hotové; Konzultácia a spolupráca + 10 skupín v poradí `servicesOrder` |
 | 9.1 · Virtuálna asistentka | Všetky stránky | `09-asistentka-paticka.ts` | Hotové; 7 rýchlych volieb (pribudla „Práca a zamestnanie“) |
 | 9.2 · Pätička, cookies, právne stránky | Všetky stránky | `01-pravidla.ts`, `09-asistentka-paticka.ts`, `legal.ts` | Hotové; doplnený riadok Pôsobnosť; texty zásad sú `[DOPLNIŤ]` |
@@ -52,7 +53,8 @@ Značky „overiť“ už neexistujú (`showReviewMarks: false`).
 - Úradné hodiny (`site.fields.hours`, `hoursSchema`)
 - Ako sa k nám dostanete: MHD, parkovanie, vchod a poschodie (`site.fields.directions`)
 - Náš tím: zameranie JUDr. Pavloviča, členovia 2 a 3 (meno, funkcia, vzdelanie, zameranie, text)
-- Fotografie: portrét a fotky tímu („Fotografia bude doplnená“)
+- Fotografie na stránke Náš tím (`/nas-tim`: hero a karty tímu)
+- Fotografie k 10 službám (stock z Unsplash, čaká na kľúč: `UNSPLASH_ACCESS_KEY=… npm run images`); dovtedy náhradné bloky
 - Texty Ochrany osobných údajov a Zásad cookies
 - Referencie (6 položiek v `referencie.ts`; vyplnené sa automaticky zobrazia aj na úvode)
 

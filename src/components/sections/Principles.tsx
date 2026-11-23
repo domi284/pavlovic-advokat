@@ -22,6 +22,11 @@ export function Principles({ content, number, dataDoc }: { content: typeof home.
               </StaggerItem>
             ))}
           </Stagger>
+          <ImageReveal className="mt-14 aspect-[4/5] max-h-[520px] w-full lg:hidden">
+            <Parallax>
+              <SiteImage slot={content.image} sizes="(min-width: 1408px) 1280px, 100vw" />
+            </Parallax>
+          </ImageReveal>
         </div>
         <div className="hidden lg:col-span-3 lg:col-start-10 lg:block">
           <div className="sticky top-28">

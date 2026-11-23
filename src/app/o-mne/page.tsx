@@ -45,11 +45,11 @@ export default function AboutPage() {
       </section>
 
       <Container className="pb-24 md:pb-32 lg:pb-40">
-        <div className="flex flex-col gap-4">
+        <div className="mx-auto flex max-w-[760px] flex-col gap-4">
           {omne.images.map((image) => (
             <ImageReveal key={image.file} className="aspect-[3/2] w-full">
               <Parallax>
-                <SiteImage slot={image} sizes="(min-width: 1408px) 1280px, 100vw" />
+                <SiteImage slot={image} sizes="(min-width: 800px) 760px, 100vw" />
               </Parallax>
             </ImageReveal>
           ))}
