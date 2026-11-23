@@ -87,7 +87,7 @@ export function PageHero({
         {image && (
           <div className="relative lg:col-span-5 lg:pl-8">
             <span aria-hidden="true" className="absolute top-[8%] bottom-[8%] left-0 hidden w-px bg-bordeaux lg:block" />
-            <ImageReveal immediate delay={0.2} className="aspect-[4/5] w-full max-lg:aspect-[3/2]">
+            <ImageReveal immediate delay={0.2} className={cn("aspect-[4/5] w-full", !image.natural && "max-lg:aspect-[3/2]")}>
               <Parallax>
                 <SiteImage slot={image} priority sizes="(min-width: 1024px) 40vw, 100vw" />
               </Parallax>

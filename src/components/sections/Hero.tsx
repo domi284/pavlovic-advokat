@@ -5,7 +5,7 @@ import { RevealText } from "@/components/motion/RevealText";
 import { CtaGroup } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Portrait } from "@/components/ui/SiteImage";
+import { SiteImage } from "@/components/ui/SiteImage";
 import type { home } from "@/content/home";
 import { typo } from "@/lib/typo";
 import { NumbersStrip } from "./NumbersStrip";
@@ -39,7 +39,7 @@ export function Hero({ content }: { content: typeof home.hero }) {
             <span aria-hidden="true" className="absolute top-[8%] bottom-[8%] left-0 hidden w-px bg-bordeaux lg:block" />
             <ImageReveal immediate delay={0.2} className="aspect-[4/5] w-full">
               <Parallax>
-                <Portrait sizes="(min-width: 1024px) 40vw, 100vw" />
+                <SiteImage slot={content.image} priority sizes="(min-width: 1024px) 40vw, 100vw" />
               </Parallax>
             </ImageReveal>
           </div>

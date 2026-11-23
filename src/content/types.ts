@@ -18,7 +18,15 @@ export type Item = { title: string; text: string };
 
 export type Faq = { q: string; a: string };
 
-export type ImageSlot = { file: string; alt: string; label: string };
+export type ImageSlot = {
+  file: string;
+  alt: string;
+  label: string;
+  /** CSS object-position (výrez fotky), predvolene „center“ */
+  position?: string;
+  /** Skutočná fotka od klienta: bez šedého „editorial“ filtra, iba jemná úprava */
+  natural?: boolean;
+};
 
 export type CtaBand = { title: string; text?: string; ctas: Cta[] };
 

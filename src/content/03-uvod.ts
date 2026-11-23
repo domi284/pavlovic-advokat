@@ -36,7 +36,7 @@ export const home = {
       callCta,
     ] satisfies Cta[],
     office: "Advokátska kancelária JUDr. Ladislav Pavlovič s. r. o. · Ružinov, Bratislava",
-    image: images.heroUvod,
+    image: images.fotoHero,
     numbers: numbers,
   },
 
@@ -90,6 +90,7 @@ export const home = {
       { label: "Slovenská advokátska komora", value: "zápis č. 448" },
     ],
     link: { label: "Viac o mne →", href: "/o-mne" },
+    image: images.fotoPortret,
   },
 
   principles: {
@@ -101,7 +102,7 @@ export const home = {
       { title: "Zodpovedne.", text: "Dohodnuté termíny a lehoty sledujem sám, aby sa nič nepremeškalo." },
       { title: "Priamo.", text: "Komunikujete vždy priamo s advokátom, ktorý Vašu vec rieši. Dlhodobo spolupracujem s preverenými kolegami a advokátmi." },
     ] satisfies Item[],
-    image: images.kniznica,
+    image: images.fotoAkoPracujem,
   },
 
   whyUs: {
@@ -114,6 +115,7 @@ export const home = {
       { title: "Jasný ďalší krok.", text: "Z konzultácie odchádzate s vysvetlením bez právnického žargónu a s konkrétnym návrhom riešenia, čo urobiť ďalej." },
     ],
     link: { label: "Viac", href: "/preco-my" },
+    image: images.fotoPrecoMy,
   },
 
   faq: {

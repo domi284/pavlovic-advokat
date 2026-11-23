@@ -196,6 +196,17 @@
     pointer-events: none;
   }
 
+  /* Skutočné fotky od klienta: prirodzené a teplé, bez šedého filtra */
+  .natural {
+    position: relative;
+    overflow: hidden;
+    background: var(--bone);
+  }
+
+  .natural img {
+    filter: saturate(0.92) contrast(1.03);
+  }
+
   /* Textový odkaz s podčiarknutím, ktoré narastie zľava */
   .text-link {
     position: relative;

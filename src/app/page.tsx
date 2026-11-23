@@ -1,3 +1,6 @@
+import { ImageReveal } from "@/components/motion/ImageReveal";
+import { Parallax } from "@/components/motion/Parallax";
+import { SiteImage } from "@/components/ui/SiteImage";
 import { AboutTeaser } from "@/components/sections/AboutTeaser";
 import { AreaCards } from "@/components/sections/AreaCards";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -46,16 +49,27 @@ export default function HomePage() {
             />
             <p className="lead lg:col-span-5 lg:col-start-8">{home.whyUs.intro}</p>
           </div>
-          <ul className="mt-14 grid gap-8 md:grid-cols-2 lg:mt-16">
-            {home.whyUs.items.map((item, index) => (
-              <li key={item.title} className="border-t border-line pt-6">
-                <span className="step-number text-bordeaux">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="mt-4 font-serif text-[24px] leading-tight text-ink">{item.title}</h3>
-                <p className="mt-3 max-w-[60ch] text-[16px] leading-relaxed text-stone"><Rich text={item.text} /></p>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10"><TextLink href={home.whyUs.link.href} label={home.whyUs.link.label} /></div>
+          <div className="grid gap-16 lg:grid-cols-12">
+            <div className="lg:col-span-8">
+              <ul className="mt-14 grid gap-8 md:grid-cols-2 lg:mt-16">
+                {home.whyUs.items.map((item, index) => (
+                  <li key={item.title} className="border-t border-line pt-6">
+                    <span className="step-number text-bordeaux">{String(index + 1).padStart(2, "0")}</span>
+                    <h3 className="mt-4 font-serif text-[24px] leading-tight text-ink">{item.title}</h3>
+                    <p className="mt-3 max-w-[60ch] text-[16px] leading-relaxed text-stone"><Rich text={item.text} /></p>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-10"><TextLink href={home.whyUs.link.href} label={home.whyUs.link.label} /></div>
+            </div>
+            <div className="hidden lg:col-span-3 lg:col-start-10 lg:mt-16 lg:block">
+              <ImageReveal className="aspect-[9/16] w-full">
+                <Parallax>
+                  <SiteImage slot={home.whyUs.image} sizes="25vw" />
+                </Parallax>
+              </ImageReveal>
+            </div>
+          </div>
         </Container>
       </section>
       <FaqList

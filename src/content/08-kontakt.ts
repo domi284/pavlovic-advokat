@@ -23,7 +23,7 @@ export const s8_kontakt = {
     title: "Mapa: Ivanská cesta 32B, 821 04 Bratislava",
     query: "Ivanská cesta 32B, 821 04 Bratislava",
   },
-  image: images.kancelaria,
+  image: images.fotoKontaktBudova,
   form: {
     title: "Dohodnite si konzultáciu",
     intro: "Stačí vyplniť meno a telefón. Podrobnosti rozoberieme osobne.",

@@ -20,7 +20,7 @@ export default function ServicesIndexPage() {
           { kind: "link", label: "Dohodnúť konzultáciu", href: "/kontakt#konzultacia", variant: "primary" },
           { kind: "call", label: "Zavolať {{phone|DOPLNIŤ: telefón}}", variant: "secondary" },
         ]}
-        image={images.sluzbyUvod}
+        image={images.fotoSluzbyHero}
         dataDoc="4.1"
       />
       <AreaCards content={home.areas} number="01" dataDoc="4.1" />

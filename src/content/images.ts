@@ -2,6 +2,69 @@ import type { ImageSlot } from "./types";
 
 /** Obrázkové sloty v /public/images. `label` je iba interný popis námetu (na webe sa nezobrazuje). */
 export const images = {
+  /* Skutočné fotky od klienta (/public/images/foto), bez „editorial“ filtra */
+  fotoHero: {
+    file: "foto/01-hero-pavlovic.jpg",
+    alt: "JUDr. Ladislav Pavlovič, LL.M. pri práci vo svojej kancelárii",
+    label: "pri stole s perom",
+    position: "center 35%",
+    natural: true,
+  },
+  fotoPortret: {
+    file: "foto/02-pavlovic-portret.jpg",
+    alt: "Portrét JUDr. Ladislava Pavloviča, LL.M.",
+    label: "portrét",
+    position: "center 30%",
+    natural: true,
+  },
+  fotoAkoPracujem: {
+    file: "foto/03-ako-pracujem.jpg",
+    alt: "JUDr. Ladislav Pavlovič, LL.M. pri štúdiu spisu v kancelárii",
+    label: "štúdium spisu pri regáli",
+    position: "55% 20%",
+    natural: true,
+  },
+  fotoSluzbyHero: {
+    file: "foto/04-sluzby-hero.jpg",
+    alt: "JUDr. Ladislav Pavlovič, LL.M. počas konzultácie s klientom",
+    label: "konzultácia s klientom",
+    position: "center 45%",
+    natural: true,
+  },
+  fotoOMneHero: {
+    file: "foto/05-o-mne-hero.jpg",
+    alt: "JUDr. Ladislav Pavlovič, LL.M. za pracovným stolom",
+    label: "za pracovným stolom",
+    position: "center 40%",
+    natural: true,
+  },
+  fotoKancelaria1: {
+    file: "foto/06-kancelaria-1.jpg",
+    alt: "Priestory advokátskej kancelárie – recepcia a zasadačka",
+    label: "recepcia a zasadačka",
+    natural: true,
+  },
+  fotoKancelaria2: {
+    file: "foto/07-kancelaria-2.jpg",
+    alt: "Priestory advokátskej kancelárie – pracovisko",
+    label: "pracovisko",
+    natural: true,
+  },
+  fotoPrecoMy: {
+    file: "foto/08-preco-my.jpg",
+    alt: "Zbierka zákonov v knižnici kancelárie",
+    label: "Zbierka zákonov",
+    position: "center 45%",
+    natural: true,
+  },
+  fotoKontaktBudova: {
+    file: "foto/09-kontakt-budova.jpg",
+    alt: "Budova na Ivanskej ceste 32B, šípka označuje vchod do kancelárie",
+    label: "budova so šípkou ku vchodu",
+    position: "63% center",
+    natural: true,
+  },
+
   heroUvod: {
     file: "hero-uvod.jpg",
     alt: "Detail pracovného stola s perom a dokumentmi",

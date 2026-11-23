@@ -12,7 +12,7 @@ export const metadata = pageMetadata(pageSeo.whyUs);
 export default function PrecoMyPage() {
   return (
     <>
-      <PageHero title={precoMy.h1} subtitle={precoMy.intro} image={images.precoMy} dataDoc="7.1" />
+      <PageHero title={precoMy.h1} subtitle={precoMy.intro} image={images.fotoPrecoMy} dataDoc="7.1" />
 
       <section data-doc="7.1" className="py-20 md:py-28">
         <Container className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

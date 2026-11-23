@@ -22,7 +22,7 @@ export default function AboutPage() {
         subtitle={omne.subtitle}
         aside={
           <Reveal immediate delay={0.2}>
-            <Portrait sizes="(min-width: 1024px) 40vw, 100vw" className="mx-auto max-w-[520px] lg:max-w-none" />
+            <Portrait slot={omne.portrait} priority sizes="(min-width: 1024px) 40vw, 100vw" className="mx-auto max-w-[520px] lg:max-w-none" />
           </Reveal>
         }
       />
@@ -45,11 +45,15 @@ export default function AboutPage() {
       </section>
 
       <Container className="pb-24 md:pb-32 lg:pb-40">
-        <ImageReveal className="aspect-[16/9] w-full">
-          <Parallax>
-            <SiteImage slot={omne.image} sizes="(min-width: 1408px) 1280px, 100vw" />
-          </Parallax>
-        </ImageReveal>
+        <div className="flex flex-col gap-4">
+          {omne.images.map((image) => (
+            <ImageReveal key={image.file} className="aspect-[3/2] w-full">
+              <Parallax>
+                <SiteImage slot={image} sizes="(min-width: 1408px) 1280px, 100vw" />
+              </Parallax>
+            </ImageReveal>
+          ))}
+        </div>
       </Container>
 
       <section data-doc="5.3" aria-labelledby="career-title" className="border-t border-line bg-bone py-20 md:py-28">

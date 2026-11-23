@@ -32,7 +32,8 @@ export const s5_1_oMne = {
     "1995 · Úspešne absolvovaná advokátska skúška a zápis do zoznamu advokátov Slovenskej advokátskej komory.",
     "1995 · Založenie samostatnej advokátskej kancelárie.",
   ],
-  image: images.kniznica,
+  images: [images.fotoKancelaria1, images.fotoKancelaria2],
+  portrait: images.fotoOMneHero,
   cta: {
     title: "Spoznajme sa pri konzultácii",
     ctas: [

@@ -12,7 +12,7 @@ export function AboutTeaser({ content, number, dataDoc }: { content: typeof home
     <section aria-labelledby="advokat-title" data-doc={dataDoc} className="py-24 md:py-32 lg:py-40">
       <Container className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
-          <Portrait sizes="(min-width: 1024px) 40vw, 100vw" className="mx-auto max-w-[520px] lg:max-w-none" />
+          <Portrait slot={content.image} sizes="(min-width: 1024px) 40vw, 100vw" className="mx-auto max-w-[520px] lg:max-w-none" />
         </Reveal>
 
         <div className="lg:col-span-6 lg:col-start-7">
