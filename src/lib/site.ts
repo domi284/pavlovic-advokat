@@ -59,6 +59,8 @@ export const site = {
      * V textoch ako `{{hours|…}}`, nový riadok (\n) sa zobrazí ako zalomenie.
      */
     hours: "Pondelok – piatok: 8:30 – 17:00\nV prípade potreby flexibilne po dohode." as string | null,
+    /** Úradné hodiny pre pätičku (za „Úradné hodiny: “), rovnaké hodiny v kratšom tvare. */
+    hoursFooter: "pondelok – piatok 8:30 – 17:00\nV prípade potreby flexibilne po dohode." as string | null,
     ico: "47238526" as string | null,
     register: "Obchodný register Mestského súdu Bratislava III, oddiel: Sro, vložka č. 81036/B" as string | null,
     /** číslo zápisu v zozname advokátov SAK */
