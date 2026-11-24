@@ -17,8 +17,20 @@ export const s8_kontakt = {
     { label: "Telefón", value: "{{phone|DOPLNIŤ: telefón}}" },
     { label: "E-mail", value: "{{email|DOPLNIŤ: e-mail}}" },
     { label: "Úradné hodiny", value: "{{hours|DOPLNIŤ: úradné hodiny}}" },
-    { label: "Ako sa k nám dostanete", value: "{{directions|DOPLNIŤ: zastávka MHD, parkovanie, vchod a poschodie}}" },
   ],
+  /** Blok „Ako sa k nám dostanete“ (data-doc="8-ako-sa-k-nam-dostanete"), zobrazuje sa pri fotke budovy. */
+  directions: {
+    title: "Ako sa k nám dostanete",
+    points: [
+      { icon: "parking" as const, text: "Pre klientov 4 vlastné parkovacie miesta." },
+      {
+        icon: "accessibility" as const,
+        text: "Právne služby poskytujeme vo vlastných nových priestoroch, prístupných bezbariérovo priamo na prízemí, tzv. vchod z ulice.",
+      },
+    ],
+    route:
+      "Sme strategicky umiestnení tak, že sme priamo dostupní z diaľničného privádzača Bratislava – Žilina aj Bratislava – Viedeň – Budapešť. Na hociktoré miesto v Bratislave je dostupnosť aj v plnej premávke max. do 25 minút vďaka priamej prístupnosti k mestským obchvatom.",
+  },
   map: {
     title: "Mapa: Ivanská cesta 32B, 821 04 Bratislava",
     query: "Ivanská cesta 32B, 821 04 Bratislava",

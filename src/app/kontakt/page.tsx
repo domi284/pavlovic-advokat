@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Accessibility, Route, SquareParking } from "lucide-react";
 import { ImageReveal } from "@/components/motion/ImageReveal";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
@@ -14,6 +15,8 @@ import { mapsEmbedUrl, pageMetadata } from "@/lib/seo";
 import { typo } from "@/lib/typo";
 
 export const metadata = pageMetadata(pageSeo.contact);
+
+const directionIcons = { parking: SquareParking, accessibility: Accessibility } as const;
 
 export default function ContactPage() {
   return (
@@ -37,6 +40,29 @@ export default function ContactPage() {
             <ImageReveal className="mt-12 aspect-[4/3] w-full">
               <SiteImage slot={kontakt.image} sizes="(min-width: 1024px) 40vw, 100vw" />
             </ImageReveal>
+
+            <Reveal className="mt-10">
+              <section data-doc="8-ako-sa-k-nam-dostanete" aria-labelledby="prichod-title">
+                <h2 id="prichod-title" className="font-serif text-[28px] leading-tight font-medium text-ink md:text-[32px]">
+                  {typo(kontakt.directions.title)}
+                </h2>
+                <ul className="mt-6 space-y-4">
+                  {kontakt.directions.points.map((point) => {
+                    const Icon = directionIcons[point.icon];
+                    return (
+                      <li key={point.icon} className="flex items-start gap-3.5 text-[16px] leading-relaxed text-ink">
+                        <Icon aria-hidden="true" className="mt-[3px] size-5 shrink-0 text-bordeaux" strokeWidth={1.5} />
+                        <span>{typo(point.text)}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <p className="mt-6 flex items-start gap-3.5 border-t border-line pt-6 text-[16px] leading-relaxed text-stone">
+                  <Route aria-hidden="true" className="mt-[3px] size-5 shrink-0 text-bordeaux" strokeWidth={1.5} />
+                  <span>{typo(kontakt.directions.route)}</span>
+                </p>
+              </section>
+            </Reveal>
 
             <Reveal className="mt-6">
               <MapEmbed title={kontakt.map.title} src={mapsEmbedUrl(kontakt.map.query)} />

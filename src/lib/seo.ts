@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { serviceDetails } from "@/content/04-sluzby";
-import { fullAddress, site, telHref } from "./site";
+import { fullAddress, openingHours, site, telHref } from "./site";
 
 const ogImage = { url: "/opengraph-image", width: 1200, height: 630, alt: "JUDr. Ladislav Pavlovič, LL.M., advokát · Bratislava" };
 
@@ -29,7 +29,8 @@ export function pageMetadata(meta: { title: string; description?: string; path: 
 }
 
 export function legalServiceJsonLd() {
-  const { email, hoursSchema, ico } = site.fields;
+  const { email, ico } = site.fields;
+  const openingHoursSpecification = openingHours.map((spec) => ({ "@type": "OpeningHoursSpecification", ...spec }));
   const phone = telHref(site.fields.phone)?.replace(/^tel:/, "") ?? null;
   const identifier = ico ? { "@type": "PropertyValue", propertyID: "IČO", value: ico } : undefined;
   const knowsAbout = serviceDetails.map((service) => service.name);
@@ -59,7 +60,7 @@ export function legalServiceJsonLd() {
         founder: { "@id": attorneyId },
         ...(phone && { telephone: phone }),
         ...(email && { email }),
-        ...(hoursSchema && { openingHours: hoursSchema }),
+        openingHoursSpecification,
       },
       {
         "@type": "Attorney",
@@ -72,7 +73,7 @@ export function legalServiceJsonLd() {
         parentOrganization: { "@id": `${site.url}/#kancelaria` },
         ...(phone && { telephone: phone }),
         ...(email && { email }),
-        ...(hoursSchema && { openingHours: hoursSchema }),
+        openingHoursSpecification,
       },
     ],
   };

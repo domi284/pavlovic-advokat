@@ -61,6 +61,18 @@ export function Rich({ text: raw, plain = false }: { text: string; plain?: boole
 function FieldValue({ field, fallback, plain }: { field: SiteField; fallback: string; plain: boolean }) {
   const value = site.fields[field];
   if (typeof value !== "string" || !value) return <Placeholder>{fallback}</Placeholder>;
+  if (value.includes("\n")) {
+    return (
+      <>
+        {value.split("\n").map((line, i) => (
+          <Fragment key={i}>
+            {i > 0 && (plain ? " " : <br />)}
+            {typo(line)}
+          </Fragment>
+        ))}
+      </>
+    );
+  }
   if (plain) return <>{value}</>;
   const href = field === "phone" ? telHref(value) : field === "email" ? mailHref(value) : null;
   return href ? (
@@ -77,7 +89,7 @@ export function plainText(text: string) {
   return fillVars(text)
     .replace(/\{\{(\w+)\|([^}]+)\}\}/g, (_, field: SiteField) => {
       const value = site.fields[field];
-      return typeof value === "string" ? value : "";
+      return typeof value === "string" ? value.replace(/\n/g, " ") : "";
     })
     .replace(/\[DOPLNIŤ(?::\s*[^\]]+)?\]/g, "")
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")

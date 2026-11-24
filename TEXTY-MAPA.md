@@ -4,6 +4,7 @@ Stav po verzii 3 (texty schválené klientom). Texty v `src/content` sú doslovn
 Poradie služieb určuje jediné pole `servicesOrder` v `src/content/02-mapa-webu.ts`. Údaje kancelárie sú v `src/lib/site.ts`,
 počet rokov praxe sa počíta automaticky (`{rokyPraxe}` = aktuálny rok − 1990, prepočíta sa pri každom builde).
 Značky „overiť“ už neexistujú (`showReviewMarks: false`).
+Typografia (`src/lib/typo.ts`): nedeliteľná medzera po jednopísmenových predložkách a spojkách, medzi číslom a slovom („25 minút“) a pred pomlčkou „–“.
 Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `src/content/images.ts` (`foto*`, `natural: true` = bez šedého „editorial“ filtra, iba `saturate(0.92) contrast(1.03)`).
 
 | Blok | Stránka | Zdroj v `src/content` | Stav |
@@ -42,16 +43,16 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | **R.3 · Záverná výzva (nové)** | `/referencie` | `referencie.ts` | Hotové |
 | 8.1 · Úvod stránky | `/kontakt` | `08-kontakt.ts` | Hotové |
 | 8.2 · Formulár | `/kontakt#konzultacia` | `08-kontakt.ts` | Hotové; 10 oblastí v poradí `servicesOrder` + „Iné“ |
-| 8.3 · Údaje kancelárie a mapa | `/kontakt` | `08-kontakt.ts`, `src/lib/site.ts` | Hotové okrem úradných hodín a popisu príchodu (`[DOPLNIŤ]`); fotka budovy 09 so šípkou ku vchodu (4:3) |
+| 8.3 · Údaje kancelárie a mapa | `/kontakt` | `08-kontakt.ts`, `src/lib/site.ts` | Hotové; úradné hodiny v zozname údajov; fotka budovy 09 so šípkou ku vchodu (4:3) |
+| **8 · Ako sa k nám dostanete (nové)** | `/kontakt` (pod fotkou budovy, nad mapou) | `08-kontakt.ts` (`directions`), `app/kontakt/page.tsx`, `data-doc="8-ako-sa-k-nam-dostanete"` | Hotové; 2 body s ikonami (SquareParking, Accessibility) + odsek s ikonou Route |
+| **Úradné hodiny (nové)** | `/kontakt`, pätička, asistentka (odpoveď „Ako prebieha a koľko stojí konzultácia?“), JSON-LD | `src/lib/site.ts` (`fields.hours` = text, `openingHours` = schema.org), `01-pravidla.ts` (pätička), `09-asistentka-paticka.ts`, `src/lib/seo.ts` | Hotové; „Pondelok – piatok: 8:30 – 17:00 / V prípade potreby flexibilne po dohode.“; JSON-LD `openingHoursSpecification` Mo–Fr 08:30–17:00 pri `LegalService` aj `Attorney` |
 | 8.4 · Časté otázky | `/caste-otazky` | `faq.ts`, `04-sluzby/*.ts` | Hotové; Konzultácia a spolupráca + 10 skupín v poradí `servicesOrder` |
 | 9.1 · Virtuálna asistentka | Všetky stránky | `09-asistentka-paticka.ts` | Hotové; 7 rýchlych volieb (pribudla „Práca a zamestnanie“) |
-| 9.2 · Pätička, cookies, právne stránky | Všetky stránky | `01-pravidla.ts`, `09-asistentka-paticka.ts`, `legal.ts` | Hotové; doplnený riadok Pôsobnosť; texty zásad sú `[DOPLNIŤ]` |
+| 9.2 · Pätička, cookies, právne stránky | Všetky stránky | `01-pravidla.ts`, `09-asistentka-paticka.ts`, `legal.ts` | Hotové; doplnený riadok Pôsobnosť a Úradné hodiny; texty zásad sú `[DOPLNIŤ]` |
 | 10 · SEO | Všetky indexované stránky | `10-seo.ts` + `meta` v content súboroch | Hotové; title do 60 znakov, meta popisy do 155 znakov |
 
 ## Ostáva doplniť (`[DOPLNIŤ]` na webe)
 
-- Úradné hodiny (`site.fields.hours`, `hoursSchema`)
-- Ako sa k nám dostanete: MHD, parkovanie, vchod a poschodie (`site.fields.directions`)
 - Náš tím: zameranie JUDr. Pavloviča, členovia 2 a 3 (meno, funkcia, vzdelanie, zameranie, text)
 - Fotografie na stránke Náš tím (`/nas-tim`: hero a karty tímu)
 - Fotografie k 10 službám (stock z Unsplash, čaká na kľúč: `UNSPLASH_ACCESS_KEY=… npm run images`); dovtedy náhradné bloky

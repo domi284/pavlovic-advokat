@@ -13,6 +13,7 @@ export const footer = {
   lines: [
     "Ivanská cesta 32B, 821 04 Bratislava – Ružinov",
     "Telefón: {{phone|DOPLNIŤ}} · E-mail: {{email|DOPLNIŤ}}",
+    "Úradné hodiny: {{hours|DOPLNIŤ}}",
     "IČO: {{ico|DOPLNIŤ}} · Zapísaná v Obchodnom registri Mestského súdu Bratislava III, oddiel: Sro, vložka č. 81036/B",
     "Advokát zapísaný v zozname advokátov Slovenskej advokátskej komory pod č. {{sakNumber|DOPLNIŤ}}",
     "Pôsobnosť: Bratislava a západné Slovensko. Podľa vecnej a miestnej príslušnosti súdov zastupujeme klientov na celom Slovensku.",

@@ -77,7 +77,7 @@ export const s9_1_asistentka = {
       id: "konzultacia",
       label: "Ako prebieha a koľko stojí konzultácia?",
       answer:
-        "Ozvete sa nám telefonicky alebo cez formulár a dohodneme termín. Na konzultácii prejdeme Vašu situáciu, vysvetlíme Vám možnosti a navrhneme ďalší postup. Konzultácia je spoplatnená, jej cenu a podmienky Vám oznámime vopred.",
+        "Ozvete sa nám telefonicky alebo cez formulár a dohodneme termín. Na konzultácii prejdeme Vašu situáciu, vysvetlíme Vám možnosti a navrhneme ďalší postup. Konzultácia je spoplatnená, jej cenu a podmienky Vám oznámime vopred. Úradné hodiny: {{hours|DOPLNIŤ: úradné hodiny}}",
       links: [
         { label: "Dohodnúť konzultáciu", href: "/kontakt#konzultacia" },
         { label: "Zavolať", href: "tel:" },

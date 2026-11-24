@@ -16,6 +16,15 @@ export const PRACTICE_SINCE = 1990;
 /** Roky praxe: počíta sa automaticky (v roku 2026 = 36). V textoch ako `{rokyPraxe}`. */
 export const rokyPraxe = new Date().getFullYear() - PRACTICE_SINCE;
 
+/** Úradné hodiny pre schema.org (openingHoursSpecification), zodpovedajú `site.fields.hours`. */
+export const openingHours = [
+  {
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:30",
+    closes: "17:00",
+  },
+];
+
 export const site = {
   url: siteUrl,
   locale: "sk_SK",
@@ -45,12 +54,11 @@ export const site = {
     email: "pavlovic@lpavlovic.eu" as string | null,
     /** e-mail pre uchádzačov o prácu */
     careersEmail: "pavlovic@lpavlovic.eu" as string | null,
-    /** úradné hodiny ako text, napr. "Po – Pi: 8.00 – 16.00" */
-    hours: null as string | null,
-    /** hodiny pre schema.org, napr. ["Mo-Fr 08:00-16:00"] */
-    hoursSchema: null as string[] | null,
-    /** MHD zastávka, parkovanie, vchod/poschodie */
-    directions: null as string | null,
+    /**
+     * Úradné hodiny: jediné miesto pre celý web (kontakt, pätička, asistentka).
+     * V textoch ako `{{hours|…}}`, nový riadok (\n) sa zobrazí ako zalomenie.
+     */
+    hours: "Pondelok – piatok: 8:30 – 17:00\nV prípade potreby flexibilne po dohode." as string | null,
     ico: "47238526" as string | null,
     register: "Obchodný register Mestského súdu Bratislava III, oddiel: Sro, vložka č. 81036/B" as string | null,
     /** číslo zápisu v zozname advokátov SAK */
