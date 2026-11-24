@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
   },
   redirects: async () => [
     {
+      // stránka Náš tím bola zrušená na želanie klienta
+      source: "/nas-tim",
+      destination: "/o-mne",
+      statusCode: 301,
+    },
+    {
       source: "/dopravne-nehody",
       destination: "/sluzby/dopravne-nehody",
       permanent: true,

@@ -2,7 +2,6 @@ import { home } from "./03-uvod";
 import { serviceDetails } from "./04-sluzby";
 import { s4_1_prehlad } from "./04-sluzby/4-1-prehlad";
 import { s5_1_oMne } from "./05-o-mne";
-import { s6_nasTim } from "./06-nas-tim";
 import { s7_precoMy } from "./07-preco-my";
 import { s8_kontakt } from "./08-kontakt";
 import type { Meta } from "./types";
@@ -12,7 +11,6 @@ export const pageSeo = {
   home: home.meta,
   services: s4_1_prehlad.meta,
   about: s5_1_oMne.meta,
-  team: s6_nasTim.meta,
   whyUs: s7_precoMy.meta,
   references: {
     title: "Referencie | Advokátska kancelária JUDr. Pavlovič",

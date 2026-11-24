@@ -21,7 +21,6 @@ export const footer = {
   links: [
     { label: "Služby", href: "/sluzby" },
     { label: "O mne", href: "/o-mne" },
-    { label: "Náš tím", href: "/nas-tim" },
     { label: "Prečo my", href: "/preco-my" },
     { label: "Referencie", href: "/referencie" },
     { label: "Kontakt", href: "/kontakt" },

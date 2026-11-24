@@ -56,7 +56,6 @@ const SLOTS = [
   { file: "sluzba-pracovne-pravo.jpg", orientation: "landscape", queries: ["empty office desks", "workplace interior empty", "office chairs daylight"] },
   { file: "sluzby-uvod.jpg", orientation: "landscape", queries: ["law books shelf", "bookshelf blur"] },
   { file: "preco-my.jpg", orientation: "portrait", queries: ["staircase light", "architecture corridor light"] },
-  { file: "tim-kancelaria.jpg", orientation: "landscape", queries: ["empty office interior", "meeting room empty", "office light"] },
   { file: "kniznica.jpg", orientation: "landscape", queries: ["law books shelf", "bookshelf blur", "library warm"] },
   { file: "kancelaria-detail.jpg", orientation: "landscape", queries: ["office interior detail", "leather chair", "office door light"] },
   { file: "textura-kamen.jpg", orientation: "landscape", queries: ["dark marble texture", "stone texture"] },

@@ -26,7 +26,6 @@ export const nav = [
   { label: "Úvod", href: "/" },
   { label: "Služby", href: "/sluzby" },
   { label: "O mne", href: "/o-mne" },
-  { label: "Náš tím", href: "/nas-tim" },
   { label: "Prečo my", href: "/preco-my" },
   { label: "Referencie", href: "/referencie" },
   { label: "Kontakt", href: "/kontakt" },
@@ -35,7 +34,6 @@ export const nav = [
 export const footerNav = [
   { label: "Služby", href: "/sluzby" },
   { label: "O mne", href: "/o-mne" },
-  { label: "Náš tím", href: "/nas-tim" },
   { label: "Prečo my", href: "/preco-my" },
   { label: "Referencie", href: "/referencie" },
   { label: "Kontakt", href: "/kontakt" },

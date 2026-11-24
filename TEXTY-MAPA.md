@@ -10,7 +10,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | Blok | Stránka | Zdroj v `src/content` | Stav |
 |---|---|---|---|
 | 1 · Základné pravidlá | Celý web | `01-pravidla.ts`, `src/lib/site.ts` | Hotové; overené údaje z registrov (telefón, e-mail, IČO, OR, SAK č. 448) |
-| 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 7 položiek vrátane Referencií, mobilné menu pod 1280 px, menu Služby 2 × 5 |
+| 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 6 položiek (Úvod, Služby, O mne, Prečo my, Referencie, Kontakt), mobilné menu pod 1280 px, menu Služby 2 × 5 |
 | 3.1 · Hero a pás čísel | `/` | `03-uvod.ts`, `components/sections/NumbersStrip.tsx`, `src/lib/site.ts` | Hotové; pod hero je pás čísel (roky praxe, vybavené veci, oblasti, pôsobnosť) namiesto pásu dôvery s ikonami; fotka 01 (4:5) |
 | 3.1-referencie · Bublina s referenciami | `/` | `referencie.ts`, `components/sections/HomeTestimonial.tsx`, `TestimonialBubbles.tsx` (variant `sm`) | Hotové; pod pásom čísel, zobrazuje sa vždy; striedajú sa vyplnené referencie z `referencie.ts` s odkazom „Všetky referencie →“; kým nie je vyplnená žiadna, je to prázdna bublina (úvodzovka, 6 bodiek, odkaz, striedanie každých 8 s) s pevnou min. výškou |
 | 3.2 · Čomu sa venujeme | `/` | `03-uvod.ts`, `04-sluzby/*.ts` | Hotové; 10 kariet v poradí `servicesOrder`, na desktope 2 stĺpce horizontálne; pás čísel sa na úvode presunul do 3.1 (na `/sluzby` ostáva pod kartami) |
@@ -34,9 +34,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | 5.1 · Hero a príbeh | `/o-mne` | `05-o-mne.ts` | Hotové; hero fotka 05 (4:5); pod textom fotky 06 a 07 pod sebou (3:2, stĺpec max. 760 px) |
 | 5.2 · Karta faktov | `/o-mne` | `05-o-mne.ts` | Hotové |
 | 5.3 · Profesijná dráha a záverná výzva | `/o-mne` | `05-o-mne.ts` | Hotové (1990, 1995, 1995) |
-| 6.1 · Úvod tímu | `/nas-tim` | `06-nas-tim.ts` | Hotové |
-| 6.2 · Karty tímu | `/nas-tim` | `06-nas-tim.ts` | Člen 1 hotový okrem „Zameranie“; členovia 2 a 3 sú `[DOPLNIŤ]` |
-| 6.3 · Pridajte sa k nám a záverná výzva | `/nas-tim` | `06-nas-tim.ts`, `src/lib/site.ts` | Hotové; e-mail pavlovic@lpavlovic.eu |
+| ~~6 · Náš tím~~ | ~~`/nas-tim`~~ | — | **Zrušené na želanie klienta.** Stránka, obsah (`06-nas-tim.ts`) a všetky odkazy sú odstránené; `/nas-tim` presmeruje trvalo (301) na `/o-mne` (`next.config.ts`) |
 | 7.1 · Prečo my | `/preco-my` | `07-preco-my.ts` | Hotové; hero fotka 08 (4:5) |
 | **R.1 · Úvod (nové)** | `/referencie` | `referencie.ts` | Hotové |
 | **R.2 · Bubliny s referenciami (nové)** | `/referencie` | `referencie.ts`, `components/sections/TestimonialBubbles.tsx` | Komponent hotový; 6 referencií je zatiaľ prázdnych (doplniť `text`, `autor`, `oblast`); po vyplnení sa zobrazia aj v bubline na úvode |
@@ -53,8 +51,6 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 
 ## Ostáva doplniť (`[DOPLNIŤ]` na webe)
 
-- Náš tím: zameranie JUDr. Pavloviča, členovia 2 a 3 (meno, funkcia, vzdelanie, zameranie, text)
-- Fotografie na stránke Náš tím (`/nas-tim`: hero a karty tímu)
 - Fotografie k 10 službám (stock z Unsplash, čaká na kľúč: `UNSPLASH_ACCESS_KEY=… npm run images`); dovtedy náhradné bloky
 - Texty Ochrany osobných údajov a Zásad cookies
 - Referencie (6 položiek v `referencie.ts`; vyplnené sa automaticky zobrazia aj na úvode)
@@ -76,7 +72,6 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | `/sluzby/kyberneticke-pravo` | Advokát kybernetické právo Slovensko \| JUDr. Pavlovič | 53 | Kybernetická bezpečnosť, ochrana osobných údajov, únik dát a IT zmluvy. Pomôžeme Vašej firme splniť povinnosti. | 111 |
 | `/sluzby/pracovne-pravo` | Advokát pracovné právo Bratislava \| JUDr. Pavlovič | 50 | Výpoveď, neplatné skončenie pracovného pomeru, mzda, odstupné a pracovné zmluvy. Pomôžeme zamestnancom aj zamestnávateľom. | 122 |
 | `/o-mne` | JUDr. Ladislav Pavlovič, LL.M. \| Advokát Bratislava | 51 | JUDr. Ladislav Pavlovič, LL.M., advokát v Bratislave. Zrozumiteľne, diskrétne a s dôrazom na lehoty. Dohodnite si konzultáciu. | 126 |
-| `/nas-tim` | Náš tím \| Advokátska kancelária JUDr. Pavlovič | 46 | Spoznajte ľudí v advokátskej kancelárii JUDr. Ladislava Pavloviča, LL.M. v Bratislave. Každú vec u nás vedie konkrétny advokát. | 127 |
 | `/preco-my` | Prečo si vybrať našu kanceláriu \| JUDr. Pavlovič | 48 | Priamy kontakt s advokátom, 10 oblastí práva a pôsobnosť na celom západnom Slovensku. Pozrite si, čo u nás dostanete. | 117 |
 | `/referencie` | Referencie \| Advokátska kancelária JUDr. Pavlovič | 49 | Hodnotenia klientov advokátskej kancelárie JUDr. Ladislava Pavloviča, LL.M. v Bratislave, zverejnené s ich súhlasom. | 116 |
 | `/kontakt` | Kontakt \| Advokát Bratislava Ružinov \| JUDr. Pavlovič | 53 | Kontakt na advokátsku kanceláriu JUDr. Ladislava Pavloviča, LL.M., Ivanská cesta 32B, Bratislava Ružinov. Dohodnite si konzultáciu. | 131 |

@@ -7,7 +7,6 @@ const routes = [
   { path: "/sluzby", priority: 0.9 },
   ...servicesOrder.map((slug) => ({ path: `/sluzby/${slug}`, priority: 0.8 })),
   { path: "/o-mne", priority: 0.7 },
-  { path: "/nas-tim", priority: 0.6 },
   { path: "/preco-my", priority: 0.6 },
   { path: "/referencie", priority: 0.6 },
   { path: "/kontakt", priority: 0.8 },

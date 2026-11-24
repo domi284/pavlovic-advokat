@@ -52,8 +52,6 @@ export const site = {
   fields: {
     phone: "0905 769 966" as string | null,
     email: "pavlovic@lpavlovic.eu" as string | null,
-    /** e-mail pre uchádzačov o prácu */
-    careersEmail: "pavlovic@lpavlovic.eu" as string | null,
     /**
      * Úradné hodiny: jediné miesto pre celý web (kontakt, pätička, asistentka).
      * V textoch ako `{{hours|…}}`, nový riadok (\n) sa zobrazí ako zalomenie.

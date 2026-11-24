@@ -80,11 +80,6 @@ export const images = {
     alt: "Schodisko s prirodzeným svetlom a architektonickým detailom",
     label: "schodisko a svetlo",
   },
-  timKancelaria: {
-    file: "tim-kancelaria.jpg",
-    alt: "Prázdna kancelária s pracovným stolom a prirodzeným svetlom",
-    label: "prázdna kancelária",
-  },
   kniznica: {
     file: "kniznica.jpg",
     alt: "Regál s knihami v teplom svetle",
