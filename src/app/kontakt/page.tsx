@@ -77,7 +77,7 @@ export default function ContactPage() {
           <div className="lg:col-span-7">
             <div
               id="konzultacia"
-              className="rounded-xs border border-line bg-paper px-4 py-10 shadow-hair sm:px-6 md:px-12 md:py-14"
+              className="rounded-xs border border-line bg-paper px-4 py-10 shadow-hair max-[374px]:border-0 max-[374px]:bg-transparent max-[374px]:p-0 max-[374px]:shadow-none sm:px-6 md:px-12 md:py-14"
             >
               <RevealText id="konzultacia-title" text={kontakt.form.title} className="h2" />
               <Reveal>

@@ -40,7 +40,7 @@ export type TurnstileHandle = { reset: () => void };
 
 /**
  * Widget Cloudflare Turnstile (režim managed sa nastavuje v Cloudflare pri site key).
- * Téma light, jazyk sk. Šírka „flexible“ (na celú šírku formulára, aj na mobile od 375 px).
+ * Téma light, jazyk sk. Šírka „flexible“ na celú šírku formulára; na telefónoch užších ako 340 px „compact“.
  */
 export const Turnstile = forwardRef<
   TurnstileHandle,
@@ -71,7 +71,7 @@ export const Turnstile = forwardRef<
           sitekey: turnstileSiteKey,
           theme: "light",
           language: "sk",
-          // na celú šírku formulára (Cloudflare: min. 300 px); „compact“ iba ako poistka pre displeje užšie ako 374 px
+          // na celú šírku formulára (Cloudflare: min. 300 px); pod 340 px má formulár iba 280 px, preto tam „compact“
           size: el.clientWidth >= 300 ? "flexible" : "compact",
           action: "kontakt",
           "refresh-expired": "auto",
