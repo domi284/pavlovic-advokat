@@ -51,6 +51,13 @@ function requestHost(request: NextRequest) {
 
 const json = (body: InquiryResponse, status = 200) => NextResponse.json(body, { status });
 
+/** Názvy chýbajúcich env premenných (hodnoty sa nikdy nevypisujú). */
+function missingEnv() {
+  const required = ["RESEND_API_KEY", "CONTACT_TO_EMAIL", "CONTACT_FROM_EMAIL"];
+  if (!isDev) required.push("TURNSTILE_SECRET_KEY");
+  return required.filter((key) => !process.env[key]);
+}
+
 /* ---------- Cloudflare Turnstile ---------- */
 async function verifyTurnstile(token: string, ip: string, host: string) {
   const secret = isDev ? TURNSTILE_TEST_SECRET_KEY : process.env.TURNSTILE_SECRET_KEY;
@@ -119,6 +126,13 @@ export async function POST(request: NextRequest) {
   const { turnstileToken, page, elapsedMs: _elapsed, [HONEYPOT_FIELD]: _hp, ...values } = parsed.data;
   void _elapsed;
   void _hp;
+
+  // env sa čítajú až tu (pri požiadavke), nikdy pri builde; chýbajúci kľúč = 500, nie pád
+  const missing = missingEnv();
+  if (missing.length) {
+    console.error("[kontakt] Chýbajú premenné prostredia:", missing.join(", "));
+    return json({ ok: false, code: "server", message: m.error }, 500);
+  }
 
   const host = requestHost(request);
   if (!turnstileToken || !(await verifyTurnstile(turnstileToken, ip, host))) {

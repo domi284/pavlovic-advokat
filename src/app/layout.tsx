@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { AssistantWidget } from "@/components/layout/AssistantWidget";
 import { CookieBar } from "@/components/layout/CookieBar";
 import { Footer } from "@/components/layout/Footer";
@@ -12,21 +11,11 @@ import { ui } from "@/content/common";
 import { pageSeo } from "@/content/10-seo";
 import { legalServiceJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
+/* Písma sú pribalené z npm (@fontsource), build ich nesťahuje z Google Fonts.
+   Prehliadač si podľa unicode-range stiahne iba potrebné podmnožiny (latin, latin-ext). */
+import "@fontsource-variable/cormorant-garamond/wght.css";
+import "@fontsource-variable/manrope/wght.css";
 import "./globals.css";
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin", "latin-ext"],
-  weight: ["500", "600"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-const manrope = Manrope({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
-  variable: "--font-manrope",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -43,7 +32,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="sk" className={`${cormorant.variable} ${manrope.variable}`}>
+    <html lang="sk">
       <body>
         <a
           href="#obsah"
