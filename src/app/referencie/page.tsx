@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
-import { TestimonialBubbles } from "@/components/sections/TestimonialBubbles";
+import { ReferenceBubbles } from "@/components/sections/ReferenceBubbles";
 import { Container } from "@/components/ui/Container";
 import { Rich, fillVars } from "@/components/ui/Rich";
 import { referencie, referenciePage } from "@/content/referencie";
@@ -19,14 +19,6 @@ export default function ReferenciePage() {
         compact
         title={referenciePage.h1}
         subtitle={fillVars(lead)}
-        aside={
-          <span
-            aria-hidden="true"
-            className="pointer-events-none hidden select-none text-right font-serif text-[360px] leading-[0.6] text-bordeaux opacity-[0.08] lg:block"
-          >
-            „
-          </span>
-        }
       >
         {rest.map((paragraph) => (
           <p key={paragraph} className="mt-5 max-w-[60ch] text-[17px] leading-relaxed text-stone">
@@ -35,11 +27,11 @@ export default function ReferenciePage() {
         ))}
       </PageHero>
 
-      {/* Blok R.2 · Bubliny s referenciami */}
-      <section data-doc="R.2" aria-label="Referencie klientov" className="border-t border-line bg-bone py-20 md:py-28 lg:py-32">
+      {/* Blok R.2 · Bubliny s logami firiem */}
+      <section data-doc="R.2" aria-label="Spoločnosti a organizácie" className="border-t border-line bg-bone py-20 md:py-28 lg:py-32">
         <Container>
           <Reveal>
-            <TestimonialBubbles items={referencie} />
+            <ReferenceBubbles items={referencie} />
           </Reveal>
         </Container>
       </section>

@@ -2,27 +2,55 @@ import { CONSULT_HREF, callCta } from "./01-pravidla";
 import { pageSeo } from "./10-seo";
 import type { CtaBand } from "./types";
 
-export type Referencia = { text: string; autor: string; oblast: string };
+import type { StaticImageData } from "next/image";
+import logoSlovenskaKonsolidacna from "../../public/images/referencie/01-slovenska-konsolidacna.png";
+import logoEsaLogistika from "../../public/images/referencie/02-esa-logistika.png";
+import logoKvapkaNadeje from "../../public/images/referencie/03-kvapka-nadeje.png";
+import logoBluewave from "../../public/images/referencie/04-bluewave-development.png";
+import logoRemprint from "../../public/images/referencie/05-remprint.png";
+import logoCkMore from "../../public/images/referencie/06-ck-more.png";
+import logoPelikan from "../../public/images/referencie/07-pelikan.png";
+import logoChemos from "../../public/images/referencie/08-chemos-slovakia.svg";
+import logoSecurityTech from "../../public/images/referencie/09-security-tech-servis.png";
+
+export type Referencia = {
+  name: string;
+  logo: StaticImageData;
+  /**
+   * Optické vyrovnanie veľkosti loga (predvolené 1). Násobí základnú výšku loga v boxe;
+   * logo nikdy nepresiahne box (výšku ani šírku), takže > 1 pomôže len úzkym/štvorcovým logám.
+   */
+  scale?: number;
+};
 
 /**
- * Referencie klientov (zverejnené s ich súhlasom). Prvé tri patria do ľavej bubliny,
- * ďalšie tri do pravej. Zatiaľ prázdne: bubliny sa zobrazia bez textu.
+ * Referencie = logá firiem a organizácií (recenzie zrušené na želanie klienta, iba logá).
+ * Poradie je záväzné; na /referencie ľavá bublina strieda 1, 3, 5, 7, 9 a pravá 2, 4, 6, 8.
  */
 export const referencie: Referencia[] = [
-  { text: "", autor: "", oblast: "" },
-  { text: "", autor: "", oblast: "" },
-  { text: "", autor: "", oblast: "" },
-  { text: "", autor: "", oblast: "" },
-  { text: "", autor: "", oblast: "" },
-  { text: "", autor: "", oblast: "" },
+  { name: "Slovenská konsolidačná, a. s.", logo: logoSlovenskaKonsolidacna, scale: 1 },
+  { name: "ESA logistika, s. r. o.", logo: logoEsaLogistika, scale: 1 },
+  { name: "Nadácia Kvapka nádeje", logo: logoKvapkaNadeje, scale: 1.1 },
+  { name: "Bluewave Development s. r. o.", logo: logoBluewave, scale: 1.3 },
+  { name: "Remprint s. r. o.", logo: logoRemprint, scale: 0.95 },
+  { name: "Cestovná kancelária MORE s. r. o.", logo: logoCkMore, scale: 1 },
+  { name: "Pelikan s. r. o.", logo: logoPelikan, scale: 1 },
+  { name: "Chemos Slovakia s. r. o.", logo: logoChemos, scale: 0.9 },
+  { name: "Security Tech Servis s. r. o.", logo: logoSecurityTech, scale: 1.4 },
 ];
+
+/** Text nad logami na úvode (blok 3.1-referencie). */
+export const referencieHome = {
+  text: "Okrem množstva ďalších subjektov sme naše právne služby poskytli aj týmto spoločnostiam a organizáciám:",
+  link: { href: "/referencie", label: "Referencie →" },
+};
 
 export const referenciePage = {
   meta: pageSeo.references,
   h1: "Referencie",
   intro: [
-    "Dôvera klientov je pre nás meradlom našej práce. Za {rokyPraxe} rokov praxe sme pomohli vyriešiť viac ako 3 500 vecí, od zmlúv a sporov až po náročné životné situácie.",
-    "Na tejto stránke uverejňujeme hodnotenia klientov, ktorí nám na to dali súhlas. V súlade s povinnou mlčanlivosťou advokáta neuvádzame podrobnosti ich vecí.",
+    "Za {rokyPraxe} rokov praxe sme vybavili viac ako 3 500 vecí pre občanov, firmy aj neziskové organizácie. Okrem množstva ďalších subjektov sme naše právne služby poskytli aj spoločnostiam a organizáciám uvedeným nižšie.",
+    "Mená ostatných klientov nezverejňujeme. Mlčanlivosť je pre nás samozrejmosťou.",
   ],
   cta: {
     title: "Potrebujete poradiť?",

@@ -6,7 +6,7 @@ import { AreaCards } from "@/components/sections/AreaCards";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FaqList } from "@/components/sections/FaqList";
 import { Hero } from "@/components/sections/Hero";
-import { HomeTestimonial } from "@/components/sections/HomeTestimonial";
+import { HomeReferences } from "@/components/sections/HomeReferences";
 import { Principles } from "@/components/sections/Principles";
 import { Steps } from "@/components/sections/Steps";
 import { Container } from "@/components/ui/Container";
@@ -23,7 +23,7 @@ export default function HomePage() {
   return (
     <>
       <Hero content={home.hero} />
-      <HomeTestimonial />
+      <HomeReferences />
       <AreaCards content={home.areas} number="01" dataDoc="3.2" showNumbers={false} />
       <Steps
         id="spolupraca-title"
