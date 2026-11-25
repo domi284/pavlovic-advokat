@@ -15,7 +15,7 @@ export const pageSeo = {
   references: {
     title: "Referencie | Advokátska kancelária JUDr. Pavlovič",
     description:
-      "Hodnotenia klientov advokátskej kancelárie JUDr. Ladislava Pavloviča, LL.M. v Bratislave, zverejnené s ich súhlasom.",
+      "Spoločnosti a organizácie, ktorým advokátska kancelária JUDr. Ladislava Pavloviča, LL.M. v Bratislave poskytla právne služby.",
     path: "/referencie",
   },
   contact: s8_kontakt.meta,

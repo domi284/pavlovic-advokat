@@ -12,7 +12,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | 1 · Základné pravidlá | Celý web | `01-pravidla.ts`, `src/lib/site.ts` | Hotové; overené údaje z registrov (telefón, e-mail, IČO, OR, SAK č. 448) |
 | 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 6 položiek (Úvod, Služby, O mne, Prečo my, Referencie, Kontakt), mobilné menu pod 1280 px, menu Služby 2 × 5 |
 | 3.1 · Hero a pás čísel | `/` | `03-uvod.ts`, `components/sections/NumbersStrip.tsx`, `src/lib/site.ts` | Hotové; pod hero je pás čísel (roky praxe, vybavené veci, oblasti, pôsobnosť) namiesto pásu dôvery s ikonami; fotka 01 (4:5) |
-| 3.1-referencie · Logá firiem | `/` | `referencie.ts` (`referencieHome`), `components/sections/HomeReferences.tsx`, `ReferenceLogo.tsx` | Hotové; **recenzie zrušené na želanie klienta – iba logá.** Pod pásom čísel veta „Okrem množstva ďalších subjektov…“ a 9 líg vo farbe bez názvov, bez pohybu (iba fade-in); mobil 3 × 3, tablet/menší desktop 5 + 4, od 1408 px jeden riadok; odkaz „Referencie →“ |
+| 3.1-referencie · Logá firiem | `/` | `referencie.ts` (`referencieHome`), `components/sections/HomeReferences.tsx`, `ReferenceLogo.tsx` | Hotové; **recenzie zrušené na želanie klienta – iba logá.** Pod pásom čísel veta „Okrem množstva ďalších subjektov…“ a 9 líg vo farbe bez názvov, bez pohybu (iba fade-in); mobil 3 × 3 (box 46 px pod 640 px), tablet/menší desktop 5 + 4, od 1408 px jeden riadok; odkaz „Referencie →“ |
 | 3.2 · Čomu sa venujeme | `/` | `03-uvod.ts`, `04-sluzby/*.ts` | Hotové; 10 kariet v poradí `servicesOrder`, na desktope 2 stĺpce horizontálne; pás čísel sa na úvode presunul do 3.1 (na `/sluzby` ostáva pod kartami) |
 | 3.3 · Ako to prebieha | `/` | `03-uvod.ts` | Hotové; doplnená úvodná veta |
 | 3.4 · O pánovi doktorovi | `/` | `03-uvod.ts` | Hotové; doplnená tabuľka 3 faktov; portrét 02 (4:5) |
@@ -79,7 +79,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | `/sluzby/pracovne-pravo` | Advokát pracovné právo Bratislava \| JUDr. Pavlovič | 50 | Výpoveď, neplatné skončenie pracovného pomeru, mzda, odstupné a pracovné zmluvy. Pomôžeme zamestnancom aj zamestnávateľom. | 122 |
 | `/o-mne` | JUDr. Ladislav Pavlovič, LL.M. \| Advokát Bratislava | 51 | JUDr. Ladislav Pavlovič, LL.M., advokát v Bratislave. Zrozumiteľne, diskrétne a s dôrazom na lehoty. Dohodnite si konzultáciu. | 126 |
 | `/preco-my` | Prečo si vybrať našu kanceláriu \| JUDr. Pavlovič | 48 | Priamy kontakt s advokátom, 10 oblastí práva a pôsobnosť na celom západnom Slovensku. Pozrite si, čo u nás dostanete. | 117 |
-| `/referencie` | Referencie \| Advokátska kancelária JUDr. Pavlovič | 49 | Hodnotenia klientov advokátskej kancelárie JUDr. Ladislava Pavloviča, LL.M. v Bratislave, zverejnené s ich súhlasom. | 116 |
+| `/referencie` | Referencie \| Advokátska kancelária JUDr. Pavlovič | 49 | Spoločnosti a organizácie, ktorým advokátska kancelária JUDr. Ladislava Pavloviča, LL.M. v Bratislave poskytla právne služby. | 125 |
 | `/kontakt` | Kontakt \| Advokát Bratislava Ružinov \| JUDr. Pavlovič | 53 | Kontakt na advokátsku kanceláriu JUDr. Ladislava Pavloviča, LL.M., Ivanská cesta 32B, Bratislava Ružinov. Dohodnite si konzultáciu. | 131 |
 | `/caste-otazky` | Časté otázky o advokátovi a konzultácii \| JUDr. Pavlovič | 56 | Odpovede na časté otázky o konzultácii s advokátom a o oblastiach práva, ktorým sa venujeme v Bratislave a okolí. | 113 |
 | `/ochrana-osobnych-udajov` | Ochrana osobných údajov \| JUDr. Pavlovič | 40 | — | — |

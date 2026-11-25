@@ -8,7 +8,7 @@ import { ReferenceLogo } from "./ReferenceLogo";
 
 /**
  * Úvod (3.1-referencie): veta a logá firiem vo farbe, bez pohybu (iba fade-in pri zobrazení).
- * Mobil 3 × 3 (box 36 px), tablet a menší desktop 5 + 4 centrované (box 48 px),
+ * Mobil 3 × 3 (box 46 px pod 640 px, 36 px od 640 px), tablet a menší desktop 5 + 4 centrované (box 48 px),
  * od 1408 px (obsah 1280 px) jeden riadok.
  */
 export function HomeReferences() {
@@ -21,7 +21,7 @@ export function HomeReferences() {
           </p>
           <ul
             className={cn(
-              "mt-10 grid w-full grid-cols-3 gap-x-4 gap-y-7 [--box:36px]",
+              "mt-10 grid w-full grid-cols-3 gap-x-4 gap-y-10 [--box:46px] sm:gap-y-7 sm:[--box:36px]",
               "md:max-w-[880px] md:grid-cols-10 md:gap-x-6 md:gap-y-9 md:[--box:48px]",
               "min-[88rem]:max-w-none min-[88rem]:grid-cols-9 min-[88rem]:gap-x-8",
             )}
