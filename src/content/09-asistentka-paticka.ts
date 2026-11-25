@@ -85,16 +85,3 @@ export const s9_1_asistentka = {
     },
   ],
 };
-
-export const s9_2_footer = {
-  privacy: {
-    h1: "Ochrana osobných údajov",
-    pending: "DOPLNIŤ: text zásad pripraví advokátska kancelária",
-    sections: ["Prevádzkovateľ", "Účel a právny základ spracúvania", "Doba uchovávania", "Vaše práva", "Kontakt"],
-  },
-  cookies: {
-    h1: "Zásady používania cookies",
-    pending: "DOPLNIŤ: text zásad pripraví advokátska kancelária",
-    sections: ["Čo sú cookies", "Aké cookies používame", "Ako zmeniť súhlas"],
-  },
-};

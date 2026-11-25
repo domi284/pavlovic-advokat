@@ -69,3 +69,15 @@ export type AreaPage = {
   sections: AreaSection[];
   cta: CtaBand;
 };
+
+/** Právne stránky (/ochrana-osobnych-udajov, /cookies): bloky textu v sekcii. */
+export type LegalBlock =
+  | { type: "p"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "table"; head: string[]; rows: string[][] }
+  /** tlačidlo, ktoré otvorí nastavenia cookies */
+  | { type: "cookieSettings"; label: string };
+
+export type LegalSection = { id: string; title: string; blocks: LegalBlock[] };
+
+export type LegalDocument = { h1: string; intro: string; sections: LegalSection[] };

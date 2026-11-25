@@ -79,5 +79,9 @@ export function legalServiceJsonLd() {
   };
 }
 
+/** Odkaz „Otvoriť v Mapách“: funguje bez súhlasu, otvorí Google Maps v novom okne. */
+export const mapsOpenUrl = (query = fullAddress) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+
 export const mapsEmbedUrl = (query = fullAddress) =>
   `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=16&output=embed`;

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { AssistantWidget } from "@/components/layout/AssistantWidget";
 import { CookieBar } from "@/components/layout/CookieBar";
@@ -65,6 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AssistantWidget />
         </SmoothScroll>
         <Grain />
+        {/* Vercel Web Analytics: bez cookies, súhlas netreba */}
+        <Analytics />
       </body>
     </html>
   );

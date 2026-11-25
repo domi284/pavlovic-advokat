@@ -11,7 +11,7 @@ import { Rich } from "@/components/ui/Rich";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { kontakt } from "@/content/kontakt";
 import { pageSeo } from "@/content/10-seo";
-import { mapsEmbedUrl, pageMetadata } from "@/lib/seo";
+import { mapsEmbedUrl, mapsOpenUrl, pageMetadata } from "@/lib/seo";
 import { typo } from "@/lib/typo";
 
 export const metadata = pageMetadata(pageSeo.contact);
@@ -65,7 +65,12 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal className="mt-6">
-              <MapEmbed title={kontakt.map.title} src={mapsEmbedUrl(kontakt.map.query)} />
+              <MapEmbed
+                title={kontakt.map.title}
+                src={mapsEmbedUrl(kontakt.map.query)}
+                address={kontakt.map.query}
+                openHref={mapsOpenUrl(kontakt.map.query)}
+              />
             </Reveal>
           </div>
 

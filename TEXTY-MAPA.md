@@ -40,19 +40,25 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | **R.2 · Bubliny s referenciami (nové)** | `/referencie` | `referencie.ts`, `components/sections/TestimonialBubbles.tsx` | Komponent hotový; 6 referencií je zatiaľ prázdnych (doplniť `text`, `autor`, `oblast`); po vyplnení sa zobrazia aj v bubline na úvode |
 | **R.3 · Záverná výzva (nové)** | `/referencie` | `referencie.ts` | Hotové |
 | 8.1 · Úvod stránky | `/kontakt` | `08-kontakt.ts` | Hotové |
-| 8.2 · Formulár | `/kontakt#konzultacia` | `08-kontakt.ts` | Hotové; 10 oblastí v poradí `servicesOrder` + „Iné“ |
+| 8.2 · Formulár | `/kontakt#konzultacia` | `08-kontakt.ts`, `components/sections/ContactForm.tsx` | Hotové; 10 oblastí v poradí `servicesOrder` + „Iné“; bez povinného checkboxu, pod tlačidlom poznámka o spracúvaní údajov |
+| **8.2-odoslanie · Odosielanie a ochrana pred spamom (nové)** | `POST /api/kontakt` | `app/api/kontakt/route.ts`, `lib/inquiry-schema.ts` (zod pre klienta aj server), `lib/inquiry-mail.ts` (Resend), `lib/turnstile.ts`, `components/ui/Turnstile.tsx` | Hotové; Cloudflare Turnstile (skript sa načíta až pri formulári), honeypot `firma_web`, kontrola 3 s, rate limit 5 / 10 min na IP; e-mail kancelárii (replyTo = klient); potvrdenie klientovi iba s `CONTACT_SEND_CONFIRMATION=true`; kľúče iba v env |
 | 8.3 · Údaje kancelárie a mapa | `/kontakt` | `08-kontakt.ts`, `src/lib/site.ts` | Hotové; úradné hodiny v zozname údajov; fotka budovy 09 so šípkou ku vchodu (4:3) |
 | **8 · Ako sa k nám dostanete (nové)** | `/kontakt` (pod fotkou budovy, nad mapou) | `08-kontakt.ts` (`directions`), `app/kontakt/page.tsx`, `data-doc="8-ako-sa-k-nam-dostanete"` | Hotové; 2 body s ikonami (SquareParking, Accessibility) + odsek s ikonou Route |
 | **Úradné hodiny (nové)** | `/kontakt`, pätička, asistentka (odpoveď „Ako prebieha a koľko stojí konzultácia?“), JSON-LD | `src/lib/site.ts` (`fields.hours` = kontakt a asistentka, `fields.hoursFooter` = pätička „pondelok – piatok 8:30 – 17:00“, `openingHours` = schema.org), `01-pravidla.ts` (pätička), `09-asistentka-paticka.ts`, `src/lib/seo.ts` | Hotové; „Pondelok – piatok: 8:30 – 17:00 / V prípade potreby flexibilne po dohode.“; JSON-LD `openingHoursSpecification` Mo–Fr 08:30–17:00 pri `LegalService` aj `Attorney` |
 | 8.4 · Časté otázky | `/caste-otazky` | `faq.ts`, `04-sluzby/*.ts` | Hotové; Konzultácia a spolupráca + 10 skupín v poradí `servicesOrder` |
 | 9.1 · Virtuálna asistentka | Všetky stránky | `09-asistentka-paticka.ts` | Hotové; 7 rýchlych volieb (pribudla „Práca a zamestnanie“) |
-| 9.2 · Pätička, cookies, právne stránky | Všetky stránky | `01-pravidla.ts`, `09-asistentka-paticka.ts`, `legal.ts` | Hotové; doplnený riadok Pôsobnosť a Úradné hodiny; texty zásad sú `[DOPLNIŤ]` |
+| 9.2 · Pätička, cookies, právne stránky | Všetky stránky | `01-pravidla.ts`, `09-asistentka-paticka.ts`, `legal.ts` | Hotové; doplnený riadok Pôsobnosť a Úradné hodiny; v pätičke odkaz „Nastavenia cookies“ |
+| **9.2-cookies · Cookie lišta a súhlas (nové)** | Všetky stránky | `01-pravidla.ts` (`cookieBar`, `mapConsent`), `components/layout/CookieBar.tsx`, `lib/consent.ts`, `components/ui/MapEmbed.tsx` | Hotové; Prijať všetko / Odmietnuť / Nastavenia; kategórie Nevyhnutné + Externý obsah – mapy; súhlas v localStorage s dátumom a verziou (12 mesiacov); mapa na `/kontakt` sa bez súhlasu nenačíta |
+| **9.2-ochrana · Ochrana osobných údajov (nové texty)** | `/ochrana-osobnych-udajov` | `09-ochrana-osobnych-udajov.ts`, `components/sections/LegalPage.tsx` | **Návrh – čaká na schválenie** (štítok: `site.showLegalDraftBadge`); dátum účinnosti `[DOPLNIŤ]` |
+| **9.2-cookies-texty · Zásady cookies (nové texty)** | `/cookies` | `09-cookies.ts`, `components/sections/LegalPage.tsx` | **Návrh – čaká na schválenie**; tabuľka podľa auditu (súhlas v localStorage, Cloudflare Turnstile, Google Maps so súhlasom, Vercel Web Analytics bez cookies); dátum účinnosti `[DOPLNIŤ]` |
+| **Analytika (nové)** | Všetky stránky | `app/layout.tsx` | `@vercel/analytics` (bez cookies, súhlas netreba); žiadne Google Analytics |
 | 10 · SEO | Všetky indexované stránky | `10-seo.ts` + `meta` v content súboroch | Hotové; title do 60 znakov, meta popisy do 155 znakov |
 
 ## Ostáva doplniť (`[DOPLNIŤ]` na webe)
 
 - Fotografie k 10 službám (stock z Unsplash, čaká na kľúč: `UNSPLASH_ACCESS_KEY=… npm run images`); dovtedy náhradné bloky
-- Texty Ochrany osobných údajov a Zásad cookies
+- Schválenie textov Ochrany osobných údajov a Zásad cookies (potom `site.showLegalDraftBadge = false`) a ich dátum účinnosti
+- Vlastná doména v Resend (kým je odosielateľ `onboarding@resend.dev`, potvrdenie klientovi ostáva vypnuté)
 - Referencie (6 položiek v `referencie.ts`; vyplnené sa automaticky zobrazia aj na úvode)
 
 ## SEO dĺžky

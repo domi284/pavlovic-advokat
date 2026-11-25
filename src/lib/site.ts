@@ -32,6 +32,9 @@ export const site = {
   /** Čipy „overiť“: klient všetky texty potvrdil. */
   showReviewMarks: false,
 
+  /** Štítok „Návrh – čaká na schválenie“ na stránkach /cookies a /ochrana-osobnych-udajov. Po schválení textov nastavte false. */
+  showLegalDraftBadge: true,
+
   name: "JUDr. Ladislav Pavlovič, LL.M.",
   /** 2. pád */
   nameGenitive: "JUDr. Ladislava Pavloviča, LL.M.",

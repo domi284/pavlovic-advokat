@@ -9,7 +9,7 @@ import { assistantContent } from "@/content/assistant";
 import { cn } from "@/lib/cn";
 import { Rich } from "@/components/ui/Rich";
 import { site, telHref } from "@/lib/site";
-import { readConsent } from "@/lib/consent";
+import { BAR_VISIBILITY_EVENT, isCookieBarOpen } from "@/lib/consent";
 
 export function AssistantWidget() {
   const [open, setOpen] = useState(false);
@@ -25,10 +25,10 @@ export function AssistantWidget() {
   }, []);
 
   useEffect(() => {
-    const updateCookieVisibility = () => setCookieBannerVisible(readConsent() === null);
-    updateCookieVisibility();
-    window.addEventListener("cookie-consent-changed", updateCookieVisibility);
-    return () => window.removeEventListener("cookie-consent-changed", updateCookieVisibility);
+    setCookieBannerVisible(isCookieBarOpen());
+    const onBar = (event: Event) => setCookieBannerVisible(Boolean((event as CustomEvent<boolean>).detail));
+    window.addEventListener(BAR_VISIBILITY_EVENT, onBar);
+    return () => window.removeEventListener(BAR_VISIBILITY_EVENT, onBar);
   }, []);
 
   // Mobil (pod 768 px): skryť pri otvorenom menu a keď je na obrazovke formulár #konzultacia alebo pätička
@@ -69,34 +69,8 @@ export function AssistantWidget() {
     };
   }, [pathname]);
 
-  // Mobil: kým je zobrazená cookies lišta, asistentka je 16 px nad ňou (podľa jej skutočnej výšky)
-  const [cookieBarHeight, setCookieBarHeight] = useState(0);
-  useEffect(() => {
-    if (!cookieBannerVisible) {
-      setCookieBarHeight(0);
-      return;
-    }
-    let observer: ResizeObserver | null = null;
-    const attach = () => {
-      const bar = document.getElementById("cookie-bar");
-      if (!bar) return false;
-      observer = new ResizeObserver(() => setCookieBarHeight(bar.offsetHeight));
-      observer.observe(bar);
-      return true;
-    };
-    const timer = attach() ? undefined : window.setInterval(() => attach() && window.clearInterval(timer), 250);
-    return () => {
-      if (timer) window.clearInterval(timer);
-      observer?.disconnect();
-    };
-  }, [cookieBannerVisible]);
-
-  const mobileOffset =
-    isMobile && cookieBannerVisible && cookieBarHeight > 0
-      ? { bottom: `calc(var(--mobile-bar-h) + env(safe-area-inset-bottom) + 12px + ${cookieBarHeight}px + 16px)` }
-      : undefined;
-
-  const triggerHidden = menuOpen || (isMobile && blocked);
+  // Mobil: kým je otvorená cookie lišta, asistentka je skrytá, aby sa neprekrývali
+  const triggerHidden = menuOpen || (isMobile && (blocked || cookieBannerVisible));
 
   useEffect(() => {
     if (triggerHidden) setOpen(false);
@@ -139,7 +113,6 @@ export function AssistantWidget() {
           aria-hidden={triggerHidden || undefined}
           tabIndex={triggerHidden ? -1 : undefined}
           onClick={() => setOpen((value) => !value)}
-          style={mobileOffset}
           className={cn(
             "fixed right-4 z-[60] inline-flex size-[52px] items-center justify-center rounded-full bg-ink text-sm font-semibold text-chalk shadow-[0_20px_50px_rgba(28,29,32,.18)] transition-[opacity,transform] duration-300 hover:-translate-y-0.5 md:right-6 md:bottom-6 md:size-auto md:gap-3 md:px-5 md:py-3",
             cookieBannerVisible
@@ -161,8 +134,7 @@ export function AssistantWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            style={mobileOffset}
-            className={cn(
+              className={cn(
               "fixed right-4 z-[70] w-[min(92vw,380px)] overflow-hidden rounded-[20px] border border-line bg-paper shadow-[0_32px_80px_rgba(28,29,32,.16)] md:right-6 md:bottom-6",
               cookieBannerVisible
                 ? "bottom-[calc(var(--mobile-bar-h)+220px+env(safe-area-inset-bottom))]"

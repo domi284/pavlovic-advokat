@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { footer, serviceNav } from "@/content/common";
+import { cookieBar, footer, serviceNav } from "@/content/common";
+import { CookieSettingsButton } from "./CookieSettingsButton";
 import { footerNav } from "@/content/02-mapa-webu";
 import { typo } from "@/lib/typo";
 import { Container } from "@/components/ui/Container";
@@ -46,6 +47,12 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <CookieSettingsButton
+                  label={cookieBar.footerLink}
+                  className="cursor-pointer text-left text-chalk-muted transition-colors hover:text-chalk"
+                />
+              </li>
             </ul>
           </nav>
 

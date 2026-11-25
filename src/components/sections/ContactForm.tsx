@@ -5,38 +5,28 @@ import { AnimatePresence, motion } from "motion/react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Rich } from "@/components/ui/Rich";
-import { servicesOrder } from "@/content/02-mapa-webu";
+import { Turnstile, type TurnstileHandle } from "@/components/ui/Turnstile";
 import { kontakt } from "@/content/kontakt";
 import { cn } from "@/lib/cn";
-import { submitInquiry, type Area } from "@/lib/inquiry";
+import {
+  AREAS,
+  HONEYPOT_FIELD,
+  inquirySchema,
+  type Area,
+  type InquiryRequest,
+  type InquiryResponse,
+  type InquiryValues,
+} from "@/lib/inquiry-schema";
 import { EASE } from "@/lib/motion";
 import { typo } from "@/lib/typo";
 
 const f = kontakt.form;
 const m = f.messages;
-const AREAS = [...servicesOrder, "ine"] as const;
 
-const schema = z.object({
-  name: z.string().trim().min(1, m.required),
-  phone: z
-    .string()
-    .trim()
-    .min(1, m.required)
-    .refine((v) => /^\+?[\d\s/().-]+$/.test(v) && v.replace(/\D/g, "").length >= 9, m.phone),
-  email: z
-    .string()
-    .trim()
-    .refine((v) => v === "" || z.string().email().safeParse(v).success, m.email),
-  area: z.enum(AREAS).optional(),
-  message: z.string().trim(),
-  consent: z.boolean().refine((v) => v, m.consent),
-});
-
-type Values = z.infer<typeof schema>;
+type Values = InquiryValues;
 
 const inputClass =
   "block w-full rounded-xs border border-line bg-chalk px-4 text-[16px] text-ink transition-[border-color,box-shadow] duration-300 outline-none placeholder:text-stone/60 focus:border-bordeaux focus:ring-4 focus:ring-bordeaux/10 aria-[invalid=true]:border-bordeaux";
@@ -46,16 +36,28 @@ export function ContactForm() {
   const reduced = useReducedMotion();
   const uid = useId();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  /** text chybovej hlášky nad tlačidlom (Rich: telefón a e-mail ako odkazy) */
+  const [formError, setFormError] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileHandle>(null);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  /** čas načítania formulára (performance.now nezávisí od hodín zariadenia) */
+  const startedAt = useRef(0);
+
+  useEffect(() => {
+    startedAt.current = performance.now();
+  }, []);
 
   const {
     register,
     handleSubmit,
     setValue,
+    setError,
     watch,
     formState: { errors, isSubmitting },
   } = useForm<Values>({
-    resolver: zodResolver(schema),
-    defaultValues: { name: "", phone: "", email: "", message: "", consent: false },
+    resolver: zodResolver(inquirySchema),
+    defaultValues: { name: "", phone: "", email: "", message: "" },
   });
 
   // predvýber oblasti, ak používateľ prišiel z podstránky (?oblast=…)
@@ -66,18 +68,49 @@ export function ContactForm() {
 
   const onSubmit = async (values: Values) => {
     setStatus("idle");
-    try {
-      await submitInquiry({
-        name: values.name,
-        phone: values.phone,
-        email: values.email || undefined,
-        area: values.area,
-        message: values.message || undefined,
-        consent: true,
-      });
-      setStatus("success");
-    } catch {
+    setFormError(null);
+    if (!token) {
       setStatus("error");
+      setFormError(m.turnstilePending);
+      return;
+    }
+
+    const body: InquiryRequest = {
+      ...values,
+      [HONEYPOT_FIELD]: honeypotRef.current?.value ?? "",
+      elapsedMs: Math.round(performance.now() - startedAt.current),
+      turnstileToken: token,
+      page: `${window.location.pathname}${window.location.search}`,
+    };
+
+    try {
+      const res = await fetch("/api/kontakt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = (await res.json().catch(() => null)) as InquiryResponse | null;
+      if (res.ok && data?.ok) {
+        setStatus("success");
+        return;
+      }
+      // token je jednorazový: po každom neúspešnom pokuse treba nové overenie
+      turnstileRef.current?.reset();
+      setStatus("error");
+      if (data && !data.ok) {
+        if (data.fieldErrors) {
+          for (const [field, message] of Object.entries(data.fieldErrors)) {
+            if (message) setError(field as keyof Values, { message });
+          }
+        }
+        setFormError(data.code === "validation" && data.fieldErrors ? null : data.message);
+      } else {
+        setFormError(m.error);
+      }
+    } catch {
+      turnstileRef.current?.reset();
+      setStatus("error");
+      setFormError(m.error);
     }
   };
 
@@ -229,27 +262,26 @@ export function ContactForm() {
               </p>
             </div>
 
-            <div>
-              <label htmlFor={id("consent")} className="flex cursor-pointer items-start gap-3.5">
-                <input
-                  id={id("consent")}
-                  type="checkbox"
-                  aria-required="true"
-                  aria-invalid={!!errors.consent}
-                  aria-describedby={describedBy("consent")}
-                  className="mt-1 size-5 shrink-0 cursor-pointer appearance-none rounded-xs border border-stone/60 bg-chalk bg-center bg-no-repeat transition-colors checked:border-bordeaux checked:bg-bordeaux checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23F6F3EE%22%20stroke-width=%222.5%22%3E%3Cpath%20d=%22M5%2012.5l4.5%204.5L19%207.5%22/%3E%3C/svg%3E')] aria-[invalid=true]:border-bordeaux"
-                  {...register("consent")}
-                />
-                <span className="text-[14px] leading-relaxed text-ink/85">
-                  <Rich text={f.fields.consent} />
-                </span>
-              </label>
-              {errorText("consent")}
+            {/* honeypot: pre ľudí neviditeľné pole, roboty ho vyplnia */}
+            <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+              <label htmlFor={id(HONEYPOT_FIELD)}>Webová stránka firmy</label>
+              <input
+                ref={honeypotRef}
+                id={id(HONEYPOT_FIELD)}
+                name={HONEYPOT_FIELD}
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                defaultValue=""
+              />
             </div>
 
-            {status === "error" && (
-              <p role="alert" className="rounded-xs border border-bordeaux/30 bg-bordeaux-soft px-4 py-3 text-[14px] text-bordeaux">
-                <Rich text={m.error} />
+            {/* Cloudflare Turnstile: skript sa načíta, až keď je formulár blízko obrazovky */}
+            <Turnstile ref={turnstileRef} onToken={setToken} className="min-h-[65px] w-full max-w-full overflow-hidden" />
+
+            {status === "error" && formError && (
+              <p role="alert" className="rounded-xs border border-bordeaux/30 bg-bordeaux-soft px-4 py-3 text-[14px] leading-relaxed text-bordeaux">
+                <Rich text={formError} />
               </p>
             )}
 
@@ -265,9 +297,12 @@ export function ContactForm() {
                   className="absolute inset-0 -z-10 origin-left scale-x-0 bg-bordeaux-deep transition-transform duration-[450ms] ease-premium group-hover/btn:scale-x-100"
                 />
                 {isSubmitting && <Loader2 aria-hidden="true" strokeWidth={1.5} className="size-[18px] animate-spin" />}
-                <span>{f.submit}</span>
+                <span>{isSubmitting ? f.submitting : f.submit}</span>
               </button>
-              <p className="mt-5 text-[14px] text-stone">
+              <p className="mt-4 text-[13px] leading-relaxed text-stone">
+                <Rich text={f.privacyNote} />
+              </p>
+              <p className="mt-3 text-[14px] text-stone">
                 <Rich text={f.below} />
               </p>
             </div>

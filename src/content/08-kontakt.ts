@@ -47,8 +47,6 @@ export const s8_kontakt = {
       area: "S čím potrebujete pomôcť?",
       message: "Stručne opíšte situáciu (nepovinné)",
       messageHelp: "Neuvádzajte prosím citlivé podrobnosti. Rozoberieme ich osobne.",
-      consent:
-        "Súhlasím so spracovaním osobných údajov na účel vybavenia môjho dopytu. ([Zásady ochrany osobných údajov](/ochrana-osobnych-udajov))",
     },
     /** Oblasti v poradí `servicesOrder` + „Iné“. */
     areas: [
@@ -59,15 +57,23 @@ export const s8_kontakt = {
       { value: "ine", label: "Iné" },
     ],
     submit: "Odoslať dopyt",
+    submitting: "Odosiela sa…",
+    /** Pod tlačidlom; bez povinného checkboxu (právny základ: kroky pred uzavretím zmluvy). */
+    privacyNote:
+      "Odoslaním formulára beriete na vedomie [informácie o spracúvaní osobných údajov](/ochrana-osobnych-udajov).",
     below: "Preferujete telefonát? Zavolajte na {{phone|DOPLNIŤ: telefón}}.",
     messages: {
-      success: "Ďakujeme, správu sme prijali. Ozveme sa Vám na uvedený kontakt.",
+      success: "Ďakujeme, Vašu správu sme prijali. Ozveme sa Vám spravidla do 1 pracovného dňa.",
       error:
-        "Správu sa nepodarilo odoslať. Skúste to prosím znova alebo zavolajte na {{phone|DOPLNIŤ: telefón}}.",
+        "Správu sa nepodarilo odoslať. Skúste to prosím znova alebo nás kontaktujte priamo: zavolajte na {{phone|DOPLNIŤ: telefón}} alebo napíšte na {{email|DOPLNIŤ: e-mail}}.",
+      turnstileFailed: "Overenie sa nepodarilo, skúste to prosím znova.",
+      turnstilePending: "Počkajte prosím, kým sa dokončí overenie nad tlačidlom, a odošlite formulár znova.",
+      rateLimited:
+        "Z Vášho pripojenia sme za krátky čas prijali priveľa správ. Skúste to prosím o niekoľko minút alebo nám zavolajte na {{phone|DOPLNIŤ: telefón}}.",
+      tooLong: "Text je príliš dlhý.",
       required: "Toto pole je povinné.",
       phone: "Zadajte prosím platné telefónne číslo.",
       email: "Zadajte prosím platnú e-mailovú adresu.",
-      consent: "Pre odoslanie je potrebný súhlas so spracovaním údajov.",
     },
   },
 };

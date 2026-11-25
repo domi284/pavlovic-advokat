@@ -35,9 +35,37 @@ export const footer = {
 };
 
 export const cookieBar = {
-  text: "Používame nevyhnutné cookies na fungovanie stránky. S Vaším súhlasom používame aj analytické cookies, ktoré nám pomáhajú stránku zlepšovať. Viac v [Zásadách cookies](/cookies).",
-  accept: "Prijať všetky",
-  necessary: "Iba nevyhnutné",
+  text: "Používame iba nevyhnutné cookies. Mapu od Google Maps načítame až s Vaším súhlasom.",
+  more: { label: "Viac o cookies", href: "/cookies" },
+  accept: "Prijať všetko",
+  reject: "Odmietnuť",
+  settings: "Nastavenia",
+  settingsTitle: "Nastavenia cookies",
+  save: "Uložiť výber",
+  close: "Zavrieť nastavenia",
+  alwaysOn: "Vždy zapnuté",
+  /** Kategórie súhlasu; kľúče zodpovedajú `ConsentCategory` v src/lib/consent.ts. */
+  categories: [
+    {
+      key: "necessary",
+      title: "Nevyhnutné",
+      text: "Potrebné na fungovanie stránky: uloženie Vašej voľby cookies a ochrana kontaktného formulára pred spamom (Cloudflare Turnstile). Nedajú sa vypnúť.",
+    },
+    {
+      key: "maps",
+      title: "Externý obsah – mapy",
+      text: "Mapa Google Maps na stránke Kontakt. Pri jej zobrazení môže Google ukladať vlastné cookies.",
+    },
+  ],
+  /** Odkaz v pätičke, ktorý znovu otvorí nastavenia. */
+  footerLink: "Nastavenia cookies",
+};
+
+/** Mapa na stránke Kontakt, kým nie je súhlas s externým obsahom. */
+export const mapConsent = {
+  text: "Mapu od Google Maps zobrazíme až s Vaším súhlasom.",
+  show: "Zobraziť mapu",
+  open: "Otvoriť v Mapách",
 };
 
 export const notFound = {
