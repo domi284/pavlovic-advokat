@@ -8,12 +8,14 @@ import { EASE } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { ReferenceLogo } from "./ReferenceLogo";
 
-const INTERVAL = 8000;
+/** Výmena dvojice líg (ms) a dĺžka prelínania (s) – ľahko zmeniteľné. */
+const INTERVAL = 3000;
+const FADE = 0.4;
 
 /**
  * /referencie (R.2): dve bubliny vedľa seba (mobil pod sebou), bez pozadia, rámu a tieňa.
  * Ľavá strieda firmy 1, 3, 5, 7, 9, pravá 2, 4, 6, 8 → naraz vždy dve rôzne firmy.
- * Výmena každých 8 s (fade + posun 8 px), pauza pri hover/focus; pri prefers-reduced-motion
+ * Výmena každé 3 s (fade 400 ms + posun 8 px), pauza pri hover/focus; pri prefers-reduced-motion
  * sa nestriedajú samy a prepínajú sa bez animácie, iba bodkami.
  */
 export function ReferenceBubbles({ items }: { items: Referencia[] }) {
@@ -68,7 +70,7 @@ export function ReferenceBubbles({ items }: { items: Referencia[] }) {
                   initial={reduced ? false : { opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={reduced ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, y: -8 }}
-                  transition={{ duration: reduced ? 0 : 0.8, ease: EASE }}
+                  transition={{ duration: reduced ? 0 : FADE, ease: EASE }}
                 >
                   <ReferenceLogo
                     item={item}

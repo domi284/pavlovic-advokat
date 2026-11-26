@@ -12,7 +12,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | 1 · Základné pravidlá | Celý web | `01-pravidla.ts`, `src/lib/site.ts` | Hotové; overené údaje z registrov (telefón, e-mail, IČO, OR, SAK č. 448) |
 | 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 6 položiek (Úvod, Služby, O mne, Prečo my, Referencie, Kontakt), mobilné menu pod 1280 px, menu Služby 2 × 5 |
 | 3.1 · Hero a pás čísel | `/` | `03-uvod.ts`, `components/sections/NumbersStrip.tsx`, `src/lib/site.ts` | Hotové; pod hero je pás čísel (roky praxe, vybavené veci, oblasti, pôsobnosť) namiesto pásu dôvery s ikonami; fotka 01 (4:5) |
-| 3.1-referencie · Logá firiem | `/` | `referencie.ts` (`referencieHome`), `components/sections/HomeReferences.tsx`, `ReferenceLogo.tsx` | Hotové; **recenzie zrušené na želanie klienta – iba logá.** Pod pásom čísel veta „Okrem množstva ďalších subjektov…“ a 9 líg vo farbe bez názvov, bez pohybu (iba fade-in); mobil 3 × 3 (box 46 px pod 640 px), tablet/menší desktop 5 + 4, od 1408 px jeden riadok; odkaz „Referencie →“ |
+| 3.1-referencie · Logá firiem | `/` | `referencie.ts` (`referencieHome`), `components/sections/HomeReferences.tsx`, `globals.css` (`.marquee`) | Hotové; **recenzie zrušené na želanie klienta – iba logá.** Pod pásom čísel veta „Okrem množstva ďalších subjektov…“; **logá v rámiku, plynulý pás** (bordový rám 2 px, logá vo farbe bez názvov, box 64 px / 52 px pod 640 px, max. šírka 200 px, medzera 64 / 40 px, okruh 30 s sprava doľava, pauza pri hover/focus, pri reduced-motion stojí); odkaz „Referencie →“ |
 | 3.2 · Čomu sa venujeme | `/` | `03-uvod.ts`, `04-sluzby/*.ts` | Hotové; 10 kariet v poradí `servicesOrder`, na desktope 2 stĺpce horizontálne; pás čísel sa na úvode presunul do 3.1 (na `/sluzby` ostáva pod kartami) |
 | 3.3 · Ako to prebieha | `/` | `03-uvod.ts` | Hotové; doplnená úvodná veta |
 | 3.4 · O pánovi doktorovi | `/` | `03-uvod.ts` | Hotové; doplnená tabuľka 3 faktov; portrét 02 (4:5) |
@@ -37,7 +37,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | ~~6 · Náš tím~~ | ~~`/nas-tim`~~ | — | **Zrušené na želanie klienta.** Stránka, obsah (`06-nas-tim.ts`) a všetky odkazy sú odstránené; `/nas-tim` presmeruje trvalo (301) na `/o-mne` (`next.config.ts`) |
 | 7.1 · Prečo my | `/preco-my` | `07-preco-my.ts` | Hotové; hero fotka 08 (4:5) |
 | **R.1 · Úvod (nové)** | `/referencie` | `referencie.ts` | Hotové; nový text (roky praxe, 3 500 vecí, mlčanlivosť) |
-| **R.2 · Bubliny s logami (nové)** | `/referencie` | `referencie.ts`, `components/sections/ReferenceBubbles.tsx`, `ReferenceLogo.tsx` | Hotové; **recenzie zrušené na želanie klienta – iba logá.** Dve bubliny bez pozadia (logo + názov), ľavá 1-3-5-7-9, pravá 2-4-6-8, výmena každých 8 s, 5 bodiek, pauza pri hover/focus |
+| **R.2 · Bubliny s logami (nové)** | `/referencie` | `referencie.ts`, `components/sections/ReferenceBubbles.tsx`, `ReferenceLogo.tsx` | Hotové; **recenzie zrušené na želanie klienta – iba logá.** Dve bubliny bez pozadia (logo + názov), ľavá 1-3-5-7-9, pravá 2-4-6-8, **výmena každé 3 s** (fade 400 ms), 5 bodiek, pauza pri hover/focus |
 | **R.3 · Záverná výzva (nové)** | `/referencie` | `referencie.ts` | Hotové |
 | 8.1 · Úvod stránky | `/kontakt` | `08-kontakt.ts` | Hotové |
 | 8.2 · Formulár | `/kontakt#konzultacia` | `08-kontakt.ts`, `components/sections/ContactForm.tsx` | Hotové; 10 oblastí v poradí `servicesOrder` + „Iné“; bez povinného checkboxu, pod tlačidlom poznámka o spracúvaní údajov |

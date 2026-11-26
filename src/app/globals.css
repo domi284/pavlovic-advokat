@@ -286,6 +286,53 @@
   animation: word-up 0.9s var(--ease-premium) both;
 }
 
+/* Úvod 3.1-referencie: nekonečný pás líg. Zoznam je v DOM dvakrát za sebou → posun o -50 % = bezšvové napojenie. */
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+}
+
+.marquee-track {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-mask {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marquee-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 16px;
+  }
+
+  .marquee-copy {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 16px;
+  }
+
+  .marquee-copy[aria-hidden="true"] {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .anim-reveal,
   .anim-word {
