@@ -4,7 +4,7 @@ import { CookieSettingsButton } from "./CookieSettingsButton";
 import { footerNav } from "@/content/02-mapa-webu";
 import { typo } from "@/lib/typo";
 import { Container } from "@/components/ui/Container";
-import { Logo } from "@/components/ui/Logo";
+import { FullLogo } from "@/components/ui/Logo";
 import { Rich } from "@/components/ui/Rich";
 
 export function Footer() {
@@ -13,7 +13,7 @@ export function Footer() {
       <Container className="pt-20 pb-10 md:pt-24">
         <div className="flex flex-col gap-10 border-b border-chalk/15 pb-12 lg:flex-row lg:items-center lg:justify-between">
           <Link href="/" className="self-start">
-            <Logo variant="dark" />
+            <FullLogo tone="light" sizes="220px" className="w-[180px] md:w-[220px]" />
           </Link>
           <nav aria-label="Navigácia v pätičke">
             <ul className="flex flex-wrap gap-x-7 gap-y-3 text-[15px]">

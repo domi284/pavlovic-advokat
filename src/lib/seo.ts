@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { serviceDetails } from "@/content/04-sluzby";
 import { fullAddress, openingHours, site, telHref } from "./site";
 
-const ogImage = { url: "/opengraph-image", width: 1200, height: 630, alt: "JUDr. Ladislav Pavlovič, LL.M., advokát · Bratislava" };
+/** OG/Twitter obrázok s logom kancelárie (src/app/opengraph-image.jpg, twitter-image.jpg). */
+const ogImage = { url: "/opengraph-image.jpg", width: 1200, height: 630, alt: "Advokátska kancelária JUDr. Ladislav Pavlovič" };
 
 /** Metadata stránky: title a description presne z časti K, canonical a Open Graph. */
 export function pageMetadata(meta: { title: string; description?: string; path: string }): Metadata {
@@ -23,7 +24,7 @@ export function pageMetadata(meta: { title: string; description?: string; path: 
       card: "summary_large_image",
       title: meta.title,
       description: meta.description,
-      images: [ogImage.url],
+      images: [{ ...ogImage, url: "/twitter-image.jpg" }],
     },
   };
 }
@@ -52,7 +53,7 @@ export function legalServiceJsonLd() {
         "@id": `${site.url}/#kancelaria`,
         name: site.company,
         url: site.url,
-        image: `${site.url}/opengraph-image`,
+        image: `${site.url}/opengraph-image.jpg`,
         address,
         areaServed: site.areaServed,
         knowsAbout,

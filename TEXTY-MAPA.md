@@ -10,7 +10,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | Blok | Stránka | Zdroj v `src/content` | Stav |
 |---|---|---|---|
 | 1 · Základné pravidlá | Celý web | `01-pravidla.ts`, `src/lib/site.ts` | Hotové; overené údaje z registrov (telefón, e-mail, IČO, OR, SAK č. 448) |
-| 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 6 položiek (Úvod, Služby, O mne, Prečo my, Referencie, Kontakt), mobilné menu pod 1280 px, menu Služby 2 × 5 |
+| 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 6 položiek (Úvod, Služby, O mne, Prečo my, Referencie, Kontakt), mobilné menu pod 1280 px, menu Služby 2 × 5; **logo kancelárie (monogram AK) – nahradené LP** (`components/ui/Logo.tsx`, `public/images/brand/`) |
 | 3.1 · Hero a pás čísel | `/` | `03-uvod.ts`, `components/sections/NumbersStrip.tsx`, `src/lib/site.ts` | Hotové; pod hero je pás čísel (roky praxe, vybavené veci, oblasti, pôsobnosť) namiesto pásu dôvery s ikonami; fotka 01 (4:5) |
 | 3.1-referencie · Logá firiem | `/` | `referencie.ts` (`referencieHome`), `components/sections/HomeReferences.tsx`, `globals.css` (`.marquee`) | Hotové; **recenzie zrušené na želanie klienta – iba logá.** Pod pásom čísel veta „Okrem množstva ďalších subjektov…“; **logá v rámiku, plynulý pás** (bordový rám 2 px, logá vo farbe bez názvov, box 64 px / 52 px pod 640 px, max. šírka 200 px, medzera 64 / 40 px, okruh 30 s sprava doľava, pauza pri hover/focus, pri reduced-motion stojí); odkaz „Referencie →“ |
 | 3.2 · Čomu sa venujeme | `/` | `03-uvod.ts`, `04-sluzby/*.ts` | Hotové; 10 kariet v poradí `servicesOrder`, na desktope 2 stĺpce horizontálne; pás čísel sa na úvode presunul do 3.1 (na `/sluzby` ostáva pod kartami); karty so **stock fotkami Unsplash** (`images.ts`, `public/images/sluzby/`) |
@@ -19,7 +19,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | 3.5 · Na čom si zakladáme | `/` | `03-uvod.ts` | Hotové; fotka 03 (desktop úzky stĺpec 9:16, pod 1024 px pod textom 4:5, max. 520 px) |
 | 3.6 · Prečo my | `/` | `03-uvod.ts` | Hotové; fotka 08 (desktop úzky stĺpec 9:16, pod 1024 px pod textom 4:5, max. 520 px) |
 | 3.7 · Časté otázky | `/` | `03-uvod.ts` | Hotové |
-| 3.8 · Záverná výzva | `/` | `03-uvod.ts` | Hotové |
+| 3.8 · Záverná výzva | `/` | `03-uvod.ts` | Hotové; v pozadí štvorec s celým logom kancelárie (namiesto LP) |
 | 4.1 · Prehľad služieb | `/sluzby` | `04-sluzby/4-1-prehlad.ts` | Hotové; hero fotka 04 (4:5, nepoužíva sa v kategóriách); karty 10 služieb so **stock fotkami Unsplash** |
 | 4.3 · Dopravné nehody | `/sluzby/dopravne-nehody` | `04-sluzby/4-3-dopravne-nehody.ts` | Hotové; hero a karta: stock fotky Unsplash |
 | 4.4 · Obchodné právo | `/sluzby/obchodne-pravo` | `04-sluzby/4-4-obchodne-pravo.ts` | Hotové; súvisiace: Duševné vlastníctvo, Pracovné právo; hero a karta: stock fotky Unsplash |
@@ -46,8 +46,8 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | **8 · Ako sa k nám dostanete (nové)** | `/kontakt` (pod fotkou budovy, nad mapou) | `08-kontakt.ts` (`directions`), `app/kontakt/page.tsx`, `data-doc="8-ako-sa-k-nam-dostanete"` | Hotové; 2 body s ikonami (SquareParking, Accessibility) + odsek s ikonou Route |
 | **Úradné hodiny (nové)** | `/kontakt`, pätička, asistentka (odpoveď „Ako prebieha a koľko stojí konzultácia?“), JSON-LD | `src/lib/site.ts` (`fields.hours` = kontakt a asistentka, `fields.hoursFooter` = pätička „pondelok – piatok 8:30 – 17:00“, `openingHours` = schema.org), `01-pravidla.ts` (pätička), `09-asistentka-paticka.ts`, `src/lib/seo.ts` | Hotové; „Pondelok – piatok: 8:30 – 17:00 / V prípade potreby flexibilne po dohode.“; JSON-LD `openingHoursSpecification` Mo–Fr 08:30–17:00 pri `LegalService` aj `Attorney` |
 | 8.4 · Časté otázky | `/caste-otazky` | `faq.ts`, `04-sluzby/*.ts` | Hotové; Konzultácia a spolupráca + 10 skupín v poradí `servicesOrder` |
-| 9.1 · Virtuálna asistentka | Všetky stránky | `09-asistentka-paticka.ts` | Hotové; 7 rýchlych volieb (pribudla „Práca a zamestnanie“) |
-| 9.2 · Pätička, cookies, právne stránky | Všetky stránky | `01-pravidla.ts`, `09-asistentka-paticka.ts`, `legal.ts` | Hotové; doplnený riadok Pôsobnosť a Úradné hodiny; v pätičke odkaz „Nastavenia cookies“ |
+| 9.1 · Virtuálna asistentka | Všetky stránky | `09-asistentka-paticka.ts` | Hotové; 7 rýchlych volieb (pribudla „Práca a zamestnanie“); avatar: monogram AK (namiesto LP) |
+| 9.2 · Pätička, cookies, právne stránky | Všetky stránky | `01-pravidla.ts`, `09-asistentka-paticka.ts`, `legal.ts` | Hotové; doplnený riadok Pôsobnosť a Úradné hodiny; v pätičke odkaz „Nastavenia cookies“; v pätičke celé logo kancelárie (svetlé); favicon, ikony a OG obrázok: logo kancelárie (monogram AK) – nahradené LP |
 | **9.2-cookies · Cookie lišta a súhlas (nové)** | Všetky stránky | `01-pravidla.ts` (`cookieBar`, `mapConsent`), `components/layout/CookieBar.tsx`, `lib/consent.ts`, `components/ui/MapEmbed.tsx` | Hotové; Prijať všetko / Odmietnuť / Nastavenia; kategórie Nevyhnutné + Externý obsah – mapy; súhlas v localStorage s dátumom a verziou (12 mesiacov); mapa na `/kontakt` sa bez súhlasu nenačíta |
 | **9.2-ochrana · Ochrana osobných údajov (nové texty)** | `/ochrana-osobnych-udajov` | `09-ochrana-osobnych-udajov.ts`, `components/sections/LegalPage.tsx` | **Návrh – čaká na schválenie** (štítok: `site.showLegalDraftBadge`); dátum účinnosti `[DOPLNIŤ]` |
 | **9.2-cookies-texty · Zásady cookies (nové texty)** | `/cookies` | `09-cookies.ts`, `components/sections/LegalPage.tsx` | **Návrh – čaká na schválenie**; tabuľka podľa auditu (súhlas v localStorage, Cloudflare Turnstile, Google Maps so súhlasom, Vercel Web Analytics bez cookies); dátum účinnosti `[DOPLNIŤ]` |

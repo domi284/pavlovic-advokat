@@ -7,6 +7,7 @@ import { MessageCircle, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { assistantContent } from "@/content/assistant";
 import { cn } from "@/lib/cn";
+import { Monogram } from "@/components/ui/Logo";
 import { Rich } from "@/components/ui/Rich";
 import { site, telHref } from "@/lib/site";
 import { BAR_VISIBILITY_EVENT, isCookieBarOpen } from "@/lib/consent";
@@ -144,8 +145,8 @@ export function AssistantWidget() {
             <div ref={panelRef} role="dialog" aria-modal="true" aria-label={assistantContent.title} data-doc="9.1" className="flex flex-col">
               <div className="flex items-center justify-between bg-ink px-4 py-3 text-chalk">
                 <div className="flex items-center gap-3">
-                  <div className="flex size-8 items-center justify-center rounded-full border border-sand/80 text-[12px] font-semibold text-sand">
-                    LP
+                  <div className="flex size-8 items-center justify-center rounded-full border border-sand/80">
+                    <Monogram tone="light" decorative sizes="32px" className="h-[17px]" />
                   </div>
                   <div>
                     <p className="text-[15px] font-semibold">{assistantContent.title}</p>

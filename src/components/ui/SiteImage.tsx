@@ -39,7 +39,7 @@ export function SiteImage({
         aria-label={slot.alt || undefined}
       >
         <div aria-hidden="true" className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: grainBackground }} />
-        <Monogram className="relative size-16 text-ink opacity-15" />
+        <Monogram decorative sizes="64px" className="relative h-16 opacity-15" />
       </div>
     );
   }
@@ -79,7 +79,7 @@ export function Portrait({
         <>
           <div aria-hidden="true" className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: grainBackground }} />
           <div className="absolute inset-4 flex flex-col items-center justify-center gap-6 border border-line px-4 text-center">
-            <Monogram className="size-20 text-ink opacity-30" />
+            <Monogram decorative sizes="80px" className="h-20 opacity-30" />
             <p className="text-[12px] tracking-[0.06em] text-stone">Fotografia bude doplnená</p>
           </div>
         </>
