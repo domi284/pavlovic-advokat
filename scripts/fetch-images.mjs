@@ -43,17 +43,21 @@ async function compress(buffer) {
 const DIR = path.join(process.cwd(), "public", "images");
 const UTM = "utm_source=pavlovic_advokat&utm_medium=referral";
 
+/*
+ * Sloty služieb (sluzba-*.jpg, manual: true) sú už vyplnené ručne – stock fotky Unsplash
+ * v public/images/sluzby/<slug>.jpg (zdrojové ID v src/content/images.ts). Skript ich preskakuje.
+ */
 const SLOTS = [
-  { file: "sluzba-obchodne-pravo.jpg", orientation: "landscape", queries: ["office building glass", "modern architecture minimal", "desk documents"] },
-  { file: "sluzba-obcianske-pravo.jpg", orientation: "landscape", queries: ["house keys table", "keys documents", "home interior calm"] },
-  { file: "sluzba-dopravne-nehody.jpg", orientation: "landscape", queries: ["highway dusk", "light trails road", "city road night"] },
-  { file: "sluzba-rodinne-pravo.jpg", orientation: "landscape", queries: ["soft light room", "window light interior", "calm home morning"] },
-  { file: "sluzba-trestne-pravo.jpg", orientation: "landscape", queries: ["stone columns shadow", "classical building facade", "stone architecture"] },
-  { file: "sluzba-spravne-pravo.jpg", orientation: "landscape", queries: ["government building facade", "official papers stamp", "public building architecture"] },
-  { file: "sluzba-dusevne-vlastnictvo.jpg", orientation: "landscape", queries: ["design sketches desk", "creative workspace", "sketchbook desk"] },
-  { file: "sluzba-patentove-pravo.jpg", orientation: "landscape", queries: ["technical drawing", "blueprint detail", "engineering sketch"] },
-  { file: "sluzba-kyberneticke-pravo.jpg", orientation: "landscape", queries: ["server room", "data center dark", "network cables"] },
-  { file: "sluzba-pracovne-pravo.jpg", orientation: "landscape", queries: ["empty office desks", "workplace interior empty", "office chairs daylight"] },
+  { file: "sluzba-obchodne-pravo.jpg", manual: true, orientation: "landscape", queries: ["office building glass", "modern architecture minimal", "desk documents"] },
+  { file: "sluzba-obcianske-pravo.jpg", manual: true, orientation: "landscape", queries: ["house keys table", "keys documents", "home interior calm"] },
+  { file: "sluzba-dopravne-nehody.jpg", manual: true, orientation: "landscape", queries: ["highway dusk", "light trails road", "city road night"] },
+  { file: "sluzba-rodinne-pravo.jpg", manual: true, orientation: "landscape", queries: ["soft light room", "window light interior", "calm home morning"] },
+  { file: "sluzba-trestne-pravo.jpg", manual: true, orientation: "landscape", queries: ["stone columns shadow", "classical building facade", "stone architecture"] },
+  { file: "sluzba-spravne-pravo.jpg", manual: true, orientation: "landscape", queries: ["government building facade", "official papers stamp", "public building architecture"] },
+  { file: "sluzba-dusevne-vlastnictvo.jpg", manual: true, orientation: "landscape", queries: ["design sketches desk", "creative workspace", "sketchbook desk"] },
+  { file: "sluzba-patentove-pravo.jpg", manual: true, orientation: "landscape", queries: ["technical drawing", "blueprint detail", "engineering sketch"] },
+  { file: "sluzba-kyberneticke-pravo.jpg", manual: true, orientation: "landscape", queries: ["server room", "data center dark", "network cables"] },
+  { file: "sluzba-pracovne-pravo.jpg", manual: true, orientation: "landscape", queries: ["empty office desks", "workplace interior empty", "office chairs daylight"] },
   { file: "sluzby-uvod.jpg", orientation: "landscape", queries: ["law books shelf", "bookshelf blur"] },
   { file: "preco-my.jpg", orientation: "portrait", queries: ["staircase light", "architecture corridor light"] },
   { file: "kniznica.jpg", orientation: "landscape", queries: ["law books shelf", "bookshelf blur", "library warm"] },
@@ -108,6 +112,10 @@ await fs.mkdir(DIR, { recursive: true });
 
 for (const slot of SLOTS) {
   if (only.length && !only.includes(slot.file)) continue;
+  if (slot.manual) {
+    console.log(`• ${slot.file} vyplnené ručne (src/content/images.ts), preskakujem`);
+    continue;
+  }
   if (!listOnly && !force && (await exists(slot.file))) {
     console.log(`✓ ${slot.file} už existuje (prepíšete s --force)`);
     continue;

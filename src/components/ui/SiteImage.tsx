@@ -45,7 +45,7 @@ export function SiteImage({
   }
 
   return (
-    <div className={cn(slot.natural ? "natural" : "editorial", "absolute inset-0", className)}>
+    <div className={cn(slot.natural || slot.stock ? "natural" : "editorial", "absolute inset-0", className)}>
       <Image
         src={src}
         alt={slot.alt}

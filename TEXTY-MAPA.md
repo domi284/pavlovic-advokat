@@ -13,24 +13,24 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 | 2 · Hlavička a menu | Všetky stránky | `02-mapa-webu.ts`, `services.ts` | Hotové; 6 položiek (Úvod, Služby, O mne, Prečo my, Referencie, Kontakt), mobilné menu pod 1280 px, menu Služby 2 × 5 |
 | 3.1 · Hero a pás čísel | `/` | `03-uvod.ts`, `components/sections/NumbersStrip.tsx`, `src/lib/site.ts` | Hotové; pod hero je pás čísel (roky praxe, vybavené veci, oblasti, pôsobnosť) namiesto pásu dôvery s ikonami; fotka 01 (4:5) |
 | 3.1-referencie · Logá firiem | `/` | `referencie.ts` (`referencieHome`), `components/sections/HomeReferences.tsx`, `globals.css` (`.marquee`) | Hotové; **recenzie zrušené na želanie klienta – iba logá.** Pod pásom čísel veta „Okrem množstva ďalších subjektov…“; **logá v rámiku, plynulý pás** (bordový rám 2 px, logá vo farbe bez názvov, box 64 px / 52 px pod 640 px, max. šírka 200 px, medzera 64 / 40 px, okruh 30 s sprava doľava, pauza pri hover/focus, pri reduced-motion stojí); odkaz „Referencie →“ |
-| 3.2 · Čomu sa venujeme | `/` | `03-uvod.ts`, `04-sluzby/*.ts` | Hotové; 10 kariet v poradí `servicesOrder`, na desktope 2 stĺpce horizontálne; pás čísel sa na úvode presunul do 3.1 (na `/sluzby` ostáva pod kartami) |
+| 3.2 · Čomu sa venujeme | `/` | `03-uvod.ts`, `04-sluzby/*.ts` | Hotové; 10 kariet v poradí `servicesOrder`, na desktope 2 stĺpce horizontálne; pás čísel sa na úvode presunul do 3.1 (na `/sluzby` ostáva pod kartami); karty so **stock fotkami Unsplash** (`images.ts`, `public/images/sluzby/`) |
 | 3.3 · Ako to prebieha | `/` | `03-uvod.ts` | Hotové; doplnená úvodná veta |
 | 3.4 · O pánovi doktorovi | `/` | `03-uvod.ts` | Hotové; doplnená tabuľka 3 faktov; portrét 02 (4:5) |
 | 3.5 · Na čom si zakladáme | `/` | `03-uvod.ts` | Hotové; fotka 03 (desktop úzky stĺpec 9:16, pod 1024 px pod textom 4:5, max. 520 px) |
 | 3.6 · Prečo my | `/` | `03-uvod.ts` | Hotové; fotka 08 (desktop úzky stĺpec 9:16, pod 1024 px pod textom 4:5, max. 520 px) |
 | 3.7 · Časté otázky | `/` | `03-uvod.ts` | Hotové |
 | 3.8 · Záverná výzva | `/` | `03-uvod.ts` | Hotové |
-| 4.1 · Prehľad služieb | `/sluzby` | `04-sluzby/4-1-prehlad.ts` | Hotové; hero fotka 04 (4:5, nepoužíva sa v kategóriách) |
-| 4.3 · Dopravné nehody | `/sluzby/dopravne-nehody` | `04-sluzby/4-3-dopravne-nehody.ts` | Hotové |
-| 4.4 · Obchodné právo | `/sluzby/obchodne-pravo` | `04-sluzby/4-4-obchodne-pravo.ts` | Hotové; súvisiace: Duševné vlastníctvo, Pracovné právo |
-| 4.5 · Občianske právo | `/sluzby/obcianske-pravo` | `04-sluzby/4-5-obcianske-pravo.ts` | Hotové |
-| 4.6 · Rodinné právo | `/sluzby/rodinne-pravo` | `04-sluzby/4-6-rodinne-pravo.ts` | Hotové |
-| 4.7 · Správne právo | `/sluzby/spravne-pravo` | `04-sluzby/4-7-spravne-pravo.ts` | Hotové |
-| 4.8 · Duševné vlastníctvo | `/sluzby/dusevne-vlastnictvo` | `04-sluzby/4-8-dusevne-vlastnictvo.ts` | Hotové |
-| 4.9 · Patentové právo | `/sluzby/patentove-pravo` | `04-sluzby/4-9-patentove-pravo.ts` | Hotové |
-| 4.10 · Kybernetické právo | `/sluzby/kyberneticke-pravo` | `04-sluzby/4-10-kyberneticke-pravo.ts` | Hotové |
-| 4.11 · Trestné právo | `/sluzby/trestne-pravo` | `04-sluzby/4-11-trestne-pravo.ts` | Hotové; iba pre stálych klientov, ŠTS Pezinok + pracovisko Banská Bystrica |
-| **4.12 · Pracovné právo (nové)** | `/sluzby/pracovne-pravo` | `04-sluzby/4-12-pracovne-pravo.ts` | Hotové; bloky 1 – 8, karta, menu, formulár (`?oblast=pracovne-pravo`), FAQ, pätička, asistentka |
+| 4.1 · Prehľad služieb | `/sluzby` | `04-sluzby/4-1-prehlad.ts` | Hotové; hero fotka 04 (4:5, nepoužíva sa v kategóriách); karty 10 služieb so **stock fotkami Unsplash** |
+| 4.3 · Dopravné nehody | `/sluzby/dopravne-nehody` | `04-sluzby/4-3-dopravne-nehody.ts` | Hotové; hero a karta: stock fotky Unsplash |
+| 4.4 · Obchodné právo | `/sluzby/obchodne-pravo` | `04-sluzby/4-4-obchodne-pravo.ts` | Hotové; súvisiace: Duševné vlastníctvo, Pracovné právo; hero a karta: stock fotky Unsplash |
+| 4.5 · Občianske právo | `/sluzby/obcianske-pravo` | `04-sluzby/4-5-obcianske-pravo.ts` | Hotové; hero a karta: stock fotky Unsplash |
+| 4.6 · Rodinné právo | `/sluzby/rodinne-pravo` | `04-sluzby/4-6-rodinne-pravo.ts` | Hotové; hero a karta: stock fotky Unsplash |
+| 4.7 · Správne právo | `/sluzby/spravne-pravo` | `04-sluzby/4-7-spravne-pravo.ts` | Hotové; hero a karta: stock fotky Unsplash |
+| 4.8 · Duševné vlastníctvo | `/sluzby/dusevne-vlastnictvo` | `04-sluzby/4-8-dusevne-vlastnictvo.ts` | Hotové; hero a karta: stock fotky Unsplash |
+| 4.9 · Patentové právo | `/sluzby/patentove-pravo` | `04-sluzby/4-9-patentove-pravo.ts` | Hotové; hero a karta: stock fotky Unsplash |
+| 4.10 · Kybernetické právo | `/sluzby/kyberneticke-pravo` | `04-sluzby/4-10-kyberneticke-pravo.ts` | Hotové; hero a karta: stock fotky Unsplash |
+| 4.11 · Trestné právo | `/sluzby/trestne-pravo` | `04-sluzby/4-11-trestne-pravo.ts` | Hotové; iba pre stálych klientov, ŠTS Pezinok + pracovisko Banská Bystrica; hero a karta: stock fotky Unsplash |
+| **4.12 · Pracovné právo (nové)** | `/sluzby/pracovne-pravo` | `04-sluzby/4-12-pracovne-pravo.ts` | Hotové; bloky 1 – 8, karta, menu, formulár (`?oblast=pracovne-pravo`), FAQ, pätička, asistentka; hero a karta: stock fotky Unsplash |
 | 5.1 · Hero a príbeh | `/o-mne` | `05-o-mne.ts` | Hotové; hero fotka 05 (4:5); pod textom fotky 06 a 07 pod sebou (3:2, stĺpec max. 760 px) |
 | 5.2 · Karta faktov | `/o-mne` | `05-o-mne.ts` | Hotové |
 | 5.3 · Profesijná dráha a záverná výzva | `/o-mne` | `05-o-mne.ts` | Hotové (1990, 1995, 1995) |
@@ -56,7 +56,7 @@ Skutočné fotky od klienta sú v `public/images/foto/` (01 – 09), sloty v `sr
 
 ## Ostáva doplniť (`[DOPLNIŤ]` na webe)
 
-- Fotografie k 10 službám (stock z Unsplash, čaká na kľúč: `UNSPLASH_ACCESS_KEY=… npm run images`); dovtedy náhradné bloky
+- Fotografie k 10 službám: **stock fotky Unsplash** (ručne stiahnuté do `public/images/sluzby/<slug>.jpg`, zdrojové ID v `images.ts`); `npm run images` ich preskakuje
 - Schválenie textov Ochrany osobných údajov a Zásad cookies (potom `site.showLegalDraftBadge = false`) a ich dátum účinnosti
 - Vlastná doména v Resend (kým je odosielateľ `onboarding@resend.dev`, potvrdenie klientovi ostáva vypnuté)
 - Referencie: 9 firiem s logami v `referencie.ts` (`name`, `logo`, `scale`); logá v `public/images/referencie/`. Recenzie zrušené na želanie klienta – iba logá.

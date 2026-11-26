@@ -26,6 +26,8 @@ export type ImageSlot = {
   position?: string;
   /** Skutočná fotka od klienta: bez šedého „editorial“ filtra, iba jemná úprava */
   natural?: boolean;
+  /** Stock fotka (napr. Unsplash): rovnaký filter ako `natural`, ale rozloženie (pomery strán) ako bežný obrázok */
+  stock?: boolean;
 };
 
 export type CtaBand = { title: string; text?: string; ctas: Cta[] };

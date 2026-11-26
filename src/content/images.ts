@@ -96,55 +96,90 @@ export const images = {
     label: "tmavý kameň",
   },
 
-  /* Služby (karta + hero služby, 3:2) */
+  /*
+   * Služby (karta 3:2 / 4:3 + hero služby 3:2 / 4:5) – stock fotky Unsplash (Unsplash License: zadarmo aj
+   * na komerčné použitie, bez povinného uvedenia autora). Súbory v /public/images/sluzby/<slug>.jpg,
+   * stiahnuté ručne z https://images.unsplash.com/<ID>?w=2400&q=85&fm=jpg. `stock` = filter ako pri
+   * skutočných fotkách (saturate 0.92, contrast 1.03), rozloženie ako pri ostatných obrázkoch.
+   */
   obchodnePravo: {
-    file: "sluzba-obchodne-pravo.jpg",
-    alt: "Moderná kancelárska budova zo skla a betónu",
-    label: "moderná kancelárska architektúra",
+    // Unsplash: photo-1603796846097-bee99e4a601f
+    file: "sluzby/obchodne-pravo.jpg",
+    alt: "Podpisovanie zmluvy",
+    label: "podpis zmluvy",
+    position: "55% center",
+    stock: true,
   },
   obcianskePravo: {
-    file: "sluzba-obcianske-pravo.jpg",
-    alt: "Kľúče od domu položené na stole",
-    label: "kľúče na stole, pokojný domov",
+    // Unsplash: photo-1643804926339-e94f0a655185
+    file: "sluzby/obcianske-pravo.jpg",
+    alt: "Kľúče na stole",
+    label: "kľúče na stole",
+    position: "45% center",
+    stock: true,
   },
   dopravneNehody: {
-    file: "sluzba-dopravne-nehody.jpg",
-    alt: "Cesta za súmraku so svetelnými stopami áut",
-    label: "cesta za súmraku",
+    // Unsplash: photo-1597328290883-50c5787b7c7e
+    file: "sluzby/dopravne-nehody.jpg",
+    alt: "Poškodené auto po dopravnej nehode",
+    label: "svetlomet poškodeného auta",
+    position: "35% center",
+    stock: true,
   },
   rodinnePravo: {
-    file: "sluzba-rodinne-pravo.jpg",
-    alt: "Pokojná izba s mäkkým svetlom z okna",
-    label: "svetlo v izbe",
+    // Unsplash: photo-1758227365187-016878604d94
+    file: "sluzby/rodinne-pravo.jpg",
+    alt: "Drevené figúrky rodiny s domčekom",
+    label: "figúrky rodiny a domček",
+    position: "center",
+    stock: true,
   },
   trestnePravo: {
-    file: "sluzba-trestne-pravo.jpg",
-    alt: "Kamenné stĺpy budovy v ostrých tieňoch",
-    label: "kamenné stĺpy, tiene",
+    // Unsplash: photo-1768839722927-df0ef3188f6d
+    file: "sluzby/trestne-pravo.jpg",
+    alt: "Socha spravodlivosti s váhami",
+    label: "socha s váhami",
+    position: "42% center",
+    stock: true,
   },
   spravnePravo: {
-    file: "sluzba-spravne-pravo.jpg",
-    alt: "Fasáda úradnej budovy",
-    label: "budova úradu",
+    // Unsplash: photo-1619418602850-35ad20aa1700
+    file: "sluzby/spravne-pravo.jpg",
+    alt: "Pečiatka na úradnom dokumente",
+    label: "pečiatka na dokumente",
+    position: "62% center",
+    stock: true,
   },
   dusevneVlastnictvo: {
-    file: "sluzba-dusevne-vlastnictvo.jpg",
-    alt: "Skice návrhov na pracovnom stole",
-    label: "skice návrhu na stole",
+    // Unsplash: photo-1572044162444-ad60f128bdea
+    file: "sluzby/dusevne-vlastnictvo.jpg",
+    alt: "Dizajnér pri práci so vzorkovníkom farieb",
+    label: "dizajnér a vzorkovník",
+    position: "center",
+    stock: true,
   },
   patentovePravo: {
-    file: "sluzba-patentove-pravo.jpg",
-    alt: "Detail technického výkresu",
-    label: "technický výkres",
+    // Unsplash: photo-1769147339214-076740872485
+    file: "sluzby/patentove-pravo.jpg",
+    alt: "Strojové súčiastky na technickom výkrese",
+    label: "súčiastky na výkrese",
+    position: "center",
+    stock: true,
   },
   kybernetickePravo: {
-    file: "sluzba-kyberneticke-pravo.jpg",
-    alt: "Serverovňa v tlmenom svetle",
-    label: "serverovňa",
+    // Unsplash: photo-1774898989484-0b9becf69efb
+    file: "sluzby/kyberneticke-pravo.jpg",
+    alt: "Zámok na klávesnici počítača",
+    label: "zámok na klávesnici",
+    position: "68% center",
+    stock: true,
   },
   pracovnePravo: {
-    file: "sluzba-pracovne-pravo.jpg",
-    alt: "Prázdne moderné pracovisko so stolmi a stoličkami v dennom svetle",
-    label: "prázdne pracovisko",
+    // Unsplash: photo-1758520144437-f068ecaf0d83
+    file: "sluzby/pracovne-pravo.jpg",
+    alt: "Pracovný pohovor v kancelárii",
+    label: "pracovný pohovor",
+    position: "66% 25%",
+    stock: true,
   },
 } satisfies Record<string, ImageSlot>;
