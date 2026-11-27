@@ -11,7 +11,7 @@ import logoRemprint from "../../public/images/referencie/05-remprint.png";
 import logoCkMore from "../../public/images/referencie/06-ck-more.png";
 import logoPelikan from "../../public/images/referencie/07-pelikan.png";
 import logoChemos from "../../public/images/referencie/08-chemos-slovakia.svg";
-import logoSecurityTech from "../../public/images/referencie/09-security-tech-servis.png";
+import logoSecurityTech from "../../public/images/referencie/09-security-tech-servis-v2.png";
 
 export type Referencia = {
   name: string;
@@ -36,7 +36,7 @@ export const referencie: Referencia[] = [
   { name: "Cestovná kancelária MORE s. r. o.", logo: logoCkMore, scale: 1 },
   { name: "Pelikan s. r. o.", logo: logoPelikan, scale: 1 },
   { name: "Chemos Slovakia s. r. o.", logo: logoChemos, scale: 0.9 },
-  { name: "Security Tech Servis s. r. o.", logo: logoSecurityTech, scale: 1.4 },
+  { name: "Security Tech-Servis s. r. o.", logo: logoSecurityTech, scale: 1.05 },
 ];
 
 /** Text nad logami na úvode (blok 3.1-referencie). */
