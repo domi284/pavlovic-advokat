@@ -49,7 +49,8 @@ export function HomeReferences() {
                           src={item.logo}
                           alt={copy ? "" : item.name}
                           sizes="200px"
-                          loading="lazy"
+                          loading="eager"
+                          fetchPriority="low"
                           style={{ "--s": item.scale ?? 1 } as CSSProperties}
                           className="h-[calc(var(--box)*0.7*var(--s))] max-h-full w-auto max-w-[200px] object-contain"
                         />

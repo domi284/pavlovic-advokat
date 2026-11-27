@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Referencia } from "@/content/referencie";
 import { cn } from "@/lib/cn";
@@ -55,6 +56,12 @@ export function ReferenceBubbles({ items }: { items: Referencia[] }) {
       <p className="sr-only" aria-live="polite" aria-atomic="true">
         {pairs.filter(Boolean).map((item) => item!.name).join(", ")}
       </p>
+      {/* prednačítanie všetkých líg hneď pri zobrazení (rovnaké sizes ako bublina → rovnaký súbor zo srcset) */}
+      <div hidden aria-hidden="true">
+        {items.map((item) => (
+          <Image key={item.name} src={item.logo} alt="" sizes="260px" loading="eager" fetchPriority="low" />
+        ))}
+      </div>
       <div className="grid gap-10 md:grid-cols-2 md:gap-8">
         {pairs.map((item, side) => (
           <div
